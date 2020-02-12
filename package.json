@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KjellRuiter/realfacefeature#readme",
   "dependencies": {
-    "camelcase": "^5.3.1"
+    "camelcase": "^5.3.1",
+    "express": "^4.17.1"
   }
 }
