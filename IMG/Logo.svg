@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.81 347.81">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #6897b1;
+        stroke-miterlimit: 10;
+        stroke-width: 21px;
+      }
+
+      .cls-2 {
+        fill: #1d1d1b;
+      }
+
+      .cls-3 {
+        fill: #5d2676;
+      }
+    </style>
+  </defs>
+  <g id="Logo" transform="translate(10.5 10.5)">
+    <rect id="Rectangle_110" data-name="Rectangle 110" class="cls-1" width="326.81" height="326.81" transform="translate(0 0)"/>
+    <g id="ZRZq5x.tif" transform="translate(53.403 36.414)">
+      <path id="Path_78" data-name="Path 78" class="cls-2" d="M274.16,310.333V99H427.534v38.052H319.2v71.833h92.413v38.052H319.2v63.369Z" transform="translate(-207.504 -56.384)"/>
+      <path id="Path_79" data-name="Path 79" class="cls-3" d="M248.41,336.486V82.545h85.812a166.265,166.265,0,0,1,36.888,3.779,82.524,82.524,0,0,1,29.51,12.632,61.246,61.246,0,0,1,19.621,23.09,79.831,79.831,0,0,1,7.17,35.723q0,29.122-13.771,46.983a76,76,0,0,1-36.706,25.627l60.573,106H387.133l-54.749-99.4H293.555v99.4Zm45.041-135.125h36.111q25.886,0,39.787-10.872t13.8-32.616q0-22.133-13.8-30.675t-39.787-8.542H293.452Z" transform="translate(-248.41 -82.537)"/>
+    </g>
+    <path id="Path_80" data-name="Path 80" class="cls-2" d="M274.16,99H427.534v38.052H319.2" transform="translate(-154.101 -19.97)"/>
+  </g>
+</svg>
