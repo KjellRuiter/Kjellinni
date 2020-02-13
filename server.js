@@ -2,9 +2,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fs = require('fs');
 
-app.use(express.static('realface'));
+app.use(express.static('realfacefeature'));
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname+'/static/index.html'));
@@ -16,6 +15,10 @@ app.get ("/contact", (req, res) => {
 
 app.get ("/about", (req, res) => {
     res.send ('Dit is realface de dating app');
+});
+
+app.get('/create', function(req, res) {
+    res.sendFile(path.join(__dirname+'/static/create.html'));
 });
 
 app.use(function(req, res){
