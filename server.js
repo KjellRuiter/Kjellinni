@@ -14,6 +14,10 @@ app.get ("/contact", (req, res) => {
     res.send ('Kjell Ruiter');
 });
 
+app.get ("/about", (req, res) => {
+    res.send ('Dit is realface de dating app');
+});
+
 app.use(function(req, res){
     res.type('text/plain')
     res.status(404)
