@@ -21,7 +21,7 @@ app.get('/create', function(req, res) {
     res.sendFile(path.join(__dirname+'/static/create.html '));
 });
 
-app.get('/name/:nameId/gender/:genderId', function (req, res) {
+app.get('/landing/name/:nameId/gender/:genderId', function (req, res) {
     res.send(req.params)
   });
 
