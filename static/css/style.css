@@ -1,4 +1,9 @@
 body {
+    background-image: url(/IMG/Background-img.svg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: center;
     font-family: "Roboto", sans-serif;
 }
 
@@ -65,7 +70,7 @@ body {
     font-size: 12px;
   }
   .form .message a {
-    color: #5F1E78;
+    color: #53E0DB;
     text-decoration: none;
   }
 
