@@ -81,7 +81,7 @@ body {
 /* responsive */
 @media only screen and (max-width: 600px) {
     .welcom_screen {
-        background-image: url(/IMG/caleb-ekeroth-wSBQFWF77lI-unsplash@2x.jpg);
+        background-image: url(/IMG/Background-img.svg);
         background-attachment: fixed;
         background-position-x: center;
         background-position-y: center;
