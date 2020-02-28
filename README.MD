@@ -1,6 +1,9 @@
-Welkom bij de readme van REALFACE. 
+#Welkom bij de readme van REALFACE.
 
-LICENSE
+## icon
+Fontawsome
+
+##LICENSE
 MIT License
 
 Copyright (c) 2020 kjellruiter
