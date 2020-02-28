@@ -5,7 +5,7 @@
 * Bigstock
 
 ### ICON
-* Fontawsome
+* Material Design
 
 ### LICENSE
 MIT License
