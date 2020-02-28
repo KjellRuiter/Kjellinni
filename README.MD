@@ -1,11 +1,11 @@
 ## REALFACE.
 
 ### IMAGES
-Unsplash
-Bigstock
+* Unsplash
+* Bigstock
 
 ### ICON
-Fontawsome
+* Fontawsome
 
 ### LICENSE
 MIT License
