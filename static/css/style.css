@@ -38,14 +38,15 @@ body {
   .form {
     padding: 35px;
   }
-  .form input {
-    background: #f2f2f2;
+  .form input, .form select {
+    background-color: #f2f2f2;
     width: 100%;
     border: 0;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    border-radius: 0px;
   }
   .form button {
     text-transform: uppercase;
@@ -60,7 +61,7 @@ body {
     cursor: pointer;
   }
   .form button:hover,.form button:active,.form button:focus {
-    background: #fff;
+    background-color: #fff;
     border: 1px solid #A4E375;
     color: #A4E375;
   }
@@ -78,6 +79,10 @@ body {
     display: none;
   }
 
+  .dropdown {
+    background: url(/IMG/arrow_drop_down-24px.svg) no-repeat right black;
+  }
+
 /* responsive */
 @media only screen and (max-width: 600px) {
     .welcom_screen {
@@ -92,4 +97,43 @@ body {
 
   .welcom_screen {
       display: none;
+  }
+
+
+/* Font */
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  }
+
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
   }

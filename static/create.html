@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <title>Home</title>
 </head>
 
@@ -12,11 +14,31 @@
     <main>
         <section class="login_page">
             <form class="form register_form">
-                <input type="text" placeholder="name" />
-                <input type="password" placeholder="password" />
-                <input type="email" placeholder="email address" />
-                <button>create</button>
-                <p class="message">Already registered? <a href="home.html">Sign In</a></p>
+                <input type="text" placeholder="Naam" />
+                <input type="text" placeholder="Achternaam" />
+                <input type="password" placeholder="Wachtwoord" />
+                <input type="email" placeholder="Email" />
+                <input type="email" placeholder="Bevestig email" />
+                <input type="number" placeholder="Leeftijd" />
+                <select class="dropdown" name="Geslacht">
+                    <option value="" disabled selected>Geslacht</option>
+                    <option value="1">Man</option>
+                    <option value="2">Vrouw</option>
+                    <option value="3">Anders</option>
+                </select>
+                <select class="dropdown" name="Hobby">
+                        <option value="" disabled selected>Hobby</option>
+                        <option value="1">Voetbal</option>
+                        <option value="2">Handbal</option>
+                        <option value="3">Tennis</option>
+                        <option value="4">Netflix</option>
+                        <option value="5">Slapen</option>
+                        <option value="3">Lezen</option>
+                        <option value="4">Sportschool</option>
+                        <option value="5">Slapen</option>
+                    </select>
+                <button>aanmaken</button>
+                <p class="message">Al een account? <a href="home.html">Inloggen</a></p>
             </form>
         </section>
     </main>
