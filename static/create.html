@@ -12,13 +12,16 @@
 
 <body>
     <main>
+       
         <section class="login_page">
+            <h1>Account aanmaken</h1>
             <form class="form register_form">
                 <input type="text" placeholder="Naam" />
                 <input type="text" placeholder="Achternaam" />
-                <input type="password" placeholder="Wachtwoord" />
                 <input type="email" placeholder="Email" />
                 <input type="email" placeholder="Bevestig email" />
+                <input type="password" placeholder="Wachtwoord" />
+                <input type="password" placeholder="Bevestig wachtwoord" />
                 <input type="number" placeholder="Leeftijd" />
                 <select class="dropdown" name="Geslacht">
                     <option value="" disabled selected>Geslacht</option>
@@ -36,7 +39,15 @@
                         <option value="3">Lezen</option>
                         <option value="4">Sportschool</option>
                         <option value="5">Slapen</option>
-                    </select>
+                </select>
+                <select class="dropdown" name="Geïnteresseerd in geslacht">
+                    <option value="" disabled selected>Geïnteresseerd in geslacht</option>
+                    <option value="1">Man</option>
+                    <option value="2">Vrouw</option>
+                    <option value="3">Geen voorkeur</option>
+                </select>
+                <label for="pictures_upload">Upload profiefoto: </label>
+                <input multiple id="pictures_upload" name="pictures[]" type="file"> 
                 <button>aanmaken</button>
                 <p class="message">Al een account? <a href="home.html">Inloggen</a></p>
             </form>
