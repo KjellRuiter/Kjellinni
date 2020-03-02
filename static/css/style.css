@@ -120,12 +120,12 @@ body {
     border: 1px solid #A4E375;
     color: #A4E375;
   }
-  .form .message {
+  .message {
     margin: 15px 0 0;
     color: #b3b3b3;
     font-size: 12px;
   }
-  .form .message a {
+  .message a {
     color: #53E0DB;
     text-decoration: none;
   }
