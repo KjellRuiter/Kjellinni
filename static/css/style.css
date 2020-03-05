@@ -138,6 +138,13 @@ body {
     background: url(/IMG/arrow_drop_down-24px.svg) no-repeat right black;
   }
 
+  /*  bedankt pagina */
+
+  .bedankt_pagina .login_page {
+    text-align: center;
+  }
+
+
 /* responsive */
 @media only screen and (max-width: 600px) {
     .welcom_screen {
