@@ -29,7 +29,7 @@ function add(req, res) {
     password: req.body.password,
   });
 
-  res.render('pages/succesurl');
+  res.render('pages/succesurl', { data });
 }
 
 app.post('/', add);
