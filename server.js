@@ -5,20 +5,19 @@ const path = require('path');
 const slug = require('slug');
 const bodyParser = require('body-parser');
 
+const data = [];
+
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/add', (req, res) => res.render('pages/add'));
-app.post('/', add);
-app.get('/add', form);
+app.get('/succesurl', (req, res) => res.render('pages/succesurl'));
 
 function form(req, res) {
   res.render('add.ejs');
 }
-
-const data = [];
 
 function add(req, res) {
   const id = slug(req.body.name).toLowerCase();
@@ -30,8 +29,11 @@ function add(req, res) {
     password: req.body.password,
   });
 
-  res.redirect(`/${id}`);
+  res.render('pages/succesurl');
 }
+
+app.post('/', add);
+app.get('/add', form);
 
 app.use(function(req, res) {
   res.type('text/plain');
