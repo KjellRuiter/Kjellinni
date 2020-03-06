@@ -26,9 +26,15 @@ function add(req, res) {
     id,
     name: req.body.name,
     email: req.body.email,
+    confirmemail: req.body.confirmemail,
     password: req.body.password,
+    confirmpassword: req.body.confirmpassword,
+    geslacht: req.body.geslacht,
+    leeftijd: req.body.leeftijd,
+    hobby: req.body.hobby,
+    intrested: req.body.intrested,
   });
-
+  console.log(req.body);
   res.render('pages/succesurl', { data });
 }
 
