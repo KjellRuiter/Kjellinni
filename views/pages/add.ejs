@@ -10,7 +10,7 @@
        
         <section class="login_page">
             <h1>Account aanmaken</h1>
-            <form action="/" method="post" class="form register_form">
+            <form action="/" method="post" enctype="multipart/form-data" class="form register_form">
                 <input type="text" name="name" placeholder="Name">
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Wachtwoord">
@@ -20,6 +20,9 @@
                     <option value="Vrouw">Vrouw</option>
                     <option value="Anders">Anders</option>
                 </select>
+                <label> Profielfoto
+                    <input name=profielfoto type=file accept=image/*>
+                </label>
                  <input type="number" name="leeftijd" placeholder="Leeftijd" />
                  <select class="dropdown" name="hobby">
                         <option value="" disabled selected>Hobby</option>

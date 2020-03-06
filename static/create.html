@@ -15,42 +15,40 @@
        
         <section class="login_page">
             <h1>Account aanmaken</h1>
-            <form action="/" method="post" class="form register_form">
-                <input type="text" placeholder="Naam" />
-                <input type="text" placeholder="Achternaam" />
-                <input type="email" placeholder="Email" />
-                <input type="email" placeholder="Bevestig email" />
-                <input type="password" placeholder="Wachtwoord" />
-                <input type="password" placeholder="Bevestig wachtwoord" />
-                <input type="number" placeholder="Leeftijd" />
-                <select class="dropdown" name="Geslacht">
+            <form action="/" method="post" enctype="multipart/form-data" class="form register_form">
+                <input type="text" name="name" placeholder="Name">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Wachtwoord">
+                <select class="dropdown" name="geslacht">
                     <option value="" disabled selected>Geslacht</option>
-                    <option value="1">Man</option>
-                    <option value="2">Vrouw</option>
-                    <option value="3">Anders</option>
+                    <option value="Man">Man</option>
+                    <option value="Vrouw">Vrouw</option>
+                    <option value="Anders">Anders</option>
                 </select>
-                <select class="dropdown" name="Hobby">
+                <label> Profielfoto
+                    <input name=profielfoto type=file accept=image/*>
+                </label>
+                 <input type="number" name="leeftijd" placeholder="Leeftijd" />
+                 <select class="dropdown" name="hobby">
                         <option value="" disabled selected>Hobby</option>
-                        <option value="1">Voetbal</option>
-                        <option value="2">Handbal</option>
-                        <option value="3">Tennis</option>
-                        <option value="4">Netflix</option>
-                        <option value="5">Slapen</option>
-                        <option value="3">Lezen</option>
-                        <option value="4">Sportschool</option>
-                        <option value="5">Slapen</option>
+                        <option value="Voetbal">Voetbal</option>
+                        <option value="Handbal">Handbal</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Netflix">Netflix</option>
+                        <option value="Slapen">Slapen</option>
+                        <option value="Lezen">Lezen</option>
+                        <option value="Sportschool">Sportschool</option>
                 </select>
-                <select class="dropdown" name="Geïnteresseerd">
+                <select class="dropdown" name="intrested">
                     <option value="" disabled selected>Geïnteresseerd in geslacht</option>
-                    <option value="1">Man</option>
-                    <option value="2">Vrouw</option>
-                    <option value="3">Geen voorkeur</option>
+                    <option value="Man">Man</option>
+                    <option value="Vrouw">Vrouw</option>
+                    <option value="Geen voorkeur">Geen voorkeur</option>
                 </select>
-                <label for="pictures_upload">Upload profiefoto: </label>
-                <input multiple id="pictures_upload" name="pictures[]" type="file"> 
-                <button>aanmaken</button>
+                <button type="submit"> aanmaken</button>
                 <p class="message">Al een account? <a href="/">Inloggen</a></p>
             </form>
+           
         </section>
     </main>
 </body>

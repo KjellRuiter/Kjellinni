@@ -146,6 +146,11 @@ body {
     text-align: center;
   }
 
+  .bedankt_pagina img {
+    max-width: 100%;
+    max-height: 15em
+  }
+
   .bedankt_message {
     color:#f1f1f1;
   }

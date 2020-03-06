@@ -4,6 +4,9 @@ const app = express();
 const path = require('path');
 const slug = require('slug');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+
+const upload = multer({ dest: 'static/upload/' });
 
 const data = [];
 
@@ -28,6 +31,7 @@ function add(req, res) {
     email: req.body.email,
     password: req.body.password,
     geslacht: req.body.geslacht,
+    profielfoto: req.file ? req.file.filename : null,
     leeftijd: req.body.leeftijd,
     hobby: req.body.hobby,
     intrested: req.body.intrested,
@@ -36,7 +40,7 @@ function add(req, res) {
   res.render('pages/succesurl', { data });
 }
 
-app.post('/', add);
+app.post('/', upload.single('profielfoto'), add);
 app.get('/add', form);
 
 app.use(function(req, res) {
