@@ -11,11 +11,14 @@ const storage = multer.diskStorage({
     cb(null, 'static/upload/');
   },
   filename: (req, file, cb) => {
+    // mimetype = image/extension
+    // mimetype.split('/') >> ['image', 'extension']
     const extension = file.mimetype.split('/')[1];
     cb(
       null,
       `${
         req.body.email ? req.body.email : req.body.name
+        // name + '.' + extension
       }-${Date.now()}.${extension}`
     );
   },
