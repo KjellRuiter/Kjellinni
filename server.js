@@ -6,7 +6,22 @@ const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 
-const upload = multer({ dest: 'static/upload/' });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'static/upload/');
+  },
+  filename: (req, file, cb) => {
+    const extension = file.mimetype.split('/')[1];
+    cb(
+      null,
+      `${
+        req.body.email ? req.body.email : req.body.name
+      }-${Date.now()}.${extension}`
+    );
+  },
+});
+
+const upload = multer({ storage });
 
 const data = [];
 
@@ -24,8 +39,7 @@ function form(req, res) {
 
 function add(req, res) {
   const id = slug(req.body.name).toLowerCase();
-
-  data.push({
+  const newUser = {
     id,
     name: req.body.name,
     email: req.body.email,
@@ -35,9 +49,10 @@ function add(req, res) {
     leeftijd: req.body.leeftijd,
     hobby: req.body.hobby,
     intrested: req.body.intrested,
-  });
-  console.log(req.body);
-  res.render('pages/succesurl', { data });
+  };
+  data.push(newUser);
+  console.log(req.file, req.file.filename);
+  res.render('pages/succesurl', { data: newUser });
 }
 
 app.post('/', upload.single('profielfoto'), add);
