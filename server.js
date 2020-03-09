@@ -5,6 +5,21 @@ const path = require('path');
 const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+require('dotenv').config();
+
+const { MongoClient } = require('mongodb');
+
+// replace the uri string with your connection string.
+const uri = process.env.MONGO_URi;
+MongoClient.connect(uri, function(err, client) {
+  if (err) {
+    console.log('Error occurred while connecting to MongoDB Atlas...\n', err);
+  }
+  console.log('Connected...');
+  const collection = client.db('db01').collection('accounts');
+  // perform actions on the collection object
+  client.close();
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
