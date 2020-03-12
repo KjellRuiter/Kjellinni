@@ -5,19 +5,66 @@ const path = require('path');
 const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 require('dotenv').config();
 
-let db = null;
-const url = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
+const uri = process.env.DB_uri;
+async function callDb() {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
-mongo.MongoClient.connect(url, function(err, client) {
-  if (err) throw err;
-  console.log('connected...');
-  db = client.db(process.env.DB_NAME);
-  console.log('Dit is de database', db);
-});
+  try {
+    await client.connect();
+
+    const db = client.db('db01');
+
+    const tags = await db
+      .collection('accounts')
+      .find({})
+      .toArray();
+    console.log(tags);
+    return tags;
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+}
+callDb();
+
+async function writeDb(data) {
+  console.log('writeDb');
+  console.log(data);
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+
+    const db = client.db('db01');
+
+    const tags = await db.collection('accounts').insertOne({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      geslacht: data.geslacht,
+      profielfoto: data.file ? data.file.filename : null,
+      leeftijd: data.leeftijd,
+      hobby: data.hobby,
+      intrested: data.intrested,
+    });
+    console.log(tags);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -55,22 +102,24 @@ function form(req, res) {
   res.render('add.ejs');
 }
 
-function add(req, res) {
-  const id = slug(req.body.name).toLowerCase();
-  const newUser = {
-    id,
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    geslacht: req.body.geslacht,
-    profielfoto: req.file ? req.file.filename : null,
-    leeftijd: req.body.leeftijd,
-    hobby: req.body.hobby,
-    intrested: req.body.intrested,
-  };
-  data.push(newUser);
-  console.log(req.file, req.file.filename);
-  res.render('pages/succesurl', { data: newUser });
+async function add(req, res) {
+  // const id = slug(req.body.name).toLowerCase();
+  // const newUser = {
+  //   id,
+  //   name: req.body.name,
+  //   email: req.body.email,
+  //   password: req.body.password,
+  //   geslacht: req.body.geslacht,
+  //   profielfoto: req.file ? req.file.filename : null,
+  //   leeftijd: req.body.leeftijd,
+  //   hobby: req.body.hobby,
+  //   intrested: req.body.intrested,
+  // };
+  // data.push(newUser);
+  // console.log(req.file, req.file.filename);
+  writeDb(req.body);
+  const data = await callDb();
+  res.render('pages/succesurl', { data });
 }
 
 app.post('/', upload.single('profielfoto'), add);

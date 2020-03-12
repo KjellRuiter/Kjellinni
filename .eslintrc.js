@@ -1,5 +1,4 @@
-  
-module.exports = {
+  module.exports = {
     "extends": [
       "airbnb",
       "prettier",
@@ -134,7 +133,6 @@ module.exports = {
       "react-hooks/exhaustive-deps": "warn"
     },
     "plugins": [
-      "html",
       "prettier",
       "react-hooks"
     ]
