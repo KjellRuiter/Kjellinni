@@ -7,7 +7,11 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const { MongoClient } = require('mongodb');
 
+// .ENV
+
 require('dotenv').config();
+
+// connection DB
 
 const uri = process.env.DB_uri;
 async function callDb() {
@@ -66,6 +70,8 @@ async function writeDb(data) {
   }
 }
 
+// IMG
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'static/upload/');
@@ -88,15 +94,20 @@ const upload = multer({ storage });
 
 const data = [];
 
-app.use(express.static('static'));
-app.use(bodyParser.urlencoded({ extended: true }));
+// EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// routes
+app.use(express.static('static'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/add', (req, res) => res.render('pages/add'));
 app.get('/succesurl', (req, res) => res.render('pages/succesurl'));
 app.get('/profile', (req, res) => res.render('pages/profile'));
 app.get('/match', (req, res) => res.render('pages/match'));
+
+// Form
 
 function form(req, res) {
   res.render('add.ejs');
@@ -123,11 +134,15 @@ async function add(req, res) {
 app.post('/', upload.single('profielfoto'), add);
 app.get('/add', form);
 
+// 404 page
+
 app.use(function(req, res) {
   res.type('text/plain');
   res.status(404);
   res.send('404 Not Found');
   console.log(data);
 });
+
+// Port
 
 app.listen(3000, () => console.log('App listening on port 3000!'));
