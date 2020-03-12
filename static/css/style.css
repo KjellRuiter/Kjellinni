@@ -37,6 +37,7 @@
 }
 
 body {
+    max-width:100%;
     background-image: url(/IMG/Background-img.svg);
     background-size: cover;
     background-attachment: fixed;
@@ -158,8 +159,6 @@ body {
     color:#f1f1f1;
   }
 
-
-
   /*  Nav */
 
   body.with_nav {
@@ -170,7 +169,14 @@ body {
     margin-top: 0px;
   }
 
+  .with_nav p {
+    color: white;
+    margin: auto;
+    text-align: center;
+  }
+
   nav {
+    max-width:100%;
     width: 100%;
     background-color: #984771;
     height: 60px;
@@ -187,6 +193,10 @@ body {
     display: inline-block;
     color: white;
     padding-left: 10px;
+  }
+
+  nav .material-icons {
+    font-size: 30px;
   }
 
   nav ul li a {
