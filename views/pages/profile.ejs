@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-        <%- include ('../partials/head') %>
+    <%- include ('../partials/head') %>
 </head>
 
-<body>
+<body class="with_nav">
     <%- include ('../partials/nav') %>
     <main>
         <section class="login_page">
@@ -21,10 +21,9 @@
                     <option value="Anders">Anders</option>
                 </select>
                 <label> Profielfoto
-                    <input name=profielfoto type=file accept=image/*>
-                </label>
-                 <input type="number" name="leeftijd" placeholder="Leeftijd" />
-                 <select class="dropdown" name="hobby">
+                    <input name=profielfoto type=file accept=image/*> </label> <input type="number" name="leeftijd"
+                        placeholder="Leeftijd" />
+                    <select class="dropdown" name="hobby">
                         <option value="" disabled selected>Hobby</option>
                         <option value="Voetbal">Voetbal</option>
                         <option value="Handbal">Handbal</option>
@@ -33,17 +32,17 @@
                         <option value="Slapen">Slapen</option>
                         <option value="Lezen">Lezen</option>
                         <option value="Sportschool">Sportschool</option>
-                </select>
-                <select class="dropdown" name="intrested">
-                    <option value="" disabled selected>Geïnteresseerd in geslacht</option>
-                    <option value="Man">Man</option>
-                    <option value="Vrouw">Vrouw</option>
-                    <option value="Geen voorkeur">Geen voorkeur</option>
-                </select>
-                <button type="submit"> opslaan</button>
-                <p class="message">Al een account? <a href="/">Inloggen</a></p>
+                    </select>
+                    <select class="dropdown" name="intrested">
+                        <option value="" disabled selected>Geïnteresseerd in geslacht</option>
+                        <option value="Man">Man</option>
+                        <option value="Vrouw">Vrouw</option>
+                        <option value="Geen voorkeur">Geen voorkeur</option>
+                    </select>
+                    <button type="submit"> opslaan</button>
+                    <p class="message">Al een account? <a href="/">Inloggen</a></p>
             </form>
-           
+
         </section>
     </main>
     <%- include ('../partials/footer') %>
