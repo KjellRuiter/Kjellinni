@@ -21,12 +21,12 @@ async function callDb() {
 
     const db = client.db('db01');
 
-    const tags = await db
+    const account = await db
       .collection('accounts')
       .find({})
       .toArray();
-    console.log(tags);
-    return tags;
+    console.log(account);
+    return account;
   } catch (e) {
     console.error(e);
   } finally {
@@ -48,7 +48,7 @@ async function writeDb(data) {
 
     const db = client.db('db01');
 
-    const tags = await db.collection('accounts').insertOne({
+    const account = await db.collection('accounts').insertOne({
       name: data.name,
       email: data.email,
       password: data.password,
@@ -58,7 +58,7 @@ async function writeDb(data) {
       hobby: data.hobby,
       intrested: data.intrested,
     });
-    console.log(tags);
+    console.log(account);
   } catch (e) {
     console.error(e);
   } finally {
@@ -103,21 +103,19 @@ function form(req, res) {
 }
 
 async function add(req, res) {
-  // const id = slug(req.body.name).toLowerCase();
-  // const newUser = {
-  //   id,
-  //   name: req.body.name,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   geslacht: req.body.geslacht,
-  //   profielfoto: req.file ? req.file.filename : null,
-  //   leeftijd: req.body.leeftijd,
-  //   hobby: req.body.hobby,
-  //   intrested: req.body.intrested,
-  // };
-  // data.push(newUser);
-  // console.log(req.file, req.file.filename);
-  writeDb(req.body);
+  const id = slug(req.body.name).toLowerCase();
+  const newUser = {
+    id,
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    geslacht: req.body.geslacht,
+    profielfoto: req.file ? req.file.filename : null,
+    leeftijd: req.body.leeftijd,
+    hobby: req.body.hobby,
+    intrested: req.body.intrested,
+  };
+  writeDb(newUser);
   const data = await callDb();
   res.render('pages/succesurl', { data });
 }
