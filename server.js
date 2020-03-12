@@ -19,6 +19,20 @@ mongo.MongoClient.connect(url, function(err, client) {
   console.log('Dit is de database', db);
 });
 
+function accounts(req, res, next) {
+  db.collection('accounts')
+    .find()
+    .toArray(done);
+
+  function done(err, data) {
+    if (err) {
+      next(err);
+    } else {
+      console.log(data);
+    }
+  }
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'static/upload/');
@@ -48,6 +62,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/add', (req, res) => res.render('pages/add'));
 app.get('/succesurl', (req, res) => res.render('pages/succesurl'));
+app.get('/profile', (req, res) => res.render('pages/profile'));
+app.get('/match', (req, res) => res.render('pages/match'));
 
 function form(req, res) {
   res.render('add.ejs');
