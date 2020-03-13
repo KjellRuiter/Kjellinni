@@ -64,10 +64,14 @@ body {
 
 
 .welcom_screen {
-    background: linear-gradient(
-        rgba(86,31,172,1),
-        rgba(83,224,219,1));
-    height: 100vh;
+  background-image: url(/IMG/Background-img.svg);
+  background-attachment: fixed;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
 /* form */
@@ -273,14 +277,7 @@ body {
 
 /* responsive */
 @media only screen and (max-width: 600px) {
-    .welcom_screen {
-        background-image: url(/IMG/Background-img.svg);
-        background-attachment: fixed;
-        background-position-x: center;
-        background-position-y: center;
-        background-size: cover;
-        height: 100vh;
-    }
+    
   }
 
  .hide_item_timout {
