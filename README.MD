@@ -24,5 +24,3 @@ $ nodemon
 MIT License
 
 Copyright (c) 2020 kjellruiter
-
-https://i.imgur.com/cfKB8zy.png
