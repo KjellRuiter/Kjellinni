@@ -1,9 +1,14 @@
 ## REALFACE.
 This is a user login and registration app using Node.js, Express, MongoDB, Passport, EJS and some other packages.
-
+---
 ![Desing Wireframe 2.0](https://i.imgur.com/cfKB8zy.png)
 
 ### USE
+Clone the repository:
+```
+$ git clone https://github.com/KjellRuiter/realfacefeature.git
+```
+
 ```sh
 $ npm install
 
