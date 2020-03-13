@@ -65,8 +65,8 @@ body {
 
 .welcom_screen {
     background: linear-gradient(
-        rgba(83,224,219,1),
-        rgba(48,89,201,1));
+        rgba(86,31,172,1),
+        rgba(83,224,219,1));
     height: 100vh;
 }
 
@@ -142,16 +142,6 @@ body {
 
   /* checkbox */
 
-  /* .form .mycheckbox {
-    float: left;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    color: red;
-  } */
-  
   .container {
   display: block;
   position: relative;
@@ -293,9 +283,6 @@ body {
     }
   }
 
-  .welcom_screen {
-      display: none;
+ .hide_item_timout {
+    display: none;
   }
-
-
-
