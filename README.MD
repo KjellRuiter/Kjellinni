@@ -3,7 +3,7 @@ This is a user login and registration app using Node.js, Express, MongoDB, Passp
 
 ### USE
 ```sh
-> $ npm install
+$ npm install
 
 $ nmp server.js
 # Or run with Nodemon
