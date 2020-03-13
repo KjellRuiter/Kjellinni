@@ -15,7 +15,7 @@ $ nodemon
 ```
 ## IMAGES
 * Bigstock
-https://www.bigstockphoto.com/nl/image-334842214/ 
+* https://www.bigstockphoto.com/nl/image-334842214/ 
 Bigstock. (2020, February 26). Background-img [Photograph]. Retrieved from https://www.bigstockphoto.com/nl/image-334842214/
 
 ## ICON
