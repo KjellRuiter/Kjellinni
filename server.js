@@ -6,8 +6,11 @@ const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const { MongoClient } = require('mongodb');
+// const bcrypt = require('bcrypt');
 // const passport = require('passport');
 // const session = require('express-session');
+// const methodOverride = require('method-override');
+// const LocalStrategy = require('passport-local').Strategy;
 
 // .ENV
 require('dotenv').config();
@@ -98,19 +101,6 @@ const data = [];
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// // Express session
-// app.use(
-//   session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
-
-// // Passport middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
-
 // routes
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -155,46 +145,30 @@ app.use(function(req, res) {
 });
 
 // passpoort
-// const LocalStrategy = require('passport-local').Strategy;
-// const bcrypt = require('bcryptjs');
 
-// module.exports = function(passport) {
-//   passport.use(
-//     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-//       // Match user
-//       accounts
-//         .findOne({
-//           email,
-//         })
-//         .then(accounts => {
-//           if (!accounts) {
-//             return done(null, false, {
-//               message: 'That email is not registered',
-//             });
-//           }
+// function initialize(passport, getUserByEmail, getUserById) {
+//   const authenticateUser = async (email, password, done) => {
+//     const user = getUserByEmail(email);
+//     if (user == null) {
+//       return done(null, false, { message: 'No user with that email' });
+//     }
 
-//           // Match password
-//           bcrypt.compare(password, accounts.password, (err, isMatch) => {
-//             if (err) throw err;
-//             if (isMatch) {
-//               return done(null, accounts);
-//             }
-//             return done(null, false, { message: 'Password incorrect' });
-//           });
-//         });
-//     })
-//   );
+//     try {
+//       if (await bcrypt.compare(password, user.password)) {
+//         return done(null, user);
+//       }
+//       return done(null, false, { message: 'Password incorrect' });
+//     } catch (e) {
+//       return done(e);
+//     }
+//   };
 
-//   passport.serializeUser(function(accounts, done) {
-//     done(null, accounts.id);
-//   });
+//   passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser));
+//   passport.serializeUser((user, done) => done(null, user.id));
+//   passport.deserializeUser((id, done) => done(null, getUserById(id)));
+// }
 
-//   passport.deserializeUser(function(id, done) {
-//     accounts.findById(id, function(err, accounts) {
-//       done(err, accounts);
-//     });
-//   });
-// };
+// module.exports = initialize;
 
 // Port
 app.listen(3000, () => console.log('App listening on port 3000!'));
