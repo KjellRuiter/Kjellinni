@@ -20,13 +20,18 @@
   "homepage": "https://github.com/KjellRuiter/realfacefeature#readme",
   "dependencies": {
     "babel-eslint": "^9.0.0",
+    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "mongodb": "^3.5.4",
     "multer": "^1.4.2",
     "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "slug": "^2.1.1"
   },

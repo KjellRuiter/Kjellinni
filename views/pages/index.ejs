@@ -14,9 +14,9 @@
         <section class="login_page">
             <h1>Inloggen</h1>
             <section class="form">
-                <form action="/match" enctype="multipart/form-data" class="login_form">
-                    <input type="email" placeholder="email" />
-                    <input type="password" placeholder="wachtwoord" />
+                <form action="/match" method="POST" class="login_form">
+                    <input type="email" id="email name="email" placeholder="email" />
+                    <input type="password" id="password" name="password" placeholder="wachtwoord" />
                     <button type="submit">Aanmelden</button>
                     <p class="message">Geen account? <a href="./add">Account aanmaken</a></p>
                 </form>
