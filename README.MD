@@ -1,5 +1,7 @@
 ## REALFACE.
 This is a user login and registration app using Node.js, Express, MongoDB, Passport, EJS and some other packages.
+![Desing Wireframe 2.0](https://i.imgur.com/t7HKuza.png)
+![Desing Wireframe 2.0](https://i.imgur.com/cfKB8zy.png)
 
 ### USE
 ```sh
