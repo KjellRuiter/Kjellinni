@@ -19,7 +19,11 @@
             <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form register_form">
                 <input type="text" name="name" placeholder="Name" value="<%= user.name %>">
                 <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
-                <input type="password" name="password" placeholder="Wachtwoord">
+                <input type="password" name="password" placeholder="Wachtwoord" id="myInput">
+                <label class="container">Laat Wachtwoord zien
+                    <input class="mycheckbox"type="checkbox" onclick="myFunction()">
+                    <span class="checkmark"></span>
+                </label>
                 <select class="dropdown" name="gender" value="<%= user.gender %>">
                     <option value="" disabled selected>Geslacht</option>
                     <%
