@@ -2,5 +2,5 @@ node_modules/
 .vscode
 .env
 package-lock.json
-upload/
+uploads/
 yarn.lock
