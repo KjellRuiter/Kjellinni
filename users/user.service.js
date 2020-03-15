@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const db = require('helpers/db');
+const db = require('../helpers/db');
 
 const { User } = db;
 const path = require('path');
@@ -12,18 +12,13 @@ module.exports = {
 };
 
 async function authenticate({ email, password }) {
-  console.log('authenticate user...');
   const user = await User.findOne({ email });
 
   if (user && bcrypt.compareSync(password, user.hash)) {
     const { hash, ...userWithoutHash } = user.toObject();
 
-    console.log('Found user');
-
     return userWithoutHash;
   }
-
-  console.log('Wrong password or user not found');
 }
 
 async function create(userParam) {

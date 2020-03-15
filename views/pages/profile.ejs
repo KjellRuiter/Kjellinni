@@ -10,11 +10,10 @@
     <main>
         <section class="login_page">
             <h1>Hello <%= user.name %></h1>
-            <p>Update your account.</p>
-            <a href="/users/logout">Logout</a>
+            <p>Update je account.</p>
 
             <% if (user.photo) { %>
-                <img src="/uploads/<%= user.photo %>" alt="<%= user.name %> photo" style="max-height: 200px;">
+                <img class="profilePhoto" src="/uploads/<%= user.photo %>" alt="<%= user.name %> photo" style="max-height: 200px;">
             <% } %>
 
             <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form register_form">

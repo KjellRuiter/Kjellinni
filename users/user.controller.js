@@ -9,21 +9,11 @@ const {
 } = require('../helpers/auth');
 const upload = require('../helpers/upload.js')();
 
-// routes
-router.post('/authenticate', forwardAuthenticated, authenticate);
-router.post('/register', forwardAuthenticated, register);
-router.get('/logout', ensureAuthenticated, logout);
-
-router.put('/:id', [ensureAuthenticated, upload.single('photo')], update);
-router.delete('/:id', ensureAuthenticated, _delete);
-
-module.exports = router;
-
 function authenticate(req, res, next) {
   passport.authenticate('local', {
     failureRedirect: '/',
     successRedirect: '/profile',
-    failureFlash: 'Invalid username or password.',
+    failureFlash: 'Fout email of wachtwoord.',
   })(req, res, next);
 }
 
@@ -34,7 +24,7 @@ function register(req, res, next) {
       passport.authenticate('local', {
         failureRedirect: '/',
         successRedirect: '/profile',
-        failureFlash: 'Invalid username or password.',
+        failureFlash: 'Fout email of wachtwoord.',
       })(req, res, next);
     })
     .catch(err => {
@@ -56,3 +46,13 @@ function logout(req, res, next) {
 function _delete(req, res, next) {
   userService.delete(req.params.id).then(() => res.redirect('/'));
 }
+
+// routes
+router.post('/authenticate', forwardAuthenticated, authenticate);
+router.post('/register', forwardAuthenticated, register);
+router.get('/logout', ensureAuthenticated, logout);
+
+router.put('/:id', [ensureAuthenticated, upload.single('photo')], update);
+router.delete('/:id', ensureAuthenticated, _delete);
+
+module.exports = router;
