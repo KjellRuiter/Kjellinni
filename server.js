@@ -1,174 +1,60 @@
-const express = require('express');
-
-const app = express();
-const path = require('path');
-const slug = require('slug');
-const bodyParser = require('body-parser');
-const multer = require('multer');
-const { MongoClient } = require('mongodb');
-// const bcrypt = require('bcrypt');
-// const passport = require('passport');
-// const session = require('express-session');
-// const methodOverride = require('method-override');
-// const LocalStrategy = require('passport-local').Strategy;
-
-// .ENV
+require('rootpath')();
 require('dotenv').config();
 
-// connection DB
-const uri = process.env.DB_uri;
-async function callDb() {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+const path = require('path');
+const express = require('express');
+const methodOverride = require('method-override')
+const app = express();
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const session = require('express-session')
+const cookieParser = require('cookie-parser');
+const flash = require('express-flash')
+require('./helpers/passport')(passport);
+const { forwardAuthenticated, ensureAuthenticated } = require('./helpers/auth');
 
-  try {
-    await client.connect();
-
-    const db = client.db('db01');
-
-    const account = await db
-      .collection('accounts')
-      .find({})
-      .toArray();
-    console.log(account);
-    return account;
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await client.close();
-  }
-}
-callDb();
-
-async function writeDb(data) {
-  console.log('writeDb');
-  console.log(data);
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  try {
-    await client.connect();
-
-    const db = client.db('db01');
-
-    const account = await db.collection('accounts').insertOne({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      geslacht: data.geslacht,
-      profielfoto: data.file ? data.file.filename : null,
-      leeftijd: data.leeftijd,
-      hobby: data.hobby,
-      intrested: data.intrested,
-    });
-    console.log(account);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await client.close();
-  }
-}
-
-// IMG
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'static/upload/');
-  },
-  filename: (req, file, cb) => {
-    // mimetype = image/extension
-    // mimetype.split('/') >> ['image', 'extension']
-    const extension = file.mimetype.split('/')[1];
-    cb(
-      null,
-      `${
-        req.body.email ? req.body.email : req.body.name
-        // name + '.' + extension
-      }-${Date.now()}.${extension}`
-    );
-  },
-});
-
-const upload = multer({ storage });
-
-const data = [];
+// Setup request
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 // EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(__dirname + '/static'));
 
-// routes
-app.use(express.static('static'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/', (req, res) => res.render('pages/index'));
-app.get('/add', (req, res) => res.render('pages/add'));
-app.get('/succesurl', (req, res) => res.render('pages/succesurl'));
-app.get('/profile', (req, res) => res.render('pages/profile'));
-app.get('/match', (req, res) => res.render('pages/match'));
+// Setup session and auth
+app.use(cookieParser('secret'));
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false, cookie: { maxAge: 60000 }}))
 
-// Form
-function form(req, res) {
-  res.render('add.ejs');
-}
+// Initialize Passport and restore authentication state, if any, from the session.
+app.use(passport.initialize());
+app.use(passport.session());
 
-async function add(req, res) {
-  const id = slug(req.body.name).toLowerCase();
-  const newUser = {
-    id,
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    geslacht: req.body.geslacht,
-    profielfoto: req.file ? req.file.filename : null,
-    leeftijd: req.body.leeftijd,
-    hobby: req.body.hobby,
-    intrested: req.body.intrested,
-  };
-  writeDb(newUser);
-  const data = await callDb();
-  res.render('pages/succesurl', { data });
-}
+// Use flash
+app.use(flash());
 
-app.post('/', upload.single('profielfoto'), add);
-app.get('/add', form);
-
-// 404 page
-app.use(function(req, res) {
-  res.type('text/plain');
-  res.status(404);
-  res.send('404 Not Found');
-  console.log(data);
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.message = req.flash('message');
+  res.locals.error = req.flash('error');
+  
+  next();
 });
 
-// passpoort
+// user routes
+app.use('/users', require('./users/user.controller'));
 
-// function initialize(passport, getUserByEmail, getUserById) {
-//   const authenticateUser = async (email, password, done) => {
-//     const user = getUserByEmail(email);
-//     if (user == null) {
-//       return done(null, false, { message: 'No user with that email' });
-//     }
+// views
+app.get('/', forwardAuthenticated, (req, res) => {
+  res.render('pages/login')
+});
+app.get('/register', forwardAuthenticated, (req, res) => res.render('pages/register'));
 
-//     try {
-//       if (await bcrypt.compare(password, user.password)) {
-//         return done(null, user);
-//       }
-//       return done(null, false, { message: 'Password incorrect' });
-//     } catch (e) {
-//       return done(e);
-//     }
-//   };
+app.get('/profile', ensureAuthenticated, (req, res) => {
+  res.render('pages/profile', { user: req.user })
+});
 
-//   passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser));
-//   passport.serializeUser((user, done) => done(null, user.id));
-//   passport.deserializeUser((id, done) => done(null, getUserById(id)));
-// }
+app.get('/match', ensureAuthenticated, (req, res) => res.render('pages/match'));
 
-// module.exports = initialize;
-
-// Port
-app.listen(3000, () => console.log('App listening on port 3000!'));
+// start server
+const server = app.listen(3000, () => console.log('Server listening on port 3000'));

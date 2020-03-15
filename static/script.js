@@ -13,7 +13,7 @@ const bigSection = document.querySelector('.welcom_screen');
 function removeOverlay() {
   setTimeout(function() {
     bigSection.classList.add('hide_item_timout');
-  }, 1500);
+  }, 500);
 }
 
 removeOverlay();

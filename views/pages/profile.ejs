@@ -9,37 +9,51 @@
     <%- include ('../partials/nav') %>
     <main>
         <section class="login_page">
-            <h1>Account aanmaken</h1>
-            <form action="/profile" method="post" enctype="multipart/form-data" class="form register_form">
-                <input type="text" name="name" placeholder="Name">
-                <input type="email" name="email" placeholder="Email">
+            <h1>Hello <%= user.name %></h1>
+            <p>Update your account.</p>
+            <a href="/users/logout">Logout</a>
+
+            <% if (user.photo) { %>
+                <img src="/uploads/<%= user.photo %>" alt="<%= user.name %> photo" style="max-height: 200px;">
+            <% } %>
+
+            <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form register_form">
+                <input type="text" name="name" placeholder="Name" value="<%= user.name %>">
+                <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
                 <input type="password" name="password" placeholder="Wachtwoord">
-                <select class="dropdown" name="geslacht">
+                <select class="dropdown" name="gender" value="<%= user.gender %>">
                     <option value="" disabled selected>Geslacht</option>
-                    <option value="Man">Man</option>
-                    <option value="Vrouw">Vrouw</option>
-                    <option value="Anders">Anders</option>
+                    <%
+                        let genders = ['Man', 'Vrouw', 'Anders'];
+                        genders.map(item => {
+                            let selected = item == user.gender ? 'selected' : '';
+                            %><option value="<%= item %>" <%= selected %>><%= item %></option><%
+                        })
+                    %>
                 </select>
-                <label> Profielfoto
-                    <input name=profielfoto type=file accept=image/*> </label> <input type="number" name="leeftijd"
-                        placeholder="Leeftijd" />
-                    <select class="dropdown" name="hobby">
-                        <option value="" disabled selected>Hobby</option>
-                        <option value="Voetbal">Voetbal</option>
-                        <option value="Handbal">Handbal</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Netflix">Netflix</option>
-                        <option value="Slapen">Slapen</option>
-                        <option value="Lezen">Lezen</option>
-                        <option value="Sportschool">Sportschool</option>
-                    </select>
-                    <select class="dropdown" name="intrested">
-                        <option value="" disabled selected>Geïnteresseerd in geslacht</option>
-                        <option value="Man">Man</option>
-                        <option value="Vrouw">Vrouw</option>
-                        <option value="Geen voorkeur">Geen voorkeur</option>
-                    </select>
-                    <button type="submit"> opslaan</button>
+                <label> Profielfoto<input name="photo" type="file" accept="image/*"> </label> 
+                <input type="number" name="age" placeholder="Leeftijd" value="<%= user.age %>">
+                <select class="dropdown" name="hobby" value="<%= user.hobby %>">
+                    <option value="" disabled>Hobby</option>
+                    <%
+                        let hobbys = ['Voetbal', 'Handbal', 'Tennis', 'Netflix', 'Lezen', 'Sportschool', 'Poar nemen'];
+                        hobbys.map(item => {
+                            let selected = item == user.hobby ? 'selected' : '';
+                            %><option value="<%= item %>" <%= selected %>><%= item %></option><%
+                        })
+                    %>
+                </select>
+                <select class="dropdown" name="intrested" value="<%= user.intrested %>">
+                    <option value="" disabled>Geïnteresseerd in geslacht</option>
+                    <%
+                        let interests = ['Man', 'Vrouw', 'Geen voorkeur'];
+                        interests.map(item => {
+                            let selected = item == user.intrested ? 'selected' : '';
+                            %><option value="<%= item %>" <%= selected %>><%= item %></option><%
+                        })
+                    %>
+                </select>
+                <button type="submit"> opslaan</button>
             </form>
 
         </section>
