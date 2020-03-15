@@ -54,8 +54,8 @@
                 </select>
                 <button type="submit"> opslaan</button>
             </form>
-            <form method="POST" action="/users/<%= user._id %>?_method=DELETE">
-                <button type="submit">Delete</button>
+            <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">
+                <button type="submit">Delete account</button>
             </form>
         </section>
     </main>

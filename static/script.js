@@ -7,3 +7,10 @@ function myFunction() {
     x.type = 'password';
   }
 }
+
+function confirmation() {
+  const result = confirm('Weet je zeker dat je het account wil verwijderen?');
+  if (result) {
+    // Delete logic goes here
+  }
+}

@@ -144,6 +144,20 @@ body {
     background: url(/IMG/arrow_drop_down-24px.svg) no-repeat right black;
   }
 
+  .delete_button {
+    margin-top: -30px;
+    margin-bottom: 60px;
+  }
+
+  .delete_button button {
+  background: #e74c3c;
+  color: #fff;
+  padding: .5rem 1rem;
+  border: 0px;
+  margin: 20px auto;
+  display: block;
+  }
+
   /* checkbox */
 
   .container {
