@@ -1,8 +1,12 @@
 const express = require('express');
+
 const router = express.Router();
-const userService = require('./user.service');
 const passport = require('passport');
-const { forwardAuthenticated, ensureAuthenticated } = require('../helpers/auth');
+const userService = require('./user.service');
+const {
+  forwardAuthenticated,
+  ensureAuthenticated,
+} = require('../helpers/auth');
 const upload = require('../helpers/upload.js')();
 
 // routes
@@ -16,30 +20,39 @@ router.delete('/:id', ensureAuthenticated, _delete);
 module.exports = router;
 
 function authenticate(req, res, next) {
-    passport.authenticate('local', { failureRedirect: '/', successRedirect: '/profile', failureFlash: 'Invalid username or password.'  })(req, res, next);
+  passport.authenticate('local', {
+    failureRedirect: '/',
+    successRedirect: '/profile',
+    failureFlash: 'Invalid username or password.',
+  })(req, res, next);
 }
 
 function register(req, res, next) {
-    userService.create(req.body)
-        .then(() => {
-            passport.authenticate('local', { failureRedirect: '/', successRedirect: '/profile', failureFlash: 'Invalid username or password.'  })(req, res, next);
-        })
-        .catch(err => {
-            res.redirect('/register')
-        });
+  userService
+    .create(req.body)
+    .then(() => {
+      passport.authenticate('local', {
+        failureRedirect: '/',
+        successRedirect: '/profile',
+        failureFlash: 'Invalid username or password.',
+      })(req, res, next);
+    })
+    .catch(err => {
+      res.redirect('/register');
+    });
 }
 
 function update(req, res, next) {
-    userService.update(req.params.id, req.body, req.file)
-        .then(() => res.redirect('/profile'));
+  userService
+    .update(req.params.id, req.body, req.file)
+    .then(() => res.redirect('/profile'));
 }
 
 function logout(req, res, next) {
-    req.logout();
-    res.redirect('/');
+  req.logout();
+  res.redirect('/');
 }
 
 function _delete(req, res, next) {
-    userService.delete(req.params.id)
-        .then(() => res.redirect('/'));
+  userService.delete(req.params.id).then(() => res.redirect('/'));
 }
