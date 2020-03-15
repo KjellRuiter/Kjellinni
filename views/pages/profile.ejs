@@ -54,7 +54,9 @@
                 </select>
                 <button type="submit"> opslaan</button>
             </form>
-            <a href="/users/delete">Verwijder account</a>
+            <form method="POST" action="/users/<%= user._id %>?_method=DELETE">
+                <button type="submit">Delete</button>
+            </form>
         </section>
     </main>
 <script src="script.js"></script>

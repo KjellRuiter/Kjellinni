@@ -44,7 +44,8 @@ function logout(req, res, next) {
 }
 
 function _delete(req, res, next) {
-  userService.delete(req.params.id).then(() => res.redirect('/'));
+  userService.delete(req.params.id).then();
+  res.redirect('/');
 }
 
 // routes
