@@ -13,6 +13,10 @@ $ node server.js
 # Or run with Nodemon
 $ nodemon
 ```
+
+## Wiki
+For more info look in my Wiki https://github.com/KjellRuiter/realfacefeature/wiki
+
 ## IMAGES
 * Bigstock
 * https://www.bigstockphoto.com/nl/image-334842214/ 
