@@ -9,7 +9,7 @@ $ git clone https://github.com/KjellRuiter/realfacefeature.git
 ```sh
 $ npm install
 # run
-$ nmp server.js
+$ node server.js
 # Or run with Nodemon
 $ nodemon
 ```
