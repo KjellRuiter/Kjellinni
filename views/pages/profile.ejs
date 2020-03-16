@@ -37,7 +37,7 @@
                 <label> Profielfoto<input name="photo" type="file" accept="image/*"> </label> 
                 <input type="number" name="age" placeholder="Leeftijd" value="<%= user.age %>">
                 <select class="dropdown" name="hobby" value="<%= user.hobby %>">
-                    <option value="" disabled>Hobby</option>
+                    <option value="" disabled selected>Hobby</option>
                     <%
                         let hobbys = ['Voetbal', 'Handbal', 'Tennis', 'Netflix', 'Lezen', 'Sportschool', 'Poar nemen'];
                         hobbys.map(item => {
@@ -47,7 +47,7 @@
                     %>
                 </select>
                 <select class="dropdown" name="intrested" value="<%= user.intrested %>">
-                    <option value="" disabled>Geïnteresseerd in geslacht</option>
+                    <option value="" disabled selected>Geïnteresseerd in geslacht</option>
                     <%
                         let interests = ['Man', 'Vrouw', 'Geen voorkeur'];
                         interests.map(item => {
