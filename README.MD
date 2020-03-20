@@ -42,6 +42,10 @@ https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10
 
 Naast deze bronnen heb ik ook gebruik gemaakt van stackoverflow wanneer ik een error tegenkwam. Ik heb veel video's gekeken om te kijken hoe het allemaal in elkaar moet zitten en ben daarna zelf gaan kijken wat ik nodig had om het werkend te gaan krijgen. Om mezelf het makelijk te maken heb ik veel gebruik gemaakt van verschillende packages. Dit heb ik gedaan om in een korte tijd toch een complete feature neer te zetten. 
 
+## DATABASE
+
+![Screenshot database](https://i.imgur.com/l7ddjmo.png)
+
 ## ICON
 * Material Design
 
