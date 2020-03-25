@@ -14,6 +14,13 @@ const schema = new Schema({
   createdDate: { type: Date, default: Date.now },
 });
 
+// This is not stored in the database its only for mongoose to make a relationship
+userSchema.virtual('matches',{
+    ref: 'Matches',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 schema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('User', schema);
