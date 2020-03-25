@@ -13,7 +13,7 @@ const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 require('./helpers/passport')(passport);
 const { forwardAuthenticated, ensureAuthenticated } = require('./helpers/auth');
-
+const matchRoute = require('./matching/matchRoute')
 // Setup request
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -64,7 +64,7 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
   res.render('pages/profile', { user: req.user });
 });
 
-app.get('/match', ensureAuthenticated, (req, res) => res.render('pages/match'));
+app.get('/match', ensureAuthenticated, matchRoute);
 
 // start server
 const server = app.listen(3000, () =>
