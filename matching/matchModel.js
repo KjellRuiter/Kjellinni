@@ -8,6 +8,13 @@ const schema = new Schema({
         required: true,
         ref: 'User' // set up the relationship between task and user
     },
+    currentlyMatching:{
+        _id: false,
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+    },
     matched_history:[{
         _id: false,
         userId: {
