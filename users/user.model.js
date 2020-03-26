@@ -15,12 +15,12 @@ const schema = new Schema({
 });
 
 // This is not stored in the database its only for mongoose to make a relationship
-userSchema.virtual('matches',{
+schema.virtual('matches',{
     ref: 'Matches',
     localField: '_id',
     foreignField: 'owner'
 })
 
-schema.set('toJSON', { virtuals: true });
+// schema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('User', schema);

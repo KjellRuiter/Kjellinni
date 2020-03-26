@@ -12,7 +12,6 @@ const schema = new Schema({
         _id: false,
         userId: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true
         },
     },
     matched_history:[{

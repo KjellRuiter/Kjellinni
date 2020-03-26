@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 
 const { User } = db;
+const Matches = require('../matching/matchModel')
 const path = require('path');
 
 module.exports = {
@@ -35,7 +36,13 @@ async function create(userParam) {
   }
 
   // save user
-  await user.save();
+  try{
+      await user.save();
+      const matches = new Matches({owner: user._id})
+      await matches.save()
+  }catch(e){
+      console.log(`Something went wrong ${e}`)
+  }
 }
 
 async function update(id, userParam, file = null) {
