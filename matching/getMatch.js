@@ -1,6 +1,6 @@
 const User = require('../users/user.model')
 
-module.exports = async user => {
+module.exports = async (user, matches) => {
   const allPossibleMatches =
     user.gender === 'both'
       ? await User.find({})
@@ -8,7 +8,6 @@ module.exports = async user => {
           'gender',
           user.gender === 'male' ? 'female' : 'male',
         )
-  await user.populate('matches').execPopulate()
   console.log(user)
   const fitleredOut = allPossibleMatches.filter()
 }

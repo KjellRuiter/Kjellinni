@@ -18,9 +18,6 @@ async function authenticate(req, res) {
 
   if (user && bcrypt.compareSync(password, user.hash)) {
     const { hash, ...userWithoutHash } = user.toObject()
-    await user.populate('matches').execPopulate()
-    req.session.user = user
-    req.session.matches = user.matches[0]
     return userWithoutHash
   }
 }
