@@ -14,7 +14,6 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 require('./helpers/passport')(passport)
-const { forwardAuthenticated, ensureAuthenticated } = require('./helpers/auth')
 const matchRoute = require('./matching/matchRoute')
 
 // Setup request
@@ -45,5 +44,5 @@ app
   })
   .use('/users', require('./users/user.controller'))
   .use(testRoutes)
-  .get('/match', ensureAuthenticated, matchRoute)
+  //   .get('/match', ensureAuthenticated, matchRoute)
   .listen(3000, () => console.log('Server listening on port 3000'))

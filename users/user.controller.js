@@ -46,11 +46,11 @@ function _delete(req, res, next) {
 }
 
 // routes
-router.post('/authenticate', forwardAuthenticated, authenticate)
-router.post('/register', forwardAuthenticated, register)
-router.get('/logout', ensureAuthenticated, logout)
+// router.post('/authenticate', forwardAuthenticated, authenticate)
+// router.post('/register', forwardAuthenticated, register)
+// router.get('/logout', ensureAuthenticated, logout)
 
-router.put('/:id', [ensureAuthenticated, upload.single('photo')], update)
-router.delete('/:id', ensureAuthenticated, _delete)
+// router.put('/:id', [ensureAuthenticated, upload.single('photo')], update)
+// router.delete('/:id', ensureAuthenticated, _delete)
 
 module.exports = router
