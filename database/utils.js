@@ -1,17 +1,7 @@
 const bcrypt = require('bcryptjs')
 const db = require('../helpers/db')
-
-// const { User } = db
-const User = require('../users/user.model')
+const User = require('../database')
 const Matches = require('../matching/matchModel')
-const path = require('path')
-
-module.exports = {
-  authenticate,
-  create,
-  update,
-  delete: _delete,
-}
 
 async function authenticate(req, res) {
   const { email, password } = req
@@ -44,8 +34,6 @@ async function create(userParam, req) {
     await user.populate('matches').execPopulate()
     req.session.user = user
     req.session.matches = user.matches[0]
-    const test = await Matches.find({})
-    console.log(test)
   } catch (e) {
     console.log(`Something went wrong ${e}`)
   }
@@ -82,4 +70,10 @@ async function update(id, userParam, file = null) {
 
 async function _delete(id) {
   await User.findByIdAndRemove(id)
+}
+module.exports = {
+  authenticate,
+  create,
+  update,
+  delete: _delete,
 }

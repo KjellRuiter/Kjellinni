@@ -3,6 +3,7 @@
 require('rootpath')()
 require('dotenv').config()
 
+const testRoutes = require('./routes/routeHandler')
 const path = require('path')
 const express = require('express')
 const methodOverride = require('method-override')
@@ -48,7 +49,7 @@ app.use(function(req, res, next) {
 
   next()
 })
-
+// app.use(testRoutes)
 // user routes
 app.use('/users', require('./users/user.controller'))
 

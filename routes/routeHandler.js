@@ -1,24 +1,24 @@
-// user routes
-app.use('/users', require('./users/user.controller'))
-
-// views
-app.get('/', forwardAuthenticated, (req, res) => {
-  res.render('pages/login')
-})
-app.get('/register', forwardAuthenticated, (req, res) =>
-  res.render('pages/register'),
-)
-
-app.get('/profile', ensureAuthenticated, async (req, res) => {
-  await req.user.populate('matches').execPopulate()
-  req.session.user = req.user
-  req.session.matches = req.user.matches[0]
-  res.render('pages/profile', { user: req.user })
-})
-
+// Middleware
+const {
+  forwardAuthenticated,
+  ensureAuthenticated,
+} = require('../middleware/auth')
+const upload = require('../helpers/upload')
 const router = new require('express').Router()
+// Diffrent routes
+// const login = require('./auth/login')
+const profile = require('./user/profile')
+// const register = require('./auth/register')
+// const id = require('./user/id')
+// const logout = require('./auth/logout')
 
-router
-  .get('/')
-  .get('/users')
-  .get('/profile')
+router.get('/profile', ensureAuthenticated, profile)
+//   .get('/', forwardAuthenticated, login.getMethod)
+//   .post('/authenticate', forwardAuthenticated, login.postMethod)
+//   .get('/register', forwardAuthenticated, register.getMethod)
+//   .post('/register', forwardAuthenticated, register.postMethod)
+//   .put('/:id', [ensureAuthenticated, upload.single('photo')], id.putMethod)
+//   .delete('/:id', ensureAuthenticated, id.deleteMethod)
+//   .get('/logout', ensureAuthenticated, logout)
+
+module.exports = router
