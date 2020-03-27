@@ -1,8 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
-const db = require('../database/db')
-const userService = require('../database/userService')
+const db = require('../helpers/db')
+const userService = require('../users/user.service')
 
-const { User } = require('../database/db')
+const { User } = db
 
 module.exports = function(passport) {
   // Setup passport strategy

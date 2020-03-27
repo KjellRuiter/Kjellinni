@@ -1,17 +1,17 @@
 module.exports = {
   ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return next()
+      return next();
     }
 
-    res.redirect('/')
+    res.redirect('/');
   },
 
   forwardAuthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
-      return next()
+      return next();
     }
 
-    res.redirect('/profile')
+    res.redirect('/profile');
   },
-}
+};
