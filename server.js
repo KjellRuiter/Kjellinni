@@ -42,7 +42,6 @@ app.use(passport.session())
 
 // Use flash
 app.use(flash())
-
 // Global variables
 app.use(function(req, res, next) {
   res.locals.message = req.flash('message')
