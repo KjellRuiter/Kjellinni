@@ -1,5 +1,5 @@
 const passport = require('passport')
-const userService = require('../../database/utils')
+const userService = require('../../database/userService')
 
 module.exports = class {
   static getMethod(req, res) {

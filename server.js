@@ -1,9 +1,8 @@
 // Test Devlopment branch
-
 require('rootpath')()
 require('dotenv').config()
 
-const testRoutes = require('./routes/routeHandler')
+const routes = require('./routes/routeHandler')
 const path = require('path')
 const express = require('express')
 const methodOverride = require('method-override')
@@ -14,7 +13,6 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 require('./helpers/passport')(passport)
-const matchRoute = require('./matching/matchRoute')
 
 // Setup request
 
@@ -42,7 +40,5 @@ app
     res.locals.error = req.flash('error')
     next()
   })
-  .use('/users', require('./users/user.controller'))
-  .use(testRoutes)
-  //   .get('/match', ensureAuthenticated, matchRoute)
+  .use(routes)
   .listen(3000, () => console.log('Server listening on port 3000'))

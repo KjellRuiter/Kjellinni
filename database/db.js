@@ -9,5 +9,5 @@ mongoose.connect(process.env.DB_URI, {
 mongoose.Promise = global.Promise
 
 module.exports = {
-  User: require('../users/user.model'),
+  User: require('../database/models/user'),
 }

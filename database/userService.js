@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs')
-const db = require('../helpers/db')
+const db = require('../database/db')
 
 const { User } = db
-const Matches = require('../matching/matchModel')
+const Matches = require('../database/models/matches')
 
 module.exports = {
   authenticate,

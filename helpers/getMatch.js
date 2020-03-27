@@ -1,4 +1,4 @@
-const User = require('../users/user.model')
+const User = require('../database/models/user')
 
 module.exports = async (user, matches) => {
   const allPossibleMatches =

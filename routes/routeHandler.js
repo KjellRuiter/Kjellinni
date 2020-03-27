@@ -11,6 +11,7 @@ const profile = require('./user/profile')
 const register = require('./auth/register')
 const id = require('./user/id')
 const logout = require('./auth/logout')
+const match = require('./match/match')
 
 router
   .get('/profile', ensureAuthenticated, profile)
@@ -25,5 +26,5 @@ router
   )
   .delete('/users/:id', ensureAuthenticated, id.deleteMethod)
   .get('/users/logout', ensureAuthenticated, logout)
-
+  .get('/match', ensureAuthenticated, match.getMethod)
 module.exports = router
