@@ -6,7 +6,6 @@ require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const methodOverride = require('method-override')
-
 const app = express()
 const bodyParser = require('body-parser')
 const passport = require('passport')
