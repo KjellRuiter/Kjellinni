@@ -14,9 +14,6 @@ const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 require('./helpers/passport')(passport)
 
-// Setup request
-
-// EJS
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride('_method'))
