@@ -1,72 +1,84 @@
-const bcrypt = require('bcryptjs');
-const db = require('../helpers/db');
+const bcrypt = require('bcryptjs')
+const db = require('../helpers/db')
 
-const { User } = db;
-const path = require('path');
+const { User } = db
+const Matches = require('../matching/matchModel')
+const path = require('path')
 
 module.exports = {
   authenticate,
   create,
   update,
   delete: _delete,
-};
+}
 
-async function authenticate({ email, password }) {
-  const user = await User.findOne({ email });
+async function authenticate(req, res) {
+  const { email, password } = req
+  const user = await User.findOne({ email })
 
   if (user && bcrypt.compareSync(password, user.hash)) {
-    const { hash, ...userWithoutHash } = user.toObject();
-
-    return userWithoutHash;
+    const { hash, ...userWithoutHash } = user.toObject()
+    return userWithoutHash
   }
 }
 
-async function create(userParam) {
+async function create(userParam, req) {
   // validate
   if (await User.findOne({ email: userParam.email })) {
-    throw `Email "${userParam.email}" is already taken`;
+    throw `Email "${userParam.email}" is already taken`
   }
 
-  const user = new User(userParam);
+  const user = new User(userParam)
 
   // hash password
   if (userParam.password) {
-    user.hash = bcrypt.hashSync(userParam.password, 10);
+    user.hash = bcrypt.hashSync(userParam.password, 10)
   }
 
   // save user
-  await user.save();
+  try {
+    await user.save()
+    const matches = new Matches({ owner: user._id })
+    await matches.save()
+    await user.populate('matches').execPopulate()
+    req.session.user = user
+    req.session.matches = user.matches[0]
+    const test = await Matches.find({})
+    console.log(test)
+  } catch (e) {
+    console.log(`Something went wrong ${e}`)
+  }
 }
 
 async function update(id, userParam, file = null) {
-  const user = await User.findById(id);
+  const user = await User.findById(id)
 
   // validate
-  if (!user) throw 'User not found';
+  if (!user) throw 'User not found'
 
   if (
     user.email !== userParam.email &&
     (await User.findOne({ email: userParam.email }))
   ) {
-    throw `Email "${userParam.email}" is already taken`;
+    throw `Email "${userParam.email}" is already taken`
   }
 
   // hash password if it was entered
   if (userParam.password) {
-    userParam.hash = bcrypt.hashSync(userParam.password, 10);
+    userParam.hash = bcrypt.hashSync(userParam.password, 10)
   }
 
   // Filename
   if (file) {
-    user.photo = file.filename;
+    user.photo = file.filename
   }
 
   // copy userParam properties to user
-  Object.assign(user, userParam);
+  Object.assign(user, userParam)
 
-  await user.save();
+  await user.save()
 }
 
 async function _delete(id) {
-  await User.findByIdAndRemove(id);
+  await User.findByIdAndRemove(id)
 }

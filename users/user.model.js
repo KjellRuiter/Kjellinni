@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const schema = new Schema({
   email: { type: String, unique: true, required: true },
@@ -12,8 +12,15 @@ const schema = new Schema({
   hobby: { type: String, required: false },
   intrested: { type: String, required: false },
   createdDate: { type: Date, default: Date.now },
-});
+})
 
-schema.set('toJSON', { virtuals: true });
+// This is not stored in the database its only for mongoose to make a relationship
+schema.virtual('matches', {
+  ref: 'Matches',
+  localField: '_id',
+  foreignField: 'owner',
+})
 
-module.exports = mongoose.model('User', schema);
+// schema.set('toJSON', { virtuals: true });
+
+module.exports = mongoose.model('User', schema)
