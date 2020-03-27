@@ -1,9 +1,8 @@
 const bcrypt = require('bcryptjs')
-const db = require('../helpers/db')
+const db = require('../database/db')
 
 const { User } = db
-const Matches = require('../matching/matchModel')
-const path = require('path')
+const Matches = require('../database/models/matches')
 
 module.exports = {
   authenticate,
@@ -43,8 +42,6 @@ async function create(userParam, req) {
     await user.populate('matches').execPopulate()
     req.session.user = user
     req.session.matches = user.matches[0]
-    const test = await Matches.find({})
-    console.log(test)
   } catch (e) {
     console.log(`Something went wrong ${e}`)
   }
