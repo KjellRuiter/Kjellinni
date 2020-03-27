@@ -44,17 +44,6 @@ app
     next()
   })
   .use('/users', require('./users/user.controller'))
-  .get('/', forwardAuthenticated, (req, res) => {
-    res.render('pages/login')
-  })
-  .get('/register', forwardAuthenticated, (req, res) =>
-    res.render('pages/register'),
-  )
-  .get('/profile', ensureAuthenticated, async (req, res) => {
-    await req.user.populate('matches').execPopulate()
-    req.session.user = req.user
-    req.session.matches = req.user.matches[0]
-    res.render('pages/profile', { user: req.user })
-  })
+  .use(testRoutes)
   .get('/match', ensureAuthenticated, matchRoute)
   .listen(3000, () => console.log('Server listening on port 3000'))

@@ -1,7 +1,15 @@
 const bcrypt = require('bcryptjs')
 const db = require('../helpers/db')
-const User = require('../database')
+
+const { User } = db
 const Matches = require('../matching/matchModel')
+
+module.exports = {
+  authenticate,
+  create,
+  update,
+  delete: _delete,
+}
 
 async function authenticate(req, res) {
   const { email, password } = req
@@ -70,10 +78,4 @@ async function update(id, userParam, file = null) {
 
 async function _delete(id) {
   await User.findByIdAndRemove(id)
-}
-module.exports = {
-  authenticate,
-  create,
-  update,
-  delete: _delete,
 }

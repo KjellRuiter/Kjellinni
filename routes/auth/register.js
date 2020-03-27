@@ -1,7 +1,7 @@
 const passport = require('passport')
 const userService = require('../../database/utils')
 
-module.export = class {
+module.exports = class {
   static getMethod(req, res) {
     res.render('pages/register')
   }
