@@ -1,4 +1,4 @@
-// Test Devlopment branch
+// Devlopment branch
 require('rootpath')()
 require('dotenv').config()
 
