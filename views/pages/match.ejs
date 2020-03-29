@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-        <%- include ('../partials/head') %>
+    <%- include ('../partials/head') %>
 </head>
 
 <body class="with_nav">
@@ -15,10 +15,12 @@
                     <h3><%= match.name %></h3>
                 </a>
                 <img src="<%= match.photo %>" alt="profielimages">
-                    <li><strong>Leeftijd:</strong><%= match.age %> jaar </li>
-                    <li><strong>Sport:</strong><%= match.hobby %></li>
-                <button type="submit"><a href="#">Like!</a></button></div>
-                <button type="submit"><a href="#">Nope!</a></button></div>
+                <li><strong>Leeftijd:</strong><%= match.age %> jaar </li>
+                <li><strong>Sport:</strong><%= match.hobby %></li>
+                <form action="/match" method="post">
+                    <button name="like" type="submit" value="like">Like!</button>
+                    <button name="dislike" type="submit" value="dislike">Nope!</button>
+                </form>
             </article>
         </section>
     </main>
