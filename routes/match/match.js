@@ -1,5 +1,6 @@
 const getMatch = require('../../helpers/getMatch')
 const User = require('../../database/models/user')
+const Matches = require('../../database/models/matches')
 
 module.exports = class {
     static async getMethod(req, res) {
@@ -12,11 +13,42 @@ module.exports = class {
             await matchingUser.populate('matches').execPopulate()
             const matchingUserMatches = matchingUser.matches[0]
 
-            const checkLiked = matchingUserMatches.likes.find(id => id.equals(req.session.user._id))
-            const checkDisLiked = matchingUserMatches.dislikes.find(id => id.equals(req.session.user._id))
+            console.log(matchingUserMatches)
+            const checkDenied = req.session.matches.denied.find(id => id.equals(matchingUser._id))
+            const checkAccepted = req.session.matches.accepted.find(id => id.equals(matchingUser._id))
+            console.log(checkDenied, checkAccepted)
+            if (!checkDenied && !checkAccepted) {
+                // Update other users accepted list
+                const otherUserUpdate = [...matchingUserMatches.accepted, req.session.user._id]
+                await Matches.findByIdAndUpdate(matchingUserMatches._id, {
+                    accepted: otherUserUpdate
+                })
 
-            if (!checkDisLiked && !checkLiked) {
-
+                const updatedMatchHistory = [...req.session.matches.matched_history, {
+                    status: 'pending',
+                    userId: matchingUser._id
+                }]
+                await Matches.findByIdAndUpdate(req.session.matches._id, {
+                    matched_history: updatedMatchHistory
+                })
+            }
+            else if (checkDenied) {
+                const updatedMatchHistory = req.session.matches.matched_history.push({
+                    status: 'denied',
+                    userId: matchingUser._id
+                })
+                await Matches.findByIdAndUpdate(req.session.matches._id, {
+                    matched_history: updatedMatchHistory
+                })
+            }
+            else if (checkAccepted) {
+                const updatedMatchHistory = req.session.matches.matched_history.push({
+                    status: 'accepted',
+                    userId: matchingUser._id
+                })
+                await Matches.findByIdAndUpdate(req.session.matches._id, {
+                    matched_history: updatedMatchHistory
+                })
             }
         }
         res.redirect('/match')

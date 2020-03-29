@@ -23,7 +23,7 @@ const schema = new Schema({
             },
             status: {
                 type: String,
-                enum: ['pending', 'liked', 'disliked'],
+                enum: ['pending', 'accepted', 'denied'],
                 required: true,
             },
             opened: {
