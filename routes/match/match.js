@@ -16,7 +16,7 @@ module.exports = class {
             console.log(matchingUserMatches)
             const checkDenied = req.session.matches.denied.find(id => id.equals(matchingUser._id))
             const checkAccepted = req.session.matches.accepted.find(id => id.equals(matchingUser._id))
-            console.log(checkDenied, checkAccepted)
+
             if (!checkDenied && !checkAccepted) {
                 // Update other users accepted list
                 const otherUserUpdate = [...matchingUserMatches.accepted, req.session.user._id]
