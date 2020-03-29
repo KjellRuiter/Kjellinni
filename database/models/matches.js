@@ -23,7 +23,7 @@ const schema = new Schema({
             },
             status: {
                 type: String,
-                enum: ['pending', 'accepted', 'denied'],
+                enum: ['pending', 'denied', 'accepted'],
                 required: true,
             },
             opened: {
@@ -36,15 +36,19 @@ const schema = new Schema({
     accepted: [
         {
             _id: false,
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+            },
         },
     ],
     denied: [
         {
             _id: false,
-            type: mongoose.Schema.Types.ObjectId,
-            required: true
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+            },
         },
     ],
 })
