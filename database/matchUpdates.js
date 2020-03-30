@@ -1,10 +1,10 @@
 const Matches = require('./models/matches')
 const User = require('./models/user')
 
-const matchesHistory = (matches, status) => {
+const matchesHistory = async (matches, status, currentlyMatching) => {
     const updatedMatchHistory = matches.matched_history.push({
         status: status,
-        userId: matchingUser._id
+        userId: currentlyMatching
     })
     await Matches.findByIdAndUpdate(matches._id, {
         matched_history: updatedMatchHistory

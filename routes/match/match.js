@@ -19,14 +19,14 @@ module.exports = class {
 
             if (!checkDenied && !checkAccepted) {
                 await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')
-                await matchesUpdate.matchesHistory(req.session.matches, 'pending')
+                await matchesUpdate.matchesHistory(req.session.matches, 'pending', req.session.matches.currentlyMatching)
             }
             else if (checkDenied) {
-                await matchesUpdate.matchesHistory(req.session.matches, 'denied')
+                await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
             }
             else if (checkAccepted) {
                 await matchesUpdate.otherUserMatchHistory(req.session.user._id, req.session.matches.currentlyMatching)
-                await matchesUpdate.matchesHistory(req.session.matches, 'accepted')
+                await matchesUpdate.matchesHistory(req.session.matches, 'accepted', req.session.matches.currentlyMatching)
             }
         }
         res.redirect('/match')
