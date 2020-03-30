@@ -13,6 +13,12 @@ const matchesHistory = async (matches, status, currentlyMatching) => {
     })
 }
 
+const resetCurrentlyMatching = async (matches) => {
+    await Matches.findByIdAndUpdate(matches._id, {
+        currentlyMatching: null
+    })
+}
+
 const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
@@ -52,5 +58,6 @@ const otherUserStatus = async (userId, currentlyMatching, status) => {
 module.exports = {
     matchesHistory,
     otherUserMatchHistory,
-    otherUserStatus
+    otherUserStatus,
+    resetCurrentlyMatching
 }

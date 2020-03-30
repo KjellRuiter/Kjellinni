@@ -3,32 +3,34 @@ const Matches = require('../database/models/matches')
 const randomItem = require('random-item')
 
 module.exports = async (user, matches) => {
-  if (matches.currentlyMatching) {
-    const user = await User.findById(matches.currentlyMatching)
-    return user
-  }
-  const allPossibleMatches =
-    user.gender === 'both'
-      ? await User.find({})
-      : await User.find({}).where(
-          'gender',
-          user.gender === 'Man' ? 'Vrouw' : 'Man',
-        )
-  const filtered = allPossibleMatches.filter(u => {
-    const alreadyMatched = matches.matched_history.find(u2 =>
-      u2._id.equals(u._id),
-    )
-    if (!alreadyMatched) {
-      return u
+    if (matches.currentlyMatching) {
+        const user = await User.findById(matches.currentlyMatching)
+        return user
     }
-  })
-  const random = randomItem(filtered)
-  try {
-    await Matches.findByIdAndUpdate(matches._id, {
-      currentlyMatching: random._id,
+    const allPossibleMatches =
+        user.gender === 'both'
+            ? await User.find({})
+            : await User.find({}).where(
+                'gender',
+                user.gender === 'Man' ? 'Vrouw' : 'Man',
+            )
+    const filtered = allPossibleMatches.filter(u => {
+        const alreadyMatched = matches.matched_history.find(u2 =>
+            u2._id.equals(u._id),
+        )
+        console.log(alreadyMatched)
+        console.log(alreadyMatched)
+        if (!alreadyMatched) {
+            return u
+        }
     })
-  } catch (e) {
-    console.log(e)
-  }
-  return random
+    const random = randomItem(filtered)
+    try {
+        await Matches.findByIdAndUpdate(matches._id, {
+            currentlyMatching: random._id,
+        })
+    } catch (e) {
+        console.log(e)
+    }
+    return random
 }

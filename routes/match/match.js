@@ -11,6 +11,7 @@ module.exports = class {
         const updatedMatches = await Matches.findById(req.session.matches._id)
         req.session.matches = updatedMatches
         const matchingUserId = req.session.matches.currentlyMatching
+        await matchesUpdate.resetCurrentlyMatching(req.session.matches)
 
         if ('like' in req.body) {
             const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUserId.str)
