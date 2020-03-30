@@ -17,6 +17,7 @@ const resetCurrentlyMatching = async (matches) => {
     await Matches.findByIdAndUpdate(matches._id, {
         currentlyMatching: null
     })
+    matches.currentlyMatching = null
 }
 
 const getOtherUserMatches = async (currentlyMatching) => {
@@ -33,7 +34,6 @@ const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
     const updatedMatchHistoryOtherUser = matchingUserMatches.matched_history
         .map(m => {
             if (m.userId.equals(userId)) {
-                console.log(m)
                 return {
                     ...m._doc,
                     status: status

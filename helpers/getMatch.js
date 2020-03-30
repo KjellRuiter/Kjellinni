@@ -15,11 +15,9 @@ module.exports = async (user, matches) => {
                 user.gender === 'Man' ? 'Vrouw' : 'Man',
             )
     const filtered = allPossibleMatches.filter(u => {
-        const alreadyMatched = matches.matched_history.find(u2 =>
-            u2._id.equals(u._id),
-        )
-        console.log(alreadyMatched)
-        console.log(alreadyMatched)
+        const alreadyMatched = matches.matched_history.find(u2 => {
+            return u._id.equals(u2.userId)
+        })
         if (!alreadyMatched) {
             return u
         }
