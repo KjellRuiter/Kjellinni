@@ -1,4 +1,5 @@
 const Matches = require('./models/matches')
+const User = require('./models/user')
 
 const matchesHistory = (matches, status) => {
     const updatedMatchHistory = matches.matched_history.push({
@@ -36,7 +37,16 @@ const otherUserMatchHistory = async (userId, currentlyMatching) => {
     })
 }
 
+const otherUserStatus = async (userId, currentlyMatching, status) => {
+    const matchingUserMatches = await getOtherUserMatches(currentlyMatching)
+    const otherUserUpdate = [...matchingUserMatches.accepted, { userId: userId }]
+    await Matches.findByIdAndUpdate(matchingUserMatches._id, {
+        [status]: otherUserUpdate
+    })
+}
+
 module.exports = {
     matchesHistory,
-    otherUserMatchHistory
+    otherUserMatchHistory,
+    otherUserStatus
 }

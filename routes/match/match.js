@@ -1,8 +1,6 @@
 const getMatch = require('../../helpers/getMatch')
-const User = require('../../database/models/user')
-const Matches = require('../../database/models/matches')
 const matchesUpdate = require('../../database/matchUpdates')
-
+const utils = require('../../database/utils')
 
 module.exports = class {
     static async getMethod(req, res) {
@@ -11,28 +9,20 @@ module.exports = class {
     }
     static async postMethod(req, res) {
         if ('like' in req.body) {
-            const matchingUser = await User.findById(req.session.matches.currentlyMatching)
-            await matchingUser.populate('matches').execPopulate()
-            const matchingUserMatches = matchingUser.matches[0]
-
-            const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUser._id.str)
-            const checkAccepted = req.session.matches.accepted.find(m => m.userId.str === matchingUser._id.str)
+            const checkDenied = req.session.matches.denied.find(utils.findByObjectId)
+            const checkAccepted = req.session.matches.accepted.find(utils.findByObjectId)
 
             if (!checkDenied && !checkAccepted) {
                 // Update other users accepted list
-                const otherUserUpdate = [...matchingUserMatches.accepted, { userId: req.session.user._id }]
-                await Matches.findByIdAndUpdate(matchingUserMatches._id, {
-                    accepted: otherUserUpdate
-                })
-
-                matchesUpdate.matchesHistory(req.session.matches, 'pending')
+                await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')
+                await matchesUpdate.matchesHistory(req.session.matches, 'pending')
             }
             else if (checkDenied) {
-                matchesUpdate.matchesHistory(req.session.matches, 'denied')
+                await matchesUpdate.matchesHistory(req.session.matches, 'denied')
             }
             else if (checkAccepted) {
-
-                matchesUpdate.matchesHistory(req.session.matches, 'accepted')
+                await matchesUpdate.otherUserMatchHistory(req.session.user._id, req.session.matches.currentlyMatching)
+                await matchesUpdate.matchesHistory(req.session.matches, 'accepted')
             }
         }
         res.redirect('/match')
