@@ -14,6 +14,8 @@ const matchesHistory = (matches, status) => {
 const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
+
+    console.log('----OtherUserMatches------', matchingUser, matchingUser.matches[0])
     return matchingUser.matches[0]
 }
 
