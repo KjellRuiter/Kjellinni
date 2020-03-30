@@ -11,6 +11,7 @@
         <section class="login_page">
             <h1>Account aanmaken</h1>
             <form action="/users/register" method="post" class="form register_form">
+                <%- include ('../partials/flash') %>
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Wachtwoord" id="myInput" required>
