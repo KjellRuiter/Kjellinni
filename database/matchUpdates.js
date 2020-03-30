@@ -2,10 +2,12 @@ const Matches = require('./models/matches')
 const User = require('./models/user')
 
 const matchesHistory = async (matches, status, currentlyMatching) => {
-    const updatedMatchHistory = matches.matched_history.push({
+    const updatedMatchHistory = [...matches.matched_history, {
         status: status,
         userId: currentlyMatching
-    })
+    }]
+    console.log('----------matchesHistory----------')
+    console.log(updatedMatchHistory)
     await Matches.findByIdAndUpdate(matches._id, {
         matched_history: updatedMatchHistory
     })
@@ -41,7 +43,7 @@ const otherUserMatchHistory = async (userId, currentlyMatching) => {
 
 const otherUserStatus = async (userId, currentlyMatching, status) => {
     const matchingUserMatches = await getOtherUserMatches(currentlyMatching)
-    const otherUserUpdate = [...matchingUserMatches.accepted, { userId: userId }]
+    const otherUserUpdate = [...matchingUserMatches[status], { userId: userId }]
     await Matches.findByIdAndUpdate(matchingUserMatches._id, {
         [status]: otherUserUpdate
     })
