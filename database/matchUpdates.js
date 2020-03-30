@@ -27,7 +27,7 @@ const getOtherUserMatches = async (currentlyMatching) => {
     return matchingUser.matches[0]
 }
 
-const otherUserMatchHistory = async (userId, currentlyMatching) => {
+const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
     const matchingUserMatches = await getOtherUserMatches(currentlyMatching)
 
     const updatedMatchHistoryOtherUser = matchingUserMatches.matched_history
@@ -36,7 +36,7 @@ const otherUserMatchHistory = async (userId, currentlyMatching) => {
                 console.log(m)
                 return {
                     ...m._doc,
-                    status: 'accepted'
+                    status: status
                 }
             }
             return m

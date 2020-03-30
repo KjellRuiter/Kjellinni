@@ -11,13 +11,13 @@ module.exports = class {
         const updatedMatches = await Matches.findById(req.session.matches._id)
         req.session.matches = updatedMatches
         const matchingUserId = req.session.matches.currentlyMatching
+        const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUserId.str)
+        const checkAccepted = req.session.matches.accepted.find(m => m.userId.str === matchingUserId.str)
+
         await matchesUpdate.resetCurrentlyMatching(req.session.matches)
 
         if ('like' in req.body) {
-            const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUserId.str)
-            const checkAccepted = req.session.matches.accepted.find(m => m.userId.str === matchingUserId.str)
             console.log('----PostMethod Checks------', checkAccepted, checkDenied)
-
             if (!checkDenied && !checkAccepted) {
                 await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')
                 await matchesUpdate.matchesHistory(req.session.matches, 'pending', req.session.matches.currentlyMatching)
@@ -26,8 +26,21 @@ module.exports = class {
                 await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
             }
             else if (checkAccepted) {
-                await matchesUpdate.otherUserMatchHistory(req.session.user._id, req.session.matches.currentlyMatching)
+                await matchesUpdate.otherUserMatchHistory(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')
                 await matchesUpdate.matchesHistory(req.session.matches, 'accepted', req.session.matches.currentlyMatching)
+            }
+        }
+        else if ('dislike' in req.body) {
+            if (!checkDenied && !checkAccepted) {
+                await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'denied')
+                await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
+            }
+            else if (checkDenied) {
+                await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
+            }
+            else if (checkAccepted) {
+                await matchesUpdate.otherUserMatchHistory(req.session.user._id, req.session.matches.currentlyMatching, 'denied')
+                await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
             }
         }
         res.redirect('/match')
