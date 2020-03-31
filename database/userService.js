@@ -58,13 +58,7 @@ async function create(userParam, req) {
     await user.populate('matches').execPopulate()
     req.session.user = user
     req.session.matches = user.matches[0]
-  } catch (e) {
-    console.log(`
-          Something went wrong $ {
-            e
-          }
-          `)
-  }
+  } catch (e) {}
 }
 
 async function update(id, userParam, file = null) {
