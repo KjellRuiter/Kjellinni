@@ -2,13 +2,27 @@
 <html lang="en">
 
 <head>
-        <%- include ('../partials/head') %>
+    <%- include ('../partials/head') %>
 </head>
 
 <body class="with_nav">
     <%- include ('../partials/nav') %>
     <main>
-        <p>Vul je account aan om een match te krijgen.</p> 
+        <h1 class="profile"> Jouw potentiële matches:</h1>
+        <section>
+            <article>
+                <a href="#">
+                    <h3><%= match.name %></h3>
+                </a>
+                <img src="<%= match.photo %>" alt="profielimages">
+                <li><strong>Leeftijd:</strong><%= match.age %> jaar </li>
+                <li><strong>Sport:</strong><%= match.hobby %></li>
+                <form action="/match" method="post">
+                    <button name="like" type="submit">Like!</button>
+                    <button name="dislike" type="submit">Nope!</button>
+                </form>
+            </article>
+        </section>
     </main>
     <%- include ('../partials/footer') %>
 </body>
