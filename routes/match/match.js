@@ -17,7 +17,6 @@ module.exports = class {
         await matchesUpdate.resetCurrentlyMatching(req.session.matches)
 
         if ('like' in req.body) {
-            console.log('----PostMethod Checks------', checkAccepted, checkDenied)
             if (!checkDenied && !checkAccepted) {
                 await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')
                 await matchesUpdate.matchesHistory(req.session.matches, 'pending', req.session.matches.currentlyMatching)

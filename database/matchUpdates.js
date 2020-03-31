@@ -6,8 +6,6 @@ const matchesHistory = async (matches, status, currentlyMatching) => {
         status: status,
         userId: currentlyMatching
     }]
-    console.log('----------matchesHistory----------')
-    console.log(updatedMatchHistory)
     await Matches.findByIdAndUpdate(matches._id, {
         matched_history: updatedMatchHistory
     })
@@ -24,7 +22,6 @@ const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
 
-    console.log('----OtherUserMatches------', matchingUser, matchingUser.matches[0])
     return matchingUser.matches[0]
 }
 
