@@ -17,6 +17,9 @@ const expectCt = require('expect-ct')
 require('./helpers/passport')(passport)
 
 app
+  .use(bodyParser.urlencoded({
+    extended: true
+  }))
   .use(helmet())
   .use(helmet.contentSecurityPolicy({ 
     directives: {
@@ -30,7 +33,6 @@ app
     enforce: true,
     maxAge: 123
   }))
-  .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride('_method'))
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
@@ -41,7 +43,9 @@ app
       secret: 'secret',
       resave: false,
       saveUninitialized: false,
-      cookie: { maxAge: 60000 },
+      cookie: {
+        maxAge: 60000
+      },
     }),
   )
   .use(passport.initialize())
@@ -49,10 +53,11 @@ app
 
   app.use(helmet.frameguard({ action: 'deny' }))
   .use(flash())
-  .use(function(req, res, next) {
+  .use(function (req, res, next) {
     res.locals.message = req.flash('message')
     res.locals.error = req.flash('error')
     next()
   })
   .use(routes)
-  .listen(8000, () => console.log('Server listening on port 3000'))
+
+  .listen(3000, () => console.log('Server listening on port 3000'))
