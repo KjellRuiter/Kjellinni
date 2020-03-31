@@ -12,9 +12,24 @@ const passport = require('passport')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
+const helmet = require('helmet')
+const expectCt = require('expect-ct')
 require('./helpers/passport')(passport)
 
 app
+  .use(helmet())
+  .use(helmet.contentSecurityPolicy({ 
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      scriptSrc:["'self'"],
+      imgSrc:["'self'"]
+    }
+  }))
+  .use(expectCt({
+    enforce: true,
+    maxAge: 123
+  }))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride('_method'))
   .set('view engine', 'ejs')
@@ -31,6 +46,8 @@ app
   )
   .use(passport.initialize())
   .use(passport.session())
+
+  app.use(helmet.frameguard({ action: 'deny' }))
   .use(flash())
   .use(function(req, res, next) {
     res.locals.message = req.flash('message')
@@ -38,4 +55,4 @@ app
     next()
   })
   .use(routes)
-  .listen(3000, () => console.log('Server listening on port 3000'))
+  .listen(8000, () => console.log('Server listening on port 3000'))
