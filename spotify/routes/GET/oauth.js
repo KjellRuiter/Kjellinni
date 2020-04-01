@@ -18,7 +18,7 @@ router
         client_id: process.env.SPOTIFY_CLIENT_ID,
         // Set autohorization scopes.
         // Scopes of user data we want to access.
-        scope: 'user-read-private user-read-email',
+        scope: 'user-read-private user-read-email user-top-read',
         redirect_uri,
       })}`
     )
