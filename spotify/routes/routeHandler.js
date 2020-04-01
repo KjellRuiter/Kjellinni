@@ -3,11 +3,11 @@ const getLogin = require('../routes/GET/login')
 
 const router = new express.Router()
 const oauth = require('./GET/oauth')
-const test = require('./GET/test')
+const profile = require('./GET/profile')
 
 router
   .use(oauth)
   .get('/', getLogin)
-  .get('/test', test)
+  .get('/profile', profile)
 
 module.exports = router

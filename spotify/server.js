@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const nodemon = require('nodemon')
 
 const app = express()
 const routes = require('./routes/routeHandler')
@@ -24,6 +25,6 @@ app.use(routes)
 
 const port = process.env.PORT
 console.log(
-  `Listening on port ${port}. Go /login to initiate authentication flow.`
+  `Listening on port ${port}. Go to /to initiate authentication flow.`
 )
 app.listen(port)

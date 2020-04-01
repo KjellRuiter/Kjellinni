@@ -11,11 +11,13 @@ const redirect_uri = process.env.REDIRECT_URI
 router
   // Request authorization.
   .get('/spotify/login', function(req, res) {
+    console.log('redirect')
     res.redirect(
       `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: 'code',
         client_id: process.env.SPOTIFY_CLIENT_ID,
-        // Scopes of user data we want to acces.
+        // Set autohorization scopes.
+        // Scopes of user data we want to access.
         scope: 'user-read-private user-read-email',
         redirect_uri,
       })}`
@@ -42,10 +44,9 @@ router
     request.post(authOptions, function(error, response, body) {
       const { access_token } = body
       console.log(access_token)
-      const uri = process.env.FRONTEND_URI || 'http://localhost:8888/test'
+      const uri = process.env.FRONTEND_URI || 'http://localhost:8888/profile'
       req.session.acces_token = access_token
       console.log(req.session)
-      console.log('GELUKT')
       res.redirect(uri)
     })
   })
