@@ -1,10 +1,8 @@
 const bcrypt = require('bcryptjs')
+// const flash = require('express-flash')
 const db = require('../database/db')
-const flash = require('express-flash')
 
-const {
-  User
-} = db
+const { User } = db
 const Matches = require('../database/models/matches')
 
 module.exports = {
@@ -15,28 +13,24 @@ module.exports = {
 }
 
 async function authenticate(req, res) {
-  const {
-    email,
-    password
-  } = req
+  const { email, password } = req
   const user = await User.findOne({
-    email
+    email,
   })
 
   if (user && bcrypt.compareSync(password, user.hash)) {
-    const {
-      hash,
-      ...userWithoutHash
-    } = user.toObject()
+    const { hash, ...userWithoutHash } = user.toObject()
     return userWithoutHash
   }
 }
 
 async function create(userParam, req) {
   // validate
-  if (await User.findOne({
+  if (
+    await User.findOne({
       email: userParam.email,
-    })) {
+    })
+  ) {
     req.flash('error', `Er bestaat al een account met ${userParam.email}`)
     throw `Email "${userParam.email}" is already taken`
   }
@@ -52,7 +46,7 @@ async function create(userParam, req) {
   try {
     await user.save()
     const matches = new Matches({
-      owner: user._id
+      owner: user._id,
     })
     await matches.save()
     await user.populate('matches').execPopulate()
@@ -70,7 +64,7 @@ async function update(id, userParam, file = null) {
   if (
     user.email !== userParam.email &&
     (await User.findOne({
-      email: userParam.email
+      email: userParam.email,
     }))
   ) {
     throw `
