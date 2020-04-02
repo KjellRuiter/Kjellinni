@@ -5,6 +5,7 @@ module.exports = class {
   static getMethod(req, res) {
     res.render('pages/register')
   }
+
   static postMethod(req, res, next) {
     userService
       .create(req.body, req)
