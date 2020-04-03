@@ -44,7 +44,9 @@ router
     request.post(authOptions, function(error, response, body) {
       const { access_token } = body
       console.log(access_token)
-      const uri = process.env.FRONTEND_URI || 'http://localhost:8888/profile'
+      const uri =
+        process.env.FRONTEND_URI ||
+        `http://localhost:8888/profile/${access_token}`
       req.session.acces_token = access_token
       console.log(req.session)
       res.redirect(uri)
