@@ -9,20 +9,22 @@ module.exports = async (req, res, next) => {
       // Endpoint for the data we want to access.
       endpoint: 'me/top/tracks?limit=1',
     })
-    // res.send(spotifyData)
-    const cleaned = getData(spotifyData.items)
-    res.send(cleaned)
+    // songInfo contains all the track data we want from Spotify.
+    const songInfo = getData(spotifyData.items)
+
+    res.render('profile', { song: songInfo })
   } catch (e) {
     console.log(`Something went wrong with the server ${e}`)
   }
-  // res.render('profile', { song: cleaned })
-  // res.render('data', {str: JSON.stringify(str) })
 }
 
 function getData(array) {
   return array.map(song => ({
+    // Returns preview url from the track.
     preview: song.preview_url,
+    // Returns the name from the track.
     name: song.name,
+    // Returns the artist(s) from the track.
     artist: song.artist,
   }))
 }

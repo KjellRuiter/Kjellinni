@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> <%= name %></h1>
+    <h1> <% for(var i=0; i < song.length; i++) { %>
+    <audio src="<%= song[i].preview %>" controls>
+        </audio>
+     <% } %></h1>
 </body>
 </html>
