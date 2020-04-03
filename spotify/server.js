@@ -22,6 +22,7 @@ app.use(
 )
 
 app.use(routes)
+app.set('view engine', 'ejs')
 
 const port = process.env.PORT
 console.log(

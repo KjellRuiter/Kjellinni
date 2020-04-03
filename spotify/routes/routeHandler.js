@@ -8,6 +8,6 @@ const profile = require('./GET/profile')
 router
   .use(oauth)
   .get('/', getLogin)
-  .get('/profile', profile)
+  .get('/profile/:id', profile)
 
 module.exports = router
