@@ -28,4 +28,5 @@ router
     .get('/users/logout', ensureAuthenticated, logout)
     .get('/match', ensureAuthenticated, match.getMethod)
     .post('/match', ensureAuthenticated, match.postMethod)
+    .get('/matchlist', ensureAuthenticated)
 module.exports = router

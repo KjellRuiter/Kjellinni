@@ -10,17 +10,19 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
-            <article>
-              <li class="match-block-link" data-room="<%=match.roomID%>" data-img="<%=match.herImage%>" data-name="<%=match.name%>">
-                    <a class="match-block" href="chat/<%=match.roomID%>">
-                      <img class="match-image" src="<%=match.herImage%>" alt="<%=match.name%>"/>
-                      <div class="match-block-text">
-                        <h3 class="match-name"><%=match.name%></h3>
-                        <p class="last-message"><%=match.lastMessage%></p>
-                      </div>
-                    </a>
-                  </li>
-            </article>
+        <% if (match.lastMessage) { %>
+          <article>
+            <li class="match-block-link" data-room="<%=match.roomID%>" data-img="<%=match.herImage%>" data-name="<%=match.name%>">
+                  <a class="match-block" href="chat/<%=match.roomID%>">
+                    <img class="match-image" src="<%=match.herImage%>" alt="<%=match.name%>"/>
+                    <div class="match-block-text">
+                      <h3 class="match-name"><%=match.name%></h3>
+                      <p class="last-message"><%=match.lastMessage%></p>
+                    </div>
+                  </a>
+            </li>
+        </article>
+        <% } %>
         </section>
     </main>
     <%- include ('../partials/footer') %>
