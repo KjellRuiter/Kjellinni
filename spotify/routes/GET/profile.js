@@ -25,6 +25,8 @@ function getData(array) {
     // Returns the name from the track.
     name: song.name,
     // Returns the artist(s) from the track.
-    artist: song.artist,
+    artist: song.artists[0].name,
+    // Returns the image of the track.
+    img: song.album.images[2].url,
   }))
 }
