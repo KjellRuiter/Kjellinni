@@ -12,6 +12,8 @@ const register = require('./auth/register')
 const id = require('./user/id')
 const logout = require('./auth/logout')
 const match = require('./match/match')
+// Spotify routes
+const oauth = require('./oauth/oauth')
 
 router
     .get('/profile', ensureAuthenticated, profile)
@@ -28,4 +30,6 @@ router
     .get('/users/logout', ensureAuthenticated, logout)
     .get('/match', ensureAuthenticated, match.getMethod)
     .post('/match', ensureAuthenticated, match.postMethod)
+    // Spotify
+    .use(oauth)
 module.exports = router
