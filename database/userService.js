@@ -57,7 +57,7 @@ async function create(userParam, req) {
     await matches.save()
     await user.populate('matches').execPopulate()
     req.session.user = user
-    req.session.matches = user.matches[0]
+    req.session.matches = user.matches
   } catch (e) {}
 }
 
