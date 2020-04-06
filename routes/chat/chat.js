@@ -12,9 +12,9 @@ module.exports = class {
     res.render('pages/chat', {chatHistory: chatData, roomID:req.params.match})
     }
     static async sendMessage(req, res) {
-    // TODO: add req.user for sender
-    const messageData = {
-        from: "Janno",
+        const messageData = {
+            from: "Janno",
+            // TODO: add req.user for sender
         msg: req.body.textMessage,
         time: new Date().getHours() + ":" + new Date().getMinutes()
     }
