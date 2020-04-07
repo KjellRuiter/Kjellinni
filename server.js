@@ -20,13 +20,13 @@ app
   .use(bodyParser.urlencoded({
     extended: true
   }))
-  .use(helmet())
-  .use(helmet.contentSecurityPolicy({ 
-    directives: {
-      styleSrc: ["'self'"],
-      scriptSrc:["'self'"]
-    }
-  }))
+//   .use(helmet())
+//   .use(helmet.contentSecurityPolicy({ 
+//     directives: {
+//       styleSrc: ["'self'"],
+//       scriptSrc:["'self'"]
+//     }
+//   }))
   .use(expectCt({
     enforce: true,
     maxAge: 123
