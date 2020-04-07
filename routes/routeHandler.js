@@ -21,7 +21,7 @@ router
     .post('/users/register', forwardAuthenticated, register.postMethod)
     .put(
         '/users/:id',
-        [ensureAuthenticated, upload.single('image')],
+        ensureAuthenticated, upload.single('photo'),
         id.putMethod,
     )
     .delete('/users/:id', ensureAuthenticated, id.deleteMethod)

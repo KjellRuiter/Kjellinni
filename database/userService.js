@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const db = require('../database/db')
 const flash = require('express-flash')
-const imgur
+const imgur = require('../helpers/imgur')
 
 const {
   User
@@ -86,7 +86,12 @@ async function update(id, userParam, file = null) {
 
   // Filename
   if (file) {
-    user.photo = file.filename
+      try{
+          user.photo = await imgur(file)
+          console.log(user.photo)
+      }catch(e){
+          throw new Error(`Something went wrong with imageupload ${e.message}`)
+      }
   }
 
   // copy userParam properties to user
