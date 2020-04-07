@@ -1,9 +1,15 @@
 const getMatch = require('../../helpers/getMatch')
 const matchesUpdate = require('../../database/matchUpdates')
 const Matches = require('../../database/models/matches')
+const User = require('../../database/models/user')
 
 module.exports = class {
     static async getMethod(req, res) {
+        // Get latest matches 
+        const user = await User.findById(req.session.user._id)
+        await user.populate('matches').execPopulate()
+        req.session.matches = user.matches
+        
         const match = await getMatch(req.session.user, req.session.matches)
         res.render('pages/match', { match })
     }
@@ -13,8 +19,6 @@ module.exports = class {
         const matchingUserId = req.session.matches.currentlyMatching
         const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUserId.str)
         const checkAccepted = req.session.matches.accepted.find(m => m.userId.str === matchingUserId.str)
-
-        await matchesUpdate.resetCurrentlyMatching(req.session.matches)
 
         if ('like' in req.body) {
             if (!checkDenied && !checkAccepted) {
@@ -42,6 +46,7 @@ module.exports = class {
                 await matchesUpdate.matchesHistory(req.session.matches, 'denied', req.session.matches.currentlyMatching)
             }
         }
+        await matchesUpdate.resetCurrentlyMatching(req.session.matches)
         res.redirect('/match')
     }
 }

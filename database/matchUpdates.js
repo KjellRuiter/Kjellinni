@@ -11,17 +11,17 @@ const matchesHistory = async (matches, status, currentlyMatching) => {
     })
 }
 
-const resetCurrentlyMatching = async (matches) => {
+const resetCurrentlyMatching = async (matches) => { 
+    console.log('reset')
     await Matches.findByIdAndUpdate(matches._id, {
-        currentlyMatching: null
+        currentlyMatching: undefined
     })
-    matches.currentlyMatching = null
+    matches.currentlyMatching = undefined
 }
 
 const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
-
     return matchingUser.matches
 }
 
