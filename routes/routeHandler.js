@@ -12,6 +12,7 @@ const register = require('./auth/register')
 const id = require('./user/id')
 const logout = require('./auth/logout')
 const match = require('./match/match')
+const oauth = require('./oauth/oauth')
 
 router
     .get('/profile', ensureAuthenticated, profile)
@@ -28,4 +29,5 @@ router
     .get('/users/logout', ensureAuthenticated, logout)
     .get('/match', ensureAuthenticated, match.getMethod)
     .post('/match', ensureAuthenticated, match.postMethod)
+    .use(oauth)
 module.exports = router
