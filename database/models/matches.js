@@ -35,20 +35,14 @@ const schema = new Schema({
     accepted: [
         {
             _id: false,
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-            },
+            type: mongoose.Schema.Types.ObjectId
         },
     ],
     denied: [
         {
             _id: false,
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-            },
-        },
+            type: mongoose.Schema.Types.ObjectId
+        }
     ],
 })
 

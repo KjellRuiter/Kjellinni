@@ -6,7 +6,6 @@ module.exports = async (user, matches) => {
     console.log(matches)
     console.log(matches.currentlyMatching)
     if (matches.currentlyMatching) {
-        console.log('huh')
         const user = await User.findById(matches.currentlyMatching)
         return user
     }
