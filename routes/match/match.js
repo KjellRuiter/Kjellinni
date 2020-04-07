@@ -17,11 +17,9 @@ module.exports = class {
         const updatedMatches = await Matches.findById(req.session.matches._id)
         req.session.matches = updatedMatches
         const matchingUserId = req.session.matches.currentlyMatching
-        const checkDenied = req.session.matches.denied.find(m => m.equals(matchingUserId))
-        const checkAccepted = req.session.matches.accepted.find(m => m.equals(matchingUserId))
+        const checkDenied = req.session.matches.otherUser_denied.find(m => m.equals(matchingUserId))
+        const checkAccepted = req.session.matches.otherUser_accepted.find(m => m.equals(matchingUserId))
 
-        console.log('checkAccepted', checkAccepted)
-        console.log('checkDenied', checkDenied)
         if ('like' in req.body) {
             if (!checkDenied && !checkAccepted) {
                 await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')

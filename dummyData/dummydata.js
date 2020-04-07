@@ -123,6 +123,7 @@ const savingUsers = users.map(async(user)=>{
 
 Promise.all(savingUsers).then(users=>{
     console.log(users)
+    process.exit()
 }).catch(e=>{
     console.log(`Something went wrong while saving ${e.message}`)
 })

@@ -32,13 +32,13 @@ const schema = new Schema({
             },
         },
     ],
-    accepted: [
+    otherUser_accepted: [
         {
             _id: false,
             type: mongoose.Schema.Types.ObjectId
         },
     ],
-    denied: [
+    otherUser_denied: [
         {
             _id: false,
             type: mongoose.Schema.Types.ObjectId

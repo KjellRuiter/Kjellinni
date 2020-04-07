@@ -46,9 +46,9 @@ const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
 
 const otherUserStatus = async (userId, currentlyMatching, status) => {
     const matchingUserMatches = await getOtherUserMatches(currentlyMatching)
-    const otherUserUpdate = [...matchingUserMatches[status], userId]
+    const otherUserUpdate = [...matchingUserMatches[`otherUser_${status}`], userId]
     await Matches.findByIdAndUpdate(matchingUserMatches._id, {
-        [status]: otherUserUpdate
+        [`otherUser_${status}`]: otherUserUpdate
     })
 }
 
