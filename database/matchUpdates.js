@@ -22,7 +22,7 @@ const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
 
-    return matchingUser.matches[0]
+    return matchingUser.matches
 }
 
 const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
