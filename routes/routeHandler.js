@@ -3,7 +3,7 @@ const {
     forwardAuthenticated,
     ensureAuthenticated,
 } = require('../middleware/auth')
-const upload = require('../helpers/upload')()
+const upload = require('../helpers/upload')
 const router = new require('express').Router()
 // Diffrent routes
 const login = require('./auth/login')
@@ -21,7 +21,7 @@ router
     .post('/users/register', forwardAuthenticated, register.postMethod)
     .put(
         '/users/:id',
-        [ensureAuthenticated, upload.single('photo')],
+        [ensureAuthenticated, upload.single('image')],
         id.putMethod,
     )
     .delete('/users/:id', ensureAuthenticated, id.deleteMethod)
