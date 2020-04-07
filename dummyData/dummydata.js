@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 
 const users = [
     {
-        image: '1.jpeg',
+        image: 'https://i.imgur.com/I2fhuCd.jpg',
         name: 'Gerard',
         email: 'gerard@hotmail.com',
         password: 'test123',
@@ -17,7 +17,7 @@ const users = [
         gender: 'Man',
     },
     {
-        image: '2.jpg',
+        image: 'https://i.imgur.com/rLwjlxq.jpg',
         name: 'Kees',
         email: 'kees@hotmail.com',
         password: 'test123',
@@ -25,7 +25,7 @@ const users = [
         gender: 'Man',
     },
     {
-        image: '3.jpeg',
+        image: 'https://i.imgur.com/xygpDS1.jpg',
         name: 'Marjolein',
         email: 'marjolein@hotmail.com',
         password: 'test123',
@@ -33,7 +33,7 @@ const users = [
         gender: 'Vrouw',
     },
     {
-        image: '4.jpg',
+        image: 'https://i.imgur.com/VYMNKoW.jpg',
         name: 'Henk',
         email: 'henk@hotmail.com',
         password: 'test123',
@@ -41,7 +41,7 @@ const users = [
         gender: 'Man',
     },
     {
-        image: '5.jpg',
+        image: 'https://i.imgur.com/zwQSvEa.jpg',
         name: 'Thierry',
         email: 'thierry@hotmail.com',
         password: 'test123',
@@ -49,7 +49,7 @@ const users = [
         gender: 'Man',
     },
     {
-        image: 'johny_bravo.png',
+        image: 'https://i.imgur.com/6ebOhet.png',
         name: 'Johny Bravo',
         email: 'johny@hotmail.com',
         password: 'test123',
@@ -59,13 +59,13 @@ const users = [
     {
         image: 'lois.jpg',
         name:'Lois',
-        email: 'lois@hotmail.com',
+        email: 'https://i.imgur.com/hQ8ogsm.jpg',
         password: 'test123',
         age: 38,
         gender: 'Vrouw',
     },
     {
-        image: 'malone.jpg',
+        image: 'https://i.imgur.com/NKiTQgP.jpg',
         name:'Toasty Malony',
         email: 'toasty@hotmail.com',
         password: 'test123',
@@ -73,7 +73,7 @@ const users = [
         gender: 'Man',
     },
     {
-        image: 'marge.jpg',
+        image: 'https://i.imgur.com/4KPE5YJ.jpg',
         name: 'Marge Simpson',
         email: 'marge@hotmail.com',
         password: 'test123',
@@ -81,7 +81,7 @@ const users = [
         gender: 'Vrouw',
     },
     {
-        image: 'misty.png',
+        image: 'https://i.imgur.com/2UCwROy.png',
         name: 'Misty',
         email: 'misty@hotmail.com',
         password: 'test123',
@@ -91,19 +91,19 @@ const users = [
 ]
 
 const savingUsers = users.map(async(user)=>{
-    const file = fs.readFileSync(path.join(__dirname,`images/${user.image}`))
-    let photo = null
-    try{
-        const link = await imgur(file)
-        photo = link 
-    } catch(e){
-        console.log(`Something went wrong with the imgur upload ${e.message}`)
-    }
+    // const file = fs.readFileSync(path.join(__dirname,`images/${user.image}`))
+    // let photo = null
+    // try{
+    //     const link = await imgur(file)
+    //     photo = link 
+    // } catch(e){
+    //     console.log(`Something went wrong with the imgur upload ${e.message}`)
+    // }
     const hash = bcrypt.hashSync(user.password, 10)
     const newUser = new User({
         name: user.name,
         gender: user.gender,
-        photo: photo,
+        photo: user.image,
         hash: hash,
         email: user.email
     })
@@ -122,5 +122,7 @@ const savingUsers = users.map(async(user)=>{
 
 
 Promise.all(savingUsers).then(users=>{
-    // console.log(users)
+    console.log(users)
+}).catch(e=>{
+    console.log(`Something went wrong while saving ${e.message}`)
 })
