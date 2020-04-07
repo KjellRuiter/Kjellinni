@@ -12,7 +12,7 @@ const matchesHistory = async (matches, status, currentlyMatching) => {
 }
 
 const resetCurrentlyMatching = async (matches) => { 
-    console.log('reset')
+    console.log('reset currently matching')
     await Matches.findByIdAndUpdate(matches._id, {
         currentlyMatching: undefined
     })

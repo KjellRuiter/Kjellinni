@@ -57,9 +57,9 @@ const users = [
         gender: 'Man',
     },
     {
-        image: 'lois.jpg',
+        image: 'https://i.imgur.com/hQ8ogsm.jpg',
         name:'Lois',
-        email: 'https://i.imgur.com/hQ8ogsm.jpg',
+        email: 'lois@hotmail.com',
         password: 'test123',
         age: 38,
         gender: 'Vrouw',

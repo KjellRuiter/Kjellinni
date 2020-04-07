@@ -10,9 +10,8 @@ const schema = new Schema({
     },
     currentlyMatching: {
         _id: false,
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-        },
+        type: mongoose.Schema.Types.ObjectId
+        
     },
     matched_history: [
         {

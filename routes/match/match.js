@@ -20,6 +20,7 @@ module.exports = class {
         const checkDenied = req.session.matches.denied.find(m => m.userId.str === matchingUserId.str)
         const checkAccepted = req.session.matches.accepted.find(m => m.userId.str === matchingUserId.str)
 
+        console.log(checkAccepted, checkDenied)
         if ('like' in req.body) {
             if (!checkDenied && !checkAccepted) {
                 await matchesUpdate.otherUserStatus(req.session.user._id, req.session.matches.currentlyMatching, 'accepted')

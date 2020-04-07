@@ -3,9 +3,9 @@ const Matches = require('../database/models/matches')
 const randomItem = require('random-item')
 
 module.exports = async (user, matches) => {
-    console.log(Object.values(matches.currentlyMatching)[1])
     console.log(matches)
-    if (Object.values(matches.currentlyMatching)[1]) {
+    console.log(matches.currentlyMatching)
+    if (matches.currentlyMatching) {
         console.log('huh')
         const user = await User.findById(matches.currentlyMatching)
         return user
