@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 const FormData = require('form-data')
 
-const imgurBase64Upload = async(file)=>{
+const imgur = async(file)=>{
     const base64   = new Buffer.from(file).toString('base64')
     const url      = 'https://api.imgur.com/3/image'
     const form     = new FormData()
@@ -19,4 +19,4 @@ const imgurBase64Upload = async(file)=>{
     return json.data.link
 }
 
-module.exports = imgurBase64Upload
+module.exports = imgur

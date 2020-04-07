@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const db = require('../database/db')
 const flash = require('express-flash')
+const imgur
 
 const {
   User
