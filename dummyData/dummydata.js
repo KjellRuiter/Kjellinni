@@ -99,7 +99,6 @@ const savingUsers = users.map(async(user)=>{
     } catch(e){
         console.log(`Something went wrong with the imgur upload ${e.message}`)
     }
-    console.log(photo)
     const hash = bcrypt.hashSync(user.password, 10)
     const newUser = new User({
         name: user.name,
@@ -108,9 +107,13 @@ const savingUsers = users.map(async(user)=>{
         hash: hash,
         email: user.email
     })
-    console.log('saving??')
+    const matches = new Matches({
+        owner: newUser._id
+    })
+
     try{
         await newUser.save()
+        await matches.save()
     }catch(e){
         console.log(e)
     }
