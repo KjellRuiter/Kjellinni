@@ -26,6 +26,10 @@ async function authenticate(req, res) {
 
 async function create(userParam, req) {
   // validate
+  if (userParam.password.length < 7) {
+    req.flash('error', `Er bestaat al een account met ${userParam.email}`)
+    throw `Email "${userParam.email}" is already taken`
+  }
   if (
     await User.findOne({
       email: userParam.email,
