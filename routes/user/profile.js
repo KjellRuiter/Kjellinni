@@ -1,8 +1,8 @@
 const getSong = require('./getSong')
 
 module.exports = async (req, res) => {
-  await req.session.user.populate('matches').execPopulate()
-  req.session.user = req.user
+    req.session.user = req.user
+    await req.session.user.populate('matches').execPopulate()
   
   if (req.session.acces_token) {
     const song = await getSong(req.session.acces_token)
