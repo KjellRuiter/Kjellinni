@@ -28,4 +28,16 @@ password_field.send_keys(test_user['password'])
 submit.click()
 
 
-# chrome_browser.close()
+input_name = chrome_browser.find_element_by_css_selector('form input[name="name"]').get_attribute('value')
+input_email = chrome_browser.find_element_by_css_selector('form input[name="email"]').get_attribute('value')
+
+if input_email == test_user['email'] and input_name == test_user['name']:
+    print('Test Approved: Email and name matches')
+elif input_email != test_user['email'] and input_name != test_user['name']:
+    print('Test Denied: Both email and name doesnt match')
+elif input_email != test_user['email']:
+    print('Test Denied: Email doesnt match')
+elif input_name != test_user['name']:
+    print('Test Denied: Email doesnt match')
+# print(check_email)
+chrome_browser.close()
