@@ -10,9 +10,8 @@ const schema = new Schema({
     },
     currentlyMatching: {
         _id: false,
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-        },
+        type: mongoose.Schema.Types.ObjectId
+        
     },
     matched_history: [
         {
@@ -33,23 +32,17 @@ const schema = new Schema({
             },
         },
     ],
-    accepted: [
+    otherUser_accepted: [
         {
             _id: false,
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-            },
+            type: mongoose.Schema.Types.ObjectId
         },
     ],
-    denied: [
+    otherUser_denied: [
         {
             _id: false,
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-            },
-        },
+            type: mongoose.Schema.Types.ObjectId
+        }
     ],
 })
 
