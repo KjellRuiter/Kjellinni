@@ -39,5 +39,6 @@ elif input_email != test_user['email']:
     print('Test Denied: Email doesnt match')
 elif input_name != test_user['name']:
     print('Test Denied: Email doesnt match')
+    
 # print(check_email)
 chrome_browser.close()
