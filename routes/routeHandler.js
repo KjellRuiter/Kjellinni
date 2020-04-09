@@ -12,6 +12,7 @@ const register = require('./auth/register')
 const id = require('./user/id')
 const logout = require('./auth/logout')
 const match = require('./match/match')
+const matchlist =require('./match/matchlist')
 
 router
     .get('/profile', ensureAuthenticated, profile)
@@ -28,5 +29,5 @@ router
     .get('/users/logout', ensureAuthenticated, logout)
     .get('/match', ensureAuthenticated, match.getMethod)
     .post('/match', ensureAuthenticated, match.postMethod)
-    .get('/matchlist', ensureAuthenticated, match.getMethod)
+    .get('/matchlist', ensureAuthenticated, matchlist.getMethod)
 module.exports = router
