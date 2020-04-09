@@ -6,7 +6,7 @@ module.exports = class {
         
         const userPromises = getAcceptedMatches.map(user=> User.findById(user.userId))
         const allUsers = await Promise.all(userPromises)
-        
-        res.render('pages/matches', {user:getAcceptedMatches  })
+        console.log(allUsers)
+        res.render('pages/matchlist', {user:getAcceptedMatches  })
     }
 }

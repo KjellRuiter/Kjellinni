@@ -10,14 +10,13 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
-        <% if (user.userId) { %>
+      <% for(var i=0; i > user.length; i++) { %>
           <ul>
-            <li class="match-block-link" data-room="<%=match.roomID%>" data-img="<%=match.herImage%>" data-name="<%=match.name%>">
-                  <a class="match-block" href="chat/<%=match.roomID%>">
-                    <img class="match-image" src="<%=match.herImage%>" alt="<%=match.name%>"/>
+            <li class="match-block-link" data-room="<%=user.roomID%>" data-img="<%=user.herImage%>" data-name="<%=user.name[i]%>">
+                  <a class="match-block" href="chat/<%=user.roomID%>">
+                    <img class="match-image" src="<%=user.photo[i]%>" alt="<%=user.name[i]%>"/>
                     <div class="match-block-text">
-                      <h3 class="match-name"><%=match.name%></h3>
-                      <p class="last-message"><%=match.lastMessage%></p>
+                      <h3 class="match-name"><%=user.name%></h3>
                     </div>
                   </a>
             </li>
