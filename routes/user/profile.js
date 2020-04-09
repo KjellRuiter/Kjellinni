@@ -28,6 +28,11 @@ module.exports = async (req, res) => {
     // Check if user already has Spotify data stored.
   } else if (req.session.user.songs) {
     console.log('song already in database')
+    // console.log(req.session.user.songs)
+    res.render('pages/profile', {
+      user: req.user,
+      song: req.session.user.songs,
+    })
   }
 
   req.session.matches = req.user.matches
