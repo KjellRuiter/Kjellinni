@@ -10,7 +10,7 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
-        <% if (user.status === 'accepted') { %>
+        <% if (user.userId) { %>
           <ul>
             <li class="match-block-link" data-room="<%=match.roomID%>" data-img="<%=match.herImage%>" data-name="<%=match.name%>">
                   <a class="match-block" href="chat/<%=match.roomID%>">
