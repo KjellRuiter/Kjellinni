@@ -27,8 +27,12 @@ async function authenticate(req, res) {
 async function create(userParam, req) {
   // validate
   if (userParam.password.length < 7) {
-    req.flash('error', `Er bestaat al een account met ${userParam.email}`)
-    throw `Email "${userParam.email}" is already taken`
+    req.flash('error', `Uw wachtwoord moet minimaal 7 tekens bevatten `)
+    throw `password is to short`
+  }
+  if (userParam.password.length > 20) {
+    req.flash('error', `Uw wachtwoord mag maximaal 20 tekens bevatten `)
+    throw `password is to long`
   }
   if (
     await User.findOne({
@@ -59,7 +63,7 @@ async function create(userParam, req) {
   } catch (e) {}
 }
 
-async function update(id, userParam, file = null) {
+async function update(id, userParam, req, file = null) {
   const user = await User.findById(id)
 
   // validate
@@ -71,9 +75,7 @@ async function update(id, userParam, file = null) {
       email: userParam.email,
     }))
   ) {
-    throw `
-          Email "${userParam.email}"
-          is already taken `
+    throw `Email "${userParam.email}" is already taken `
   }
 
   // hash password if it was entered
