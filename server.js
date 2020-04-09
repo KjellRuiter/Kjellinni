@@ -23,10 +23,9 @@ app
   .use(helmet())
   .use(helmet.contentSecurityPolicy({ 
     directives: {
-      // defaultSrc: ["'self'"],
-      // styleSrc: ["'self'"],
-      // scriptSrc:["'self'"],
-      imgSrc:["'self'"]
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: [ "'self'", 'https://fonts.googleapis.com' ],
+      upgradeInsecureRequests: true,
     }
   }))
   .use(expectCt({
@@ -60,4 +59,4 @@ app
   })
   .use(routes)
 
-  .listen(3000, () => console.log('Server listening on port 3000'))
+  .listen(8000, () => console.log('Server listening on port 3000'))
