@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
     // Check if user retrieved an acces token.
     if (req.session.acces_token) {
       const song = await getSong(req.session.acces_token)
-      console.log(song)
       // Set data for database.
       const newSongs = await new Songs({
         owner: req.session.user._id,
@@ -22,12 +21,13 @@ module.exports = async (req, res) => {
       })
       // Save data.
       await newSongs.save()
+      res.redirect('http://localhost:3000/profile')
     }
-    // Check if user already has Spotify data stored.
-  } else if (req.session.user.songs) {
+  }
+  // Check if user already has Spotify data stored.
+  else if (req.session.user.songs) {
     console.log('song already in database')
     res.render('pages/profile', {
-      user: req.user,
       song: req.session.user.songs,
     })
   }
