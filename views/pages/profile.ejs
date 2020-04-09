@@ -57,10 +57,9 @@
                 </select>
                 <label> Muziek voorkeuren</label> 
                 <a id="spotify_connect" href="/spotify/login">Connect with spotify</a>
-                <p><%= song.artist %></p>
-                <p><%= song.song_name %></p>
-                <img src="<%= song.img_url %>" alt="">
-                <audio src="<%= song.preview %>" controls>
+                <% if (song) { %>
+                    <iframe src="https://open.spotify.com/embed/track/<%= song.id %>" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <% } %>
                 <button type="submit"> opslaan</button>
             </form>
             <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">
