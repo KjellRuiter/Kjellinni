@@ -10,7 +10,7 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
-      <% for(var i=0; i > user.length; i++) { %>
+      <% for(var i=0; i < user.length; i++) { %>
           <ul>
             <li class="match-block-link" data-room="<%=user.roomID%>" data-img="<%=user.herImage%>" data-name="<%=user.name[i]%>">
                   <a class="match-block" href="chat/<%=user.roomID%>">
