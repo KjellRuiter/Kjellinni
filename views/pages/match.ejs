@@ -10,6 +10,7 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
+            <% if(match) {%> 
             <article>
                 <a href="#">
                     <h3><%= match.name %></h3>
@@ -22,6 +23,9 @@
                     <button name="dislike" type="submit">Nope!</button>
                 </form>
             </article>
+            <% } else {%>
+                <p>No matches available</p>
+            <% } %>
         </section>
     </main>
     <%- include ('../partials/footer') %>

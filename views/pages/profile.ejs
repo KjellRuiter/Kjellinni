@@ -13,9 +13,8 @@
             <p>Update je account.</p>
             <%- include ('../partials/flash') %>
             <% if (user.photo) { %>
-                <img class="profilePhoto" src="/uploads/<%= user.photo %>" alt="<%= user.name %> photo" style="max-height: 200px;">
+                <img class="profilePhoto" src=<%= user.photo %> style="max-height: 200px;">
             <% } %>
-
             <form action="/users/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form register_form">
                 <input type="text" name="name" placeholder="Name" value="<%= user.name %>">
                 <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
@@ -56,6 +55,10 @@
                         })
                     %>
                 </select>
+                <label> Muziek voorkeuren</label> 
+                <br>
+                <br>
+                <a id="spotify_connect" href="/spotify/login">Login with spotify</a>
                 <button type="submit"> opslaan</button>
             </form>
             <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">

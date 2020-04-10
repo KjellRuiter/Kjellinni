@@ -18,25 +18,20 @@ const routes = require('./routes/routeHandler')
 require('./helpers/passport')(passport)
 
 app
-  .use(
-    bodyParser.urlencoded({
-      extended: true,
-    })
-  )
-  .use(helmet())
-  .use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        imgSrc: ["'self'"],
-      },
-    })
-  )
-  .use(
-    expectCt({
-      enforce: true,
-      maxAge: 123,
-    })
-  )
+  .use(bodyParser.urlencoded({
+    extended: true
+  }))
+//   .use(helmet())
+//   .use(helmet.contentSecurityPolicy({ 
+//     directives: {
+//       styleSrc: ["'self'"],
+//       scriptSrc:["'self'"]
+//     }
+//   }))
+  .use(expectCt({
+    enforce: true,
+    maxAge: 123
+  }))
   .use(methodOverride('_method'))
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))

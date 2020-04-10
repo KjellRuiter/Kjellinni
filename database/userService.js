@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs')
 // const flash = require('express-flash')
 const db = require('../database/db')
+const flash = require('express-flash')
+const imgur = require('../helpers/imgur')
 
 const { User } = db
 const Matches = require('../database/models/matches')
@@ -59,7 +61,7 @@ async function create(userParam, req) {
     await matches.save()
     await user.populate('matches').execPopulate()
     req.session.user = user
-    req.session.matches = user.matches[0]
+    req.session.matches = user.matches
   } catch (e) {}
 }
 
@@ -85,7 +87,12 @@ async function update(id, userParam, req, file = null) {
 
   // Filename
   if (file) {
-    user.photo = file.filename
+      try{
+          user.photo = await imgur(file)
+          console.log(user.photo)
+      }catch(e){
+          throw new Error(`Something went wrong with imageupload ${e.message}`)
+      }
   }
 
   // copy userParam properties to user
