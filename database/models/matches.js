@@ -30,6 +30,16 @@ const schema = new Schema({
                 default: false,
                 required: true,
             },
+            latestMessage:{
+                id:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true
+                },
+                message:{
+                    type:String,
+                    required: true
+                }
+            }
         },
     ],
     otherUser_accepted: [
