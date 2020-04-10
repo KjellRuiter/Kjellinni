@@ -27,9 +27,9 @@ module.exports = async (user, matches) => {
     await Matches.findByIdAndUpdate(matches._id, {
       currentlyMatching: random._id,
     console.log(matches)
-    console.log(matches.currentlyMatching)
     if (matches.currentlyMatching) {
         const user = await User.findById(matches.currentlyMatching)
+        console.log(user)
         return user
     }
     const allPossibleMatches =
@@ -48,6 +48,16 @@ module.exports = async (user, matches) => {
             return u
         }
     })
+    if(filtered.length===0)   return []
+    const random = randomItem(filtered)
+    try {
+        await Matches.findByIdAndUpdate(matches._id, {
+            currentlyMatching: random._id,
+        })
+    } catch (e) {
+        console.log(e)
+    }
+    return random
   } catch (e) {
     console.log(e)
   }
