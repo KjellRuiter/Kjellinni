@@ -106,7 +106,8 @@ const savingUsers =(list)=> list.map(async(user)=>{
         gender: user.gender,
         photo: user.image,
         hash: hash,
-        email: user.email
+        email: user.email,
+        age: user.age
     })
     const matches = new Matches({
         owner: newUser._id
@@ -121,6 +122,12 @@ const savingUsers =(list)=> list.map(async(user)=>{
     return newUser
 })
 
+// Promise.all(savingUsers(cartoons)).then(users=>{
+//     console.log(users)
+//     process.exit()
+// }).catch(e=>{
+//     console.log(`Something went wrong while saving ${e.message}`)
+// })
 Promise.all(savingUsers(cartoons)).then(users=>{
     console.log(users)
     process.exit()

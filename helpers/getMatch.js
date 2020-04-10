@@ -3,8 +3,10 @@ const Matches = require('../database/models/matches')
 const randomItem = require('random-item')
 
 module.exports = async (user, matches) => {
+    console.log(matches)
     if (matches.currentlyMatching) {
         const user = await User.findById(matches.currentlyMatching)
+        console.log(user)
         return user
     }
     const allPossibleMatches =
@@ -14,6 +16,7 @@ module.exports = async (user, matches) => {
                 'gender',
                 user.gender === 'Man' ? 'Vrouw' : 'Man',
             )
+    console.log(allPossibleMatches)
     const filtered = allPossibleMatches.filter(u => {
         const alreadyMatched = matches.matched_history.find(u2 => {
             return u._id.equals(u2.userId)

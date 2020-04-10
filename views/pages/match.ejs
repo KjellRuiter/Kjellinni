@@ -10,7 +10,7 @@
     <main>
         <h1 class="profile"> Jouw potentiële matches:</h1>
         <section>
-            <% if(match.length>0) {%> 
+            <% if(match.length>0 || match.name) {%> 
             <article>
                 <a href="#">
                     <h3><%= match.name %></h3>
