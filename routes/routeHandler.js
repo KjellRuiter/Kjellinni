@@ -1,7 +1,7 @@
 // Middleware
 const {
-    forwardAuthenticated,
-    ensureAuthenticated,
+  forwardAuthenticated,
+  ensureAuthenticated,
 } = require('../middleware/auth')
 const upload = require('../helpers/upload')
 const router = new require('express').Router()
