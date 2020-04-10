@@ -8,20 +8,17 @@
 <body class="with_nav">
     <%- include ('../partials/nav') %>
     <main>
-        <h1 class="profile"> Jouw potentiële matches:</h1>
+        <h1 class="profile"> Bekijk jouw matches!</h1>
         <section>
-      <% for(var i=0; i < user.length; i++) { %>
-          <ul>
-            <li class="match-block-link" data-room="<%=user.roomID%>" data-img="<%=user.herImage%>" data-name="<%=user.name[i]%>">
-                  <a class="match-block" href="chat/<%=user.roomID%>">
-                    <img class="match-image" src="<%=user.photo[i]%>" alt="<%=user.name[i]%>"/>
-                    <div class="match-block-text">
-                      <h3 class="match-name"><%=user.name%></h3>
-                    </div>
-                  </a>
-            </li>
-          </ul>
-        <% } %>
+          <% if (allUsers) {allUsers.forEach(function(user) { %>
+            <ul class="matchlist">
+              <li><img class="match-image" src="<%=user.photo%>" alt="<%=user.name%>"/></li>
+              <div class="match-block-text">
+              <li><h3 class="match-name"><%=user.name%></h3></li>
+            </ul>
+          <% })} %>
+
+          <h2 class="profile"> Jouw gesprekken:</h1>
         </section>
     </main>
     <%- include ('../partials/footer') %>
