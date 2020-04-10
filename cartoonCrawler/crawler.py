@@ -1,5 +1,5 @@
 import requests 
-from random import randint
+from random import randint, shuffle
 from bs4 import BeautifulSoup
 
 
@@ -22,15 +22,17 @@ def getDetailsCharacter(endpoint, gender):
     info = soup.find('table', {"class": "infobox"}) if soup.find('table', {"class": "infobox"}) else soup.find('div', {"class": "thumbinner"})
     name =  soup.find(id='firstHeading').getText()
     img = info.find('img')['src'] if (info and info.find('img')) else None
+    name_first = name.split(' ', 1)[0].replace('\'', ' ') 
 
     if not img or 'List' in name or 'and ' in name:
         return None
     return{
         "name": name.strip().replace('\'', ' '),
-        "img": img,
-        "endpoint": endpoint,
+        "image": img,
+        "password": 'test123',
         "gender": gender,
-        "age": str(randint(18,80))
+        "age": str(randint(18,80)),
+        "email": f'{name_first}_{str(randint(0,2020))}@hotmail.com'
     }
 
 
@@ -48,7 +50,8 @@ with open("females.json", "w") as json_file:
     stringed = str(detailFemales).replace('\'', '"')
     json_file.write(stringed)
 
-
-
-
-# print(linksFemale)
+combinedList = detailFemales + detailMales
+shuffle(combinedList) 
+with open("all.json", "w") as json_file:
+    stringed = str(combinedList).replace('\'', '"')
+    json_file.write(stringed)
