@@ -8,8 +8,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev": "nodemon server.js",
+    "baller": "node dummyData/baller.js",
     "createDummy": "node dummyData/dummyData.js",
-    "test_create":  "python automation/make_account.py"
+    "test_create": "python automation/make_account.py"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "random-item": "^3.0.0",
+    "readline-sync": "^1.4.10",
     "request": "^2.88.2",
     "rootpath": "^0.1.2",
     "slug": "^2.1.1"
