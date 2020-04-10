@@ -6,6 +6,7 @@ require('../database/db')
 const User = require('../database/models/user')
 const Matches = require('../database/models/matches')
 const bcrypt = require('bcryptjs')
+const cartoons = require('../cartoonCrawler/all.json')
 
 const users = [
     {
@@ -90,7 +91,7 @@ const users = [
     },
 ]
 
-const savingUsers = users.map(async(user)=>{
+const savingUsers =(list)=> list.map(async(user)=>{
     // const file = fs.readFileSync(path.join(__dirname,`images/${user.image}`))
     // let photo = null
     // try{
@@ -120,8 +121,7 @@ const savingUsers = users.map(async(user)=>{
     return newUser
 })
 
-
-Promise.all(savingUsers).then(users=>{
+Promise.all(savingUsers(cartoons)).then(users=>{
     console.log(users)
     process.exit()
 }).catch(e=>{

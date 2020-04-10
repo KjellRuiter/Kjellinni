@@ -41,7 +41,7 @@ linksMale = getLinks('https://en.wikipedia.org/wiki/Category:Male_characters_in_
 linksFemale  = getLinks('https://en.wikipedia.org/wiki/Category:Female_characters_in_animation')
 
 detailMales = list(filter(lambda x: x, [getDetailsCharacter(link, 'Man') for link in linksMale]))
-detailFemales = list(filter(lambda x: x, [getDetailsCharacter(link, 'Female') for link in linksFemale]))
+detailFemales = list(filter(lambda x: x, [getDetailsCharacter(link, 'Vrouw') for link in linksFemale]))
 
 with open("males.json", "w") as json_file:
     stringed = str(detailMales).replace('\'', '"')
