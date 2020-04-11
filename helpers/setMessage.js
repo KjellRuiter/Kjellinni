@@ -1,6 +1,5 @@
 // const db = require('../database/db')
 const User = require('../database/models/user')
-const mongo = require("mongodb");
 const { MongoClient } = require("mongodb");    
 
 module.exports = async (data, collection) => {
@@ -13,7 +12,7 @@ module.exports = async (data, collection) => {
       
         try {
           await client.connect();
-          const db = client.db("dating-base");
+          const db = client.db(process.env.DB_NAME);
           const fullDump = await db.collection(`${collection}`).insertOne({
             from: data.sender,
             msg: data.msg,

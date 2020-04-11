@@ -10,30 +10,35 @@
     <div class="chat-area">
         <div class="chat-title">
           <a href="/matches" class="back-button"></a>
-          <img
-            class="match-image chat-img"
-            src="https://cdn130.picsart.com/274506323021201.jpg?r1024x1024"
-            alt=""
-          />
-          <h3 class="match-name chat-name">A girls name</h3>
-          <button class="unmatch-heart">💔</button>
-          <div class="unmatch-question hidden">
-            <p>Are you sure you want to unmatch?</p>
-            <div>
-              <button class="yea-unmatch">yes</button>
-              <button class="dont-unmatch">no</button>
-            </div>
-          </div>
+          <% if (partner) { %>
+            <img
+              class="match-image chat-img"
+              src="<%=partner.img%>"
+              alt=""
+            />
+            <h3 class="match-name chat-name"><%=partner.name%></h3>
+            <a href="/unmatch/<%=partner.id%>" class="unmatch-heart smaller">unmatch <%=partner.name%></a>
+          <% } %>
         </div>
         <ul class="chat-container">
-            <% if (chatHistory) { chatHistory.forEach(function(chat) { %>
-              <li class="message" data-sender="<%=chat.from%>"><p><%=chat.msg%></p><span><%=chat.time%></span></li>
-              <% })} %>
-              <% if (1 > chatHistory.length) { %>
-                <li class="prompt">
-                  <p>Send a message and she might actually reply</p>
-                </li>
-              <% } %>
+
+            <% if (user) { %>
+              <% if (chatHistory) { chatHistory.forEach(function(message) { %>
+                    <% if (message.from !== user) { %>
+                      <li class="message">
+                    <% } %>
+                    <% if (message.from == user) { %>
+                      <li class="message my-message">
+                    <% } %>
+                  <p><%=message.msg%></p><span><%=message.time%></span></li>
+                <% })} %>
+            <% if (1 > chatHistory.length) { %>
+              <li class="prompt">
+                <p>Send a message and she might actually reply</p>
+              </li>
+            <% } %>
+            <% } %>
+           
         </ul>
         <% if (roomID) { %>
           <form action="/chat/<%=roomID%>" method="post" class="input-container">
@@ -41,10 +46,6 @@
             <button type="submit" class="send">send</button>
           </form>
           <% } %>
-        <!-- <div class="input-container">
-          <input class="input" type="text" placeholder="send a message" />
-          <button class="send">send</button>
-        </div> -->
       </div>
       <p class="unmatch-popup hidden">
         you have unmatched <span class="unmatched-person">Baby</span>

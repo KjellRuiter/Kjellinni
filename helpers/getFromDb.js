@@ -1,6 +1,6 @@
 const mongo = require("mongodb");
 
-module.exports = async (collection) => {
+module.exports = async (collection, findThis) => {
     
         const uri = process.env.DB_URI;
 
@@ -10,11 +10,19 @@ module.exports = async (collection) => {
         });
         try {
           await client.connect();
-          const db = client.db("dating-base");
-          const data = await db
+          const db = client.db(process.env.DB_NAME);
+          let data;
+          if (findThis){
+             data = await db
             .collection(`${collection}`)
-            .find({})
+            .find({ roomID: findThis })
             .toArray();
+          }else{
+             data = await db
+              .collection(`${collection}`)
+              .find({})
+              .toArray();
+          }
           return data;
         } catch (e) {
           console.error(e);
