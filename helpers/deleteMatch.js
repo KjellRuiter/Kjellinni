@@ -10,7 +10,7 @@ module.exports = async (collection, room) => {
           });
           try {
             await client.connect();
-            const db = client.db("dating-base");
+            const db = client.db(process.env.DB_NAME);
             const deleteDocument = await db
               .collection(collection)
               .deleteOne({ roomID: room });
