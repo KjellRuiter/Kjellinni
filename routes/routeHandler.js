@@ -1,19 +1,20 @@
 // Middleware
 const {
-    forwardAuthenticated,
-    ensureAuthenticated,
+  forwardAuthenticated,
+  ensureAuthenticated,
 } = require('../middleware/auth')
-const upload = require('../helpers/upload')()
+const upload = require('../helpers/upload')
 const router = new require('express').Router()
 // Diffrent routes
-const login = require('./auth/login');
-const profile = require('./user/profile');
-const register = require('./auth/register');
+const login = require('./auth/login')
+const profile = require('./user/profile')
+const register = require('./auth/register')
+const id = require('./user/id')
+const logout = require('./auth/logout')
+const match = require('./match/match')
+const oauth = require('./oauth/oauth')
 const matches = require('./chat/matches');
 const chat = require('./chat/chat');
-const id = require('./user/id');
-const logout = require('./auth/logout');
-const match = require('./match/match');
 
 router
     .get('/profile', ensureAuthenticated, profile)
@@ -26,11 +27,12 @@ router
     .post('/users/register', forwardAuthenticated, register.postMethod)
     .put(
         '/users/:id',
-        [ensureAuthenticated, upload.single('photo')],
+        ensureAuthenticated, upload.single('photo'),
         id.putMethod,
     )
     .delete('/users/:id', ensureAuthenticated, id.deleteMethod)
     .get('/users/logout', ensureAuthenticated, logout)
     .get('/match', ensureAuthenticated, match.getMethod)
     .post('/match', ensureAuthenticated, match.postMethod)
+    .use(oauth)
 module.exports = router

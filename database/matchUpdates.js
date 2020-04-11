@@ -11,18 +11,18 @@ const matchesHistory = async (matches, status, currentlyMatching) => {
     })
 }
 
-const resetCurrentlyMatching = async (matches) => {
+const resetCurrentlyMatching = async (matches) => { 
+    console.log('reset currently matching')
     await Matches.findByIdAndUpdate(matches._id, {
-        currentlyMatching: null
+        currentlyMatching: undefined
     })
-    matches.currentlyMatching = null
+    matches.currentlyMatching = undefined
 }
 
 const getOtherUserMatches = async (currentlyMatching) => {
     const matchingUser = await User.findById(currentlyMatching)
     await matchingUser.populate('matches').execPopulate()
-
-    return matchingUser.matches[0]
+    return matchingUser.matches
 }
 
 const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
@@ -30,7 +30,7 @@ const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
 
     const updatedMatchHistoryOtherUser = matchingUserMatches.matched_history
         .map(m => {
-            if (m.userId.equals(userId)) {
+            if (m.equals(userId)) {
                 return {
                     ...m._doc,
                     status: status
@@ -46,9 +46,9 @@ const otherUserMatchHistory = async (userId, currentlyMatching, status) => {
 
 const otherUserStatus = async (userId, currentlyMatching, status) => {
     const matchingUserMatches = await getOtherUserMatches(currentlyMatching)
-    const otherUserUpdate = [...matchingUserMatches[status], { userId: userId }]
+    const otherUserUpdate = [...matchingUserMatches[`otherUser_${status}`], userId]
     await Matches.findByIdAndUpdate(matchingUserMatches._id, {
-        [status]: otherUserUpdate
+        [`otherUser_${status}`]: otherUserUpdate
     })
 }
 

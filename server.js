@@ -2,10 +2,10 @@
 require('rootpath')()
 require('dotenv').config()
 
-const routes = require('./routes/routeHandler')
 const path = require('path')
 const express = require('express')
 const methodOverride = require('method-override')
+
 const app = express()
 const bodyParser = require('body-parser')
 const passport = require('passport')
@@ -14,21 +14,20 @@ const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const helmet = require('helmet')
 const expectCt = require('expect-ct')
+const routes = require('./routes/routeHandler')
 require('./helpers/passport')(passport)
 
 app
   .use(bodyParser.urlencoded({
     extended: true
   }))
-  .use(helmet())
-  .use(helmet.contentSecurityPolicy({ 
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'"],
-      scriptSrc:["'self'"],
-      imgSrc:["'self'"]
-    }
-  }))
+//   .use(helmet())
+//   .use(helmet.contentSecurityPolicy({ 
+//     directives: {
+//       styleSrc: ["'self'"],
+//       scriptSrc:["'self'"]
+//     }
+//   }))
   .use(expectCt({
     enforce: true,
     maxAge: 123
@@ -44,16 +43,21 @@ app
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: 60000
+        maxAge: 60000,
       },
-    }),
+    })
   )
   .use(passport.initialize())
   .use(passport.session())
 
-  app.use(helmet.frameguard({ action: 'deny' }))
+app
+  .use(
+    helmet.frameguard({
+      action: 'deny',
+    })
+  )
   .use(flash())
-  .use(function (req, res, next) {
+  .use(function(req, res, next) {
     res.locals.message = req.flash('message')
     res.locals.error = req.flash('error')
     next()

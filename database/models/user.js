@@ -19,6 +19,13 @@ schema.virtual('matches', {
   ref: 'Matches',
   localField: '_id',
   foreignField: 'owner',
+  justOne:true
+})
+schema.virtual('songs', {
+  ref: 'Songs',
+  localField: '_id',
+  foreignField: 'owner',
+  justOne: true
 })
 
 // schema.set('toJSON', { virtuals: true });
