@@ -191,6 +191,7 @@ li {
   border-radius: 8px;
   overflow: hidden;
   min-width: 80px;
+  box-shadow: 2px 2px 7px #363535;
 }
 
 .new-match-container-item a p {
