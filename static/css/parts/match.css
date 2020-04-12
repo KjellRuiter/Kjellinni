@@ -21,6 +21,7 @@ article img {
     margin: 0 auto;
     max-height: 60vh;
     min-height: 60vh;
+    object-position: top;
 }
 
 article li {
