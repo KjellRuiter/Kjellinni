@@ -1,0 +1,18 @@
+.matchlist{
+    display:inline-block;
+}
+
+.matchlist li{
+    list-style-type: none;
+    display:inline-block;
+    color:var(--main-color);;
+}
+.match-image{
+    object-fit: cover;
+    border-radius:90px;
+    width:8em;
+}
+
+.match-name{
+    margin:0 auto;
+}
