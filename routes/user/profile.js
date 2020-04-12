@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
   req.session.matches = req.user.matches
   res.render('pages/profile', { user: req.user, song: songInDb })
 
-  // delete 
+  // delete
   // const remove = () => {
   //   Songs.deleteOne({ _id: req.session.user.songs._id }, e => {
   //     if (e) res.status(500).send(e)
