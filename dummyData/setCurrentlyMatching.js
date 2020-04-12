@@ -4,34 +4,31 @@ require('dotenv').config()
 require('../database/db')
 const readline = require('readline-sync')
 const hostEmail = readline.question("Host Email: ")
-const otherEmail = readline.question("Matchi Email: ")
+const matching_user_email = readline.question("Matchi Email: ")
 
 
 
 
 const setCurrentlyMatching = async ()=>{
     console.log('Searhing.....')
+    console.log({
+        hostEmail,
+        otherEmail
+    })
     try{
-        const user = await User.findOne({
-            email
+        const hostUser = await User.findOne({
+            email: hostEmail
         })
-        if(!user.gender){
-            throw new Error('No gender has been set')
+        const matching_user = await User.findOne({
+            email: matching_user_email
+        })
+        if(!hostUser){
+            throw new Error('Host user not found')
         }
-        await user.populate('matches').execPopulate()
-        const matches = user.matches
+        else if(!matching_user){
+            throw new Error('No matching user')
+        }
         
-        const allUsers = await User.find({
-            gender: user.gender === 'Man' ? 'Vrouw' : 'Man'
-        })
-        const allIds = allUsers.filter(user=>!matches.otherUser_accepted.find(id=>id.equals(user._id))).map(user=>user._id)
-        if(allIds.length === 0){
-            console.log('Nothing to update')
-            process.exit()
-        }
-        await Matches.findByIdAndUpdate(matches._id, {
-            otherUser_accepted : allIds
-        })
         
     }catch(e){
         console.log('Something went wrong!')
