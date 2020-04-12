@@ -39,7 +39,7 @@ module.exports = async (user, matches) => {
                 'gender',
                 user.gender === 'Man' ? 'Vrouw' : 'Man',
             )
-    console.log(allPossibleMatches)
+            
     const filtered = allPossibleMatches.filter(u => {
         const alreadyMatched = matches.matched_history.find(u2 => {
             return u._id.equals(u2.userId)
