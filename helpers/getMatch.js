@@ -25,41 +25,11 @@ module.exports = async (user, matches) => {
   const random = randomItem(filtered)
   try {
     await Matches.findByIdAndUpdate(matches._id, {
-      currentlyMatching: random._id
+      currentlyMatching: random._id,
     })
-    if (matches.currentlyMatching) {
-        const user = await User.findById(matches.currentlyMatching)
-        console.log(user)
-        return user
-    }
-    const allPossibleMatches =
-        user.gender === 'both'
-            ? await User.find({})
-            : await User.find({}).where(
-                'gender',
-                user.gender === 'Man' ? 'Vrouw' : 'Man',
-            )
-            
-    const filtered = allPossibleMatches.filter(u => {
-        const alreadyMatched = matches.matched_history.find(u2 => {
-            return u._id.equals(u2.userId)
-        })
-        if (!alreadyMatched) {
-            return u
-        }
-    })
-    if(filtered.length===0)   return []
-    const random = randomItem(filtered)
-    try {
-        await Matches.findByIdAndUpdate(matches._id, {
-            currentlyMatching: random._id,
-        })
-    } catch (e) {
-        console.log(e)
-    }
-    return random
   } catch (e) {
     console.log(e)
   }
+  if (filtered.length === 0) return []
   return random
 }
