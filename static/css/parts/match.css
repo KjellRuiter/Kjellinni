@@ -1,8 +1,8 @@
 /* Matching profiles */
 article {
+    background-color: white;
     position: relative;
-    border-radius: 0.75rem;
-    color: white;
+    color: black;
     padding-bottom: 1.8rem;
     margin: 1em;
     border: 1px solid #fff;
@@ -10,14 +10,17 @@ article {
     flex-direction: column;
     box-shadow: 10px 10px 27px #363535;
     max-width: 21em;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 article img {
     object-fit: cover;
-    width: 20em;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 8px;
-    max-height: 20em
+    max-height: 60vh;
+    min-height: 60vh;
 }
 
 article li {
@@ -27,8 +30,6 @@ article li {
 }
 
 article h3 {
-    color: var(--main-color);
-    ;
     font-weight: bold;
     font-size: 1.5em;
     margin: 0.5em;
@@ -39,7 +40,6 @@ article h3:hover {
 }
 
 article h4 {
-    color: #5FDFF6;
     font-weight: bold;
     font-size: 1.2em;
     margin: 0.5em;
@@ -47,36 +47,54 @@ article h4 {
 
 article a {
     text-decoration: none;
-    color: var(--main-color);
+    color: black;
     ;
 }
 
 article button {
-    color: var(--main-color);
-    ;
-    background-color: #5FDFF6;
-    box-shadow: inset 0 -.1875rem .0625rem #363535;
-    padding: .4375em 1.5em .5625em;
-    border: 0;
-    font-weight: bold;
-    margin: 0 auto;
-    line-height: 1.5;
-    cursor: pointer;
-    display: inline-block;
-    border-radius: 1.25em;
-    min-height: 1.5rem;
-    min-width: 1.5rem;
-    margin-top: 1em;
-    margin: 0.5em;
+    display: block;
+    height: 60px;
+    width: 60px;
+    color: white;
+    background-color: #5F1E78;
+    border-radius: 50%;
+}
+
+.like {
+    color: white;
+    background-color: #5F1E78;
+}
+
+.buttons_swipe {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dislike {
+    color: #5F1E78;
+    background-color: white;
 }
 
 article div {
     margin-top: auto;
 }
 
-article button:nth-of-type(2) {
-    background-color: #2800a0;
-    box-shadow: inset 0 -.1875em .0625em #120145;
-    color: var(--main-color);
-    ;
+#match_page main {
+    max-width: 380px;
+    margin: auto;
+}
+
+#match_page h1 {
+    color: white;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.info_match {
+    display: inline-block;
+}
+
+.buttons_swipe span {
+    font-size: 28px;
 }
