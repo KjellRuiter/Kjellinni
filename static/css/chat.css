@@ -7,6 +7,11 @@
   padding: 10px 15px;
 }
 
+.with_nav>section {
+  max-width: 800px;
+  margin: auto;
+}
+
 .match-image {
   background: #eee;
   max-height: 50px;
@@ -167,9 +172,21 @@ li {
   overflow-x: scroll;
 }
 
+.new-match-container::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background: rgba(0, 0, 0, 0.0);
+}
+
+.new-match-container::-webkit-scrollbar-thumb:horizontal {
+  background: #fff;
+  border-radius: 10px;
+}
+
+
 .new-match-container-item {
   text-align: center;
-  margin: 0 8px;
+  margin: 0px 8px 12px 8px;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
