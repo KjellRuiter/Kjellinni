@@ -380,7 +380,6 @@ h1.profile {
   font-size: 1.8em;
 }
 
-
 .matchlist{
   display:inline-block;
 }
@@ -403,4 +402,24 @@ h1.profile {
 .profile{
   color:#5FDFF6;
   font-size:1.4em;
+}
+
+/* Spotify API */  
+
+#spotify_connect {
+text-decoration: none;
+color: white;
+font-size: 16px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 19px 56px 21px;
+  color: #FFF;
+  background-color: #1DB954;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 700;
+  text-align: center;
+  font-size: 10px;
 }
