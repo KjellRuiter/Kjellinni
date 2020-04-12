@@ -21,13 +21,17 @@ app
   .use(bodyParser.urlencoded({
     extended: true
   }))
-//   .use(helmet())
-//   .use(helmet.contentSecurityPolicy({ 
-//     directives: {
-//       styleSrc: ["'self'"],
-//       scriptSrc:["'self'"]
-//     }
-//   }))
+
+  .use(helmet())
+  .use(helmet.contentSecurityPolicy({ 
+    directives: {
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: [ "'self'", 'https://fonts.googleapis.com' ],
+      upgradeInsecureRequests: true,
+    },
+    browserSniff: false
+  }))
+
   .use(expectCt({
     enforce: true,
     maxAge: 123
