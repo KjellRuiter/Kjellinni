@@ -18,24 +18,30 @@ const routes = require('./routes/routeHandler')
 require('./helpers/passport')(passport)
 
 app
-  .use(bodyParser.urlencoded({
-    extended: true
-  }))
+  .use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  )
 
   .use(helmet())
-  .use(helmet.contentSecurityPolicy({ 
-    directives: {
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: [ "'self'", 'https://fonts.googleapis.com' ],
-      upgradeInsecureRequests: true,
-    },
-    browserSniff: false
-  }))
+  .use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+        upgradeInsecureRequests: true,
+      }, 
+      browserSniff: false,
+    })
+  )
 
-  .use(expectCt({
-    enforce: true,
-    maxAge: 123
-  }))
+  .use(
+    expectCt({
+      enforce: true,
+      maxAge: 123,
+    })
+  )
   .use(methodOverride('_method'))
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
