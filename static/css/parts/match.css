@@ -8,7 +8,7 @@ article {
     border: 1px solid #fff;
     display:flex;
     flex-direction:column;
-    box-shadow: 10px 10px 5px #363535;
+    box-shadow: 10px 10px 27px #363535;
     max-width:21em;
 }
 
@@ -63,6 +63,7 @@ article button{
     min-height: 1.5rem;
     min-width: 1.5rem;
     margin-top:1em;
+    margin:0.5em;
 }
 
 article div{
