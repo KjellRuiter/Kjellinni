@@ -1,0 +1,25 @@
+.profilePhoto {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 25px auto 0px;
+}
+
+  .alert.alert-danger {
+    color:#f1f1f1;
+    text-align: center;
+    margin: 10px;
+  }
+
+h1.profile {
+    color:#5FDFF6;
+    padding-left: 0.6em;
+    font-size: 1.8em;
+}
+
+.profile{
+    color:#5FDFF6;
+    font-size:1.4em;
+}

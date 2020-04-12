@@ -1,0 +1,40 @@
+body.with_nav {
+    margin-top: 80px;
+}
+
+.with_nav h1 {
+    margin-top: 0px;
+}
+
+.with_nav p {
+    color: white;
+    text-align: center;
+}
+
+nav {
+    max-width:100%;
+    width: 100%;
+    background-color: #984771;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    color: white;
+    padding-left: 10px;
+}
+
+nav .material-icons {
+    font-size: 30px;
+}
+
+nav ul li a {
+    color: white
+}
