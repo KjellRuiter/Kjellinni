@@ -1,0 +1,20 @@
+.header_logo {
+    position: relative;
+    top: 35vh;
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+}
+
+
+.welcom_screen {
+    background-image: url(/IMG/Background-img.svg);
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}

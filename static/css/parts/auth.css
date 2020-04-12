@@ -1,0 +1,90 @@
+.login_page h1 {
+    color: #f2f2f2;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+ /* form */
+  
+.login_page {
+    width: 360px;
+    padding: 10px 0 0;
+    margin: auto;
+}
+.form {
+    padding: 35px;
+}
+.form input, .form select {
+    -webkit-appearance: none;
+    background-color: #f2f2f2;
+    color: #454546;
+    height: 47px;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 0px;
+}
+
+label {
+    color: #f2f2f2;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 26px;
+}
+
+.form input::placeholder, .form select::placeholder {
+    color: #454546;
+}
+
+.form button, .button {
+    text-transform: uppercase;
+    background: #A4E375;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+    background-color: #fff;
+    border: 1px solid #A4E375;
+    color: #A4E375;
+}
+
+.message {
+    margin: 15px 0 0;
+    color: #f1f1f1;
+    font-size: 12px;
+}
+.message a {
+    color: #53E0DB;
+    text-decoration: none;
+}
+
+.form .register_form {
+    display: none;
+}
+
+.dropdown {
+    background: url(/IMG/arrow_drop_down-24px.svg) no-repeat right black;
+}
+
+.delete_button {
+    margin-top: -30px;
+    margin-bottom: 60px;
+}
+
+.delete_button button {
+    background: #e74c3c;
+    color: #fff;
+    padding: .5rem 1rem;
+    border: 0px;
+    margin: 20px auto;
+    display: block;
+}

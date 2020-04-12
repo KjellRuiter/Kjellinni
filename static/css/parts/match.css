@@ -1,0 +1,77 @@
+/* Matching profiles */  
+article {
+    position: relative;
+    border-radius: 0.75rem;
+    color: white;
+    padding-bottom:1.8rem;
+    margin: 1em;
+    border: 1px solid #fff;
+    display:flex;
+    flex-direction:column;
+    box-shadow: 10px 10px 5px #363535;
+    max-width:21em;
+}
+
+article img{
+    object-fit: cover;
+    width:20em;
+    margin:0 auto;
+    border-radius:8px;
+    max-height:20em
+}
+
+article li{
+    list-style-type:none;
+    font-size:1.2em;
+    margin:0.5em;
+}
+
+article h3{
+    color:#fff;
+    font-weight:bold;
+    font-size:1.5em;
+    margin:0.5em;
+}
+article h3:hover {
+    text-decoration:underline;
+}
+
+article h4{
+    color:#5FDFF6;
+    font-weight:bold;
+    font-size:1.2em;
+    margin:0.5em;
+}
+    
+article a{
+    text-decoration:none;
+    color:#fff;
+}
+    
+article button{
+    color: #fff ;
+    background-color: #5FDFF6;
+    box-shadow: inset 0 -.1875rem .0625rem #363535;
+    padding: .4375em 1.5em .5625em;
+    border: 0;
+    font-weight: bold;
+    margin:0 auto;
+    line-height: 1.5;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 1.25em;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+    margin-top:1em;
+}
+
+article div{
+    margin-top:auto;
+}
+
+article button:nth-of-type(2) {
+    background-color: #2800a0;
+    box-shadow: inset 0 -.1875em .0625em #120145;
+    color: #fff;
+}  
+  

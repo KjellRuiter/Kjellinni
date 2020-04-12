@@ -7,3 +7,12 @@
     display:inline-block;
     color:#fff;
 }
+.match-image{
+    object-fit: cover;
+    border-radius:90px;
+    width:8em;
+}
+
+.match-name{
+    margin:0 auto;
+}
