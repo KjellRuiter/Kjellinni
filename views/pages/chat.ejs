@@ -8,7 +8,7 @@
   <body>
     <div class="chat-area">
       <div class="chat-title">
-        <a href="/matches" class="back-button"></a>
+        <a href="/matchlist" class="back-button"></a>
         <% if (partner) { %>
         <img class="match-image chat-img" src="<%=partner.img%>" alt="" />
         <h3 class="match-name chat-name"><%=partner.name%></h3>
@@ -30,11 +30,13 @@
           <p><%=message.msg%></p>
           <span><%=message.time%></span>
         </li>
-        <% })} %> <% if (1 > chatHistory.length) { %>
+        <% })} %>
+        <% if (1 > chatHistory.length) { %>
         <li class="prompt">
           <p>Send a message and she might actually reply</p>
         </li>
-        <% } %> <% } %>
+        <% } %> 
+        <% } %>
       </ul>
       <% if (roomID) { %>
       <form action="/chat/<%=roomID%>" method="post" class="input-container">
