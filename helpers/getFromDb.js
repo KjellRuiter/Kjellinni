@@ -13,7 +13,7 @@ module.exports = async (collection, findThis) => {
     let data
     if (findThis) {
       data = await db
-        .collection(`${collection}`)
+        .collection(collection)
         .find({ roomID: findThis })
         .toArray()
     } else {
