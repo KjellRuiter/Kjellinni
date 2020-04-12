@@ -9,6 +9,7 @@ module.exports = class {
         const user = await User.findById(req.session.user._id)
         await user.populate('matches').execPopulate()
         req.session.matches = user.matches
+        console.log(req.session.matches)
         const match = await getMatch(req.session.user, req.session.matches)
         res.render('pages/match', { match })
     }
