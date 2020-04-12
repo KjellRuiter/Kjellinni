@@ -1,0 +1,9 @@
+.matchlist{
+    display:inline-block;
+}
+
+.matchlist li{
+    list-style-type: none;
+    display:inline-block;
+    color:#fff;
+}
