@@ -17,10 +17,8 @@
                 </a>
                 <img src="<%= match.photo %>" alt="profielimages">
                 <li><strong>Leeftijd:</strong><%= match.age %> jaar </li>
-                <li><strong>Sport:</strong><%= match.hobby %></li>
                 <form action="/match" method="post">
                     <button name="like" type="submit">Like!</button>
-                    <button name="dislike" type="submit">Nope!</button>
                 </form>
             </article>
             <% } else {%>
