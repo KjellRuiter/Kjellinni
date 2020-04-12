@@ -1,82 +1,136 @@
+const imgur = require('../helpers/imgur')
+const fs = require('fs')
+const path = require('path')
+require('dotenv').config()
+require('../database/db')
+const User = require('../database/models/user')
+const Matches = require('../database/models/matches')
+const bcrypt = require('bcryptjs')
+const cartoons = require('../cartoonCrawler/all.json')
+
 const users = [
     {
-        image: '1.jpeg',
+        image: 'https://i.imgur.com/I2fhuCd.jpg',
         name: 'Gerard',
         email: 'gerard@hotmail.com',
         password: 'test123',
         age: 30,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: '2.jpg',
+        image: 'https://i.imgur.com/rLwjlxq.jpg',
         name: 'Kees',
         email: 'kees@hotmail.com',
         password: 'test123',
         age: 40,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: '3.jpeg',
+        image: 'https://i.imgur.com/xygpDS1.jpg',
         name: 'Marjolein',
         email: 'marjolein@hotmail.com',
         password: 'test123',
         age: 18,
-        gender: 'female',
+        gender: 'Vrouw',
     },
     {
-        image: '4.jpg',
+        image: 'https://i.imgur.com/VYMNKoW.jpg',
         name: 'Henk',
         email: 'henk@hotmail.com',
         password: 'test123',
         age: 45,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: '5.jpg',
+        image: 'https://i.imgur.com/zwQSvEa.jpg',
         name: 'Thierry',
         email: 'thierry@hotmail.com',
         password: 'test123',
         age: 25,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: 'johny_bravo.png',
+        image: 'https://i.imgur.com/6ebOhet.png',
         name: 'Johny Bravo',
         email: 'johny@hotmail.com',
         password: 'test123',
         age: 22,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: 'lois.jpg',
+        image: 'https://i.imgur.com/hQ8ogsm.jpg',
         name:'Lois',
         email: 'lois@hotmail.com',
         password: 'test123',
         age: 38,
-        gender: 'female',
+        gender: 'Vrouw',
     },
     {
-        image: 'malone.jpg',
+        image: 'https://i.imgur.com/NKiTQgP.jpg',
         name:'Toasty Malony',
         email: 'toasty@hotmail.com',
         password: 'test123',
         age: 24,
-        gender: 'male',
+        gender: 'Man',
     },
     {
-        image: 'marge.jpg',
+        image: 'https://i.imgur.com/4KPE5YJ.jpg',
         name: 'Marge Simpson',
         email: 'marge@hotmail.com',
         password: 'test123',
         age: 45,
-        gender: 'female',
+        gender: 'Vrouw',
     },
     {
-        image: 'misty.png',
+        image: 'https://i.imgur.com/2UCwROy.png',
         name: 'Misty',
         email: 'misty@hotmail.com',
         password: 'test123',
         age: 18,
-        gender: 'female',
+        gender: 'Vrouw',
     },
 ]
+
+const savingUsers =(list)=> list.map(async(user)=>{
+    // const file = fs.readFileSync(path.join(__dirname,`images/${user.image}`))
+    // let photo = null
+    // try{
+    //     const link = await imgur(file)
+    //     photo = link 
+    // } catch(e){
+    //     console.log(`Something went wrong with the imgur upload ${e.message}`)
+    // }
+    const hash = bcrypt.hashSync(user.password, 10)
+    const newUser = new User({
+        name: user.name,
+        gender: user.gender,
+        photo: user.image,
+        hash: hash,
+        email: user.email,
+        age: user.age
+    })
+    const matches = new Matches({
+        owner: newUser._id
+    })
+
+    try{
+        await newUser.save()
+        await matches.save()
+    }catch(e){
+        console.log(e)
+    }
+    return newUser
+})
+
+// Promise.all(savingUsers(cartoons)).then(users=>{
+//     console.log(users)
+//     process.exit()
+// }).catch(e=>{
+//     console.log(`Something went wrong while saving ${e.message}`)
+// })
+Promise.all(savingUsers(cartoons)).then(users=>{
+    console.log(users)
+    process.exit()
+}).catch(e=>{
+    console.log(`Something went wrong while saving ${e.message}`)
+})
