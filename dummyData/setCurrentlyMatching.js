@@ -28,10 +28,8 @@ const setCurrentlyMatching = async ()=>{
         else if(!matching_user){
             throw new Error('No matching user')
         }
-        console.log({
-            hostUser,
-            matching_user
-        })
+        await hostUser.populate('matches').execPopulate()
+        console.log(hostUser.matches)
         
     }catch(e){
         console.log('Something went wrong!')
