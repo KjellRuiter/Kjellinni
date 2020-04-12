@@ -28,7 +28,10 @@ const setCurrentlyMatching = async ()=>{
         else if(!matching_user){
             throw new Error('No matching user')
         }
-        
+        console.log({
+            hostUser,
+            matching_user
+        })
         
     }catch(e){
         console.log('Something went wrong!')
@@ -36,6 +39,6 @@ const setCurrentlyMatching = async ()=>{
     }
 }
 
-balling()
+setCurrentlyMatching()
 
 console.log("Hi " + email + ", nice to meet you.")
