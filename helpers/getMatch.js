@@ -25,8 +25,8 @@ module.exports = async (user, matches) => {
   const random = randomItem(filtered)
   try {
     await Matches.findByIdAndUpdate(matches._id, {
-      currentlyMatching: random._id,
-    console.log(matches)
+      currentlyMatching: random._id
+    })
     if (matches.currentlyMatching) {
         const user = await User.findById(matches.currentlyMatching)
         console.log(user)
