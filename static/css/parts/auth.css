@@ -90,8 +90,7 @@ label {
 }
 
 .delete_button {
-    margin-top: -30px;
-    margin-bottom: 60px;
+    float: left;
 }
 
 .delete_button button {
@@ -99,7 +98,6 @@ label {
     color: var(--main-color);
     padding: .5rem 1rem;
     border: 0px;
-    margin: 20px auto;
     display: block;
 }
 
@@ -108,11 +106,23 @@ label {
     height: 29px;
     width: 112px;
     display: block;
-    margin: auto;
-    margin-bottom: 20px;
+    float: right;
     border: none;
+}
+
+.logout_button i {
+    position: relative;
+    bottom: -8px;
 }
 
 .logout_button a {
     color: white;
+    text-decoration: none;
+    position: relative;
+    bottom: 7px;
+}
+
+.section_del_logout {
+    margin: 0 35px 75px 35px;
+    display: block;
 }
