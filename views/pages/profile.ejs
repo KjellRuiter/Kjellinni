@@ -11,7 +11,7 @@
         <section class="login_page">
             <h1>Hello <%= user.name %></h1>
             <p>Update je account.</p>
-
+            <%- include ('../partials/flash') %>
             <% if (user.photo) { %>
                 <img class="profilePhoto" src=<%= user.photo %> style="max-height: 200px;">
             <% } %>

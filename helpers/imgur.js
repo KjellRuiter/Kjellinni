@@ -22,6 +22,7 @@ const imgur = async(file)=>{
     }
     const res   = await fetch(url,options)
     const json  = await res.json()
+    console.log(json)
     return json.data.link
 }
 

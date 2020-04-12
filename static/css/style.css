@@ -380,6 +380,30 @@ h1.profile {
   font-size: 1.8em;
 }
 
+.matchlist{
+  display:inline-block;
+}
+
+.matchlist li{
+  list-style-type: none;
+  display:inline-block;
+  color:#fff;
+}
+.match-image{
+  object-fit: cover;
+  border-radius:90px;
+  width:8em;
+}
+
+.match-name{
+  margin:0 auto;
+}
+
+.profile{
+  color:#5FDFF6;
+  font-size:1.4em;
+}
+
 /* Spotify API */  
 
 #spotify_connect {
