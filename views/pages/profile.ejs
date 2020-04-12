@@ -64,6 +64,9 @@
             <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">
                 <button type="submit">Delete account</button>
             </form>
+            <button class="logout_button">
+                 <a href="/users/logout"><i class="material-icons">exit_to_app</i> Uitloggen</a>
+            </button>
         </section>
     </main>
     <%- include ('../partials/footer') %>
