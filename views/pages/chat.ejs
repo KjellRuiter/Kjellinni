@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ('../partials/head') %>
+    <link rel="stylesheet" href="/css/chat.css" />
+  </head>
+
+  <body>
+    <div class="chat-area">
+      <div class="chat-title">
+        <a href="/matches" class="back-button"></a>
+        <% if (partner) { %>
+        <img class="match-image chat-img" src="<%=partner.img%>" alt="" />
+        <h3 class="match-name chat-name"><%=partner.name%></h3>
+        <a href="/unmatch/<%=partner.id%>" class="unmatch-heart smaller"
+          >unmatch <%=partner.name%></a
+        >
+        <% } %>
+      </div>
+      <ul class="chat-container">
+        <% if (user) { %> <% if (chatHistory) {
+        chatHistory.forEach(function(message) { %> <% if (message.from !== user)
+        { %>
+        <li class="message">
+          <% } %> <% if (message.from == user) { %>
+        </li>
+
+        <li class="message my-message">
+          <% } %>
+          <p><%=message.msg%></p>
+          <span><%=message.time%></span>
+        </li>
+        <% })} %> <% if (1 > chatHistory.length) { %>
+        <li class="prompt">
+          <p>Send a message and she might actually reply</p>
+        </li>
+        <% } %> <% } %>
+      </ul>
+      <% if (roomID) { %>
+      <form action="/chat/<%=roomID%>" method="post" class="input-container">
+        <input
+          id="textMessage"
+          class="textMessage"
+          type="text"
+          name="textMessage"
+          autocomplete="off"
+          required="required"
+        />
+        <button type="submit" class="send">send</button>
+      </form>
+      <% } %>
+    </div>
+    <p class="unmatch-popup hidden">
+      you have unmatched <span class="unmatched-person">Baby</span>
+    </p>
+  </body>
+</html>
