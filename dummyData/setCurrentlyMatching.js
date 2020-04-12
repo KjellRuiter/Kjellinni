@@ -13,7 +13,7 @@ const setCurrentlyMatching = async ()=>{
     console.log('Searhing.....')
     console.log({
         hostEmail,
-        otherEmail
+        matching_user_email
     })
     try{
         const hostUser = await User.findOne({
@@ -40,5 +40,3 @@ const setCurrentlyMatching = async ()=>{
 }
 
 setCurrentlyMatching()
-
-console.log("Hi " + email + ", nice to meet you.")
