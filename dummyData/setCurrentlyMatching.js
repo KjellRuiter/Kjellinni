@@ -7,8 +7,6 @@ const hostEmail = readline.question("Host Email: ")
 const matching_user_email = readline.question("Matchi Email: ")
 
 
-
-
 const setCurrentlyMatching = async ()=>{
     console.log('Searhing.....')
     console.log({
@@ -29,7 +27,17 @@ const setCurrentlyMatching = async ()=>{
             throw new Error('No matching user')
         }
         await hostUser.populate('matches').execPopulate()
-        console.log(hostUser.matches)
+        if(hostUser._id.equals(matching_user._id)){
+            throw new Error('Cant be same id')
+        }
+        const checkIfAlreadyMatched = hostUser.matches.find(user=>user.userId.equals(matching_user._id))
+        if(checkIfAlreadyMatched){
+            throw new Error('You have already matched with this user!')
+        }
+        await Matches.findByIdAndUpdate(hostUser.matches._id, {
+            currentlyMatching: matching_user._id
+        })
+        console.log(`Succesfully set the matching user ${matching_user}`)
         
     }catch(e){
         console.log('Something went wrong!')
