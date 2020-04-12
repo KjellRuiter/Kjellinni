@@ -1,6 +1,31 @@
-## REALFACE.
-This is a user login and registration app using Node.js, Express, MongoDB, Mongoos, Multer, Express-session, Passport, EJS and some other packages.
-![Desing Wireframe 2.0](https://i.imgur.com/fDegGdm.png)
+## HeartBeats.
+Dating app based on music preferences where the user can change his preferences. The user can like or dislike persons, when both of the persons liked each other the app wil show that you have a match. If you want to talk to one of your matches it is possible to chat with each other.
+
+## Hier komt nog een image van de app als de css is aangepast
+
+
+## Features
+* Login / create a account
+* Update account
+* Matching based on music preferences
+* Show matches and potential matches
+* Chat with someone
+
+## Technical information
+* Node.js
+* Express
+* Mongodb 
+* Ejs
+* Spotify API
+* Heroku
+
+For more information about the packages: https://github.com/KjellRuiter/realfacefeature/blob/master/package.json
+
+## Database
+![](https://i.imgur.com/v1079kj.png)
+
+![](https://i.imgur.com/KDR859U.png)
+
 ## USAGE
 Clone the repository:
 ```
@@ -14,37 +39,10 @@ $ node server.js
 $ nodemon
 ```
 
-## Wiki
-For more info look in my Wiki https://github.com/KjellRuiter/realfacefeature/wiki
-
 ## IMAGES
 * Bigstock
 * https://www.bigstockphoto.com/nl/image-334842214/ 
-Bigstock. (2020, February 26). Background-img [Photograph]. Retrieved from https://www.bigstockphoto.com/nl/image-334842214/
-
-## BRONNEN
-Aan de hand van deze blog ben ik gestart
-https://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management
-
-Dit youtube kanaal heeft mij veel geholpen verschillende tutorials gekeken en waarin hij ook naar zijn github linkt. Vooral het paspoort gedeelte, flash en session. 
-https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw
-https://github.com/WebDevSimplified/Nodejs-Passport-Login/blob/master/server.js
-
-Deze video heb ik insperatie opgedaan voor edit update en delete
-https://www.youtube.com/watch?v=UIf1Lh9OZ-k 
-
-In deze video heb ik gekeken hoe ik het authentication kan fixen.
-https://www.youtube.com/watch?v=6FOq4cUdH8k&t=3030s :: dit is de link naar zijn github https://github.com/bradtraversy/node_passport_login 
-
-
-Artiekel: Voltooi REST API met MongoDB Atlas cloud, Node en Express in 10 minuten
-https://dev.to/lenmorld/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
-
-Naast deze bronnen heb ik ook gebruik gemaakt van stackoverflow wanneer ik een error tegenkwam. Ik heb veel video's gekeken om te kijken hoe het allemaal in elkaar moet zitten en ben daarna zelf gaan kijken wat ik nodig had om het werkend te gaan krijgen. Om mezelf het makelijk te maken heb ik veel gebruik gemaakt van verschillende packages. Dit heb ik gedaan om in een korte tijd toch een complete feature neer te zetten. 
-
-## DATABASE
-
-![Screenshot database](https://i.imgur.com/l7ddjmo.png)
+Bigstock. (2020, February 26). Background-img [Photograph]. Retrieved from https://www.bigstockphoto.com/nl
 
 ## ICON
 * Material Design
