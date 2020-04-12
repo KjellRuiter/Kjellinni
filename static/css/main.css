@@ -9,11 +9,10 @@
 @import url('/css/parts/matchlist.css');
 
 :root{
-    --svg-bg: '/IMG/Background-img.svg';
-    --main-color: '';
-    --secundair-color: '';
-    --danger-color: '';
-    --field-color: '';
+    --svg-bg: url(/IMG/Background-img.svg);
+    --main-color: '#fff';
+    --secundair-color: '#A4E375';
+    --field-color: '#f2f2f2';
 }
 
 /* Font */
@@ -31,7 +30,7 @@
   
 body {
     max-width:100%;
-    background-image: url(/IMG/Background-img.svg);
+    background-image: var(--svg-bg);
     background-size: cover;
     background-attachment: fixed;
     background-position-x: center;
@@ -39,18 +38,10 @@ body {
     font-family: "Roboto", sans-serif;
     margin: 0px;
 }
-  
-  
-    /*  bedankt pagina */
-  
-
-  
-  
-  /* responsive */
-  @media only screen and (max-width: 600px) {
-      
-    }
-  
-   .hide_item_timout {
-      display: none;
-    }
+@media only screen and (max-width: 600px) {
+    
+}
+ 
+.hide_item_timout {
+    display: none;
+}

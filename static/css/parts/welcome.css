@@ -9,7 +9,7 @@
 
 
 .welcom_screen {
-    background-image: url(/IMG/Background-img.svg);
+    background-image: var(--svg-bg);
     background-attachment: fixed;
     background-position-x: center;
     background-position-y: center;

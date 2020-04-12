@@ -5,7 +5,7 @@
 .matchlist li{
     list-style-type: none;
     display:inline-block;
-    color:#fff;
+    color:var(--main-color);;
 }
 .match-image{
     object-fit: cover;
