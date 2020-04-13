@@ -33,16 +33,16 @@ For more information about the packages: https://github.com/KjellRuiter/realface
 
 ## USAGE
 Clone the repository:
-
+```
 $ git clone https://github.com/KjellRuiter/realfacefeature.git
-
-sh
+```
+```sh
 $ npm install
 # run
 $ node server.js
 # Or run with Nodemon
 $ nodemon
-
+```
 
 ## IMAGES
 * Bigstock
