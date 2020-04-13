@@ -30,7 +30,7 @@ const setCurrentlyMatching = async ()=>{
         if(hostUser._id.equals(matching_user._id)){
             throw new Error('Cant be same id')
         }
-        const checkIfAlreadyMatched = hostUser.matches.find(user=>user.userId.equals(matching_user._id))
+        const checkIfAlreadyMatched = hostUser.matches.matched_history.find(user=>user.userId.equals(matching_user._id))
         if(checkIfAlreadyMatched){
             throw new Error('You have already matched with this user!')
         }
