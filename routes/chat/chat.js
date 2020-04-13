@@ -4,6 +4,7 @@ const filterPartenerData = require('../../helpers/filterPartenerData')
 const spliceMatch = require('../../helpers/splicefromMatches')
 const User = require("../../database/models/user")
 const updateLastMessage = require("../../database/lastmessageupdate")
+const deleteMatch = require("../../database/deleteMatch")
 
 module.exports = class {
   static async renderChat(req, res) {
@@ -60,28 +61,13 @@ module.exports = class {
 
       const removedFromMatches = spliceMatch(getAcceptedMatches, req.params.id);
       req.session.matches.matched_history = potentialMatches.push(removedFromMatches)
-      // this search will have to be performed twice, once for each end of the match
-      const partnersMatches = await getFromDB(process.env.DB_MATCHES, req.params.id, 2);
-      const partnersReducedMatches = spliceMatch(partnersMatches[0].matched_history, req.params.id);
-      await setMessage(process.env.DB_MATCHES, partnersReducedMatches, 2, acceptedMatches[0]._id)
-      .then(
-          async () => {
-              // this search will have to be performed twice, once for each end of the match
-              const AllMyMatches = await getFromDB(process.env.DB_MATCHES, req.session.user._id, 2);
-              const myReducedMatches = spliceMatch(AllMyMatches, req.params.id);
-              await setMessage(process.env.DB_MATCHES, myReducedMatches, 2, req.session.user._id)
-              console.log(req.session.matches.matched_history)
 
-        const userPromises = removedFromMatches.map(user=> User.findById(user.userId))
-        const allUsers = await Promise.all(userPromises)
-    // todo: replace hardcoded string with req.session.user._id
-        res.render('pages/matchlist', {
-          allUsers: allUsers
-        })
-      },
-      err => {
-        console.error(err)
-      },
-    )
+      const myMatches = await getFromDB(process.env.DB_MATCHES, req.session.user._id, 2);
+
+      deleteMatch(req.user.session._id, myMatches[0], req.params.id)
+
+    const userPromises = removedFromMatches.map(user=> User.findById(user.userId))
+    const allUsers = await Promise.all(userPromises)
+    res.render('pages/matchlist', { allUsers: allUsers })
   }
 }
