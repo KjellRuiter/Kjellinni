@@ -74,4 +74,7 @@ article button:nth-of-type(2) {
     box-shadow: inset 0 -.1875em .0625em #120145;
     color: var(--main-color);;
 }  
-  
+
+iframe{
+    height: 80px;
+}
