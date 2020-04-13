@@ -2,7 +2,6 @@ const getMatch = require('../../helpers/getMatch')
 const matchesUpdate = require('../../database/matchUpdates')
 const Matches = require('../../database/models/matches')
 const User = require('../../database/models/user')
-const Songs = require('../../database/models/user')
 
 module.exports = class {
   static async getMethod(req, res) {
@@ -15,7 +14,7 @@ module.exports = class {
 
     // Spotify
     const matching = req.session.matches.currentlyMatching
-    const matchingSong = await Songs.findById(matching)
+    const matchingSong = await User.findById(matching)
     // Connect to songs model.
     await matchingSong.populate('songs').execPopulate()
     // Get fav song of match.
