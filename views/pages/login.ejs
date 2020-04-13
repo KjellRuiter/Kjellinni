@@ -8,15 +8,15 @@
 <body class="homepagina_realface">
     <main>
         <section id="hideSection" class="welcom_screen" >
-            <img class="header_logo" src="/IMG/Logo.svg" alt="logo realface">
+            <img class="header_logo" src="/IMG/hearts_beats_logo_white.png" alt="logo Heart Beats">
         </section>
         <section class="login_page">
             <h1>Inloggen</h1>
             <section class="form">
                  <%- include ('../partials/flash') %>
-                <form action="/users/authenticate" method="POST" class="login_form" >
-                    <input type="email" id="email" name="email" placeholder="email" />
-                    <input type="password" id="password" name="password" placeholder="wachtwoord" />
+                <form action="/users/authenticate" method="POST" class="login_form" value="gerard@hotmail.com">
+                    <input type="email" id="email" name="email" placeholder="email" value="gerard@hotmail.com"/>
+                    <input type="password" id="password" name="password" placeholder="wachtwoord" value="test123" />
                     <button type="submit">Aanmelden</button>
                     <p class="message">Geen account? <a href="./register">Account aanmaken</a></p>
                 </form>

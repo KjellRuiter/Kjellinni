@@ -5,27 +5,22 @@
     <%- include ('../partials/head') %>
 </head>
 
-<body class="with_nav">
+<body id="match_page" class="with_nav">
     <%- include ('../partials/nav') %>
     <main>
-        <h1 class="profile"> Jouw potentiële matches:</h1>
+        <h1> Heart Beats</h1>
         <section>
             <% if(match.length>0 || match.name) {%> 
             <article>
-                <a href="#">
-                    <h3><%= match.name %></h3>
-                </a>
                 <img src="<%= match.photo %>" alt="profielimages">
-                <li><strong>Leeftijd:</strong><%= match.age %> jaar </li>
-                <li><strong>Sport:</strong><%= match.hobby %></li>
-                <li><strong>Meest beluisterde nummer:</strong></li>
-                <% if (song) { %>
+                 <li class="info_match"> <strong><%= match.name %></strong> <%= match.age %> jaar </li>
+                  <% if (song) { %>
                     <iframe src="https://open.spotify.com/embed/track/<%= song.id %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                    
                 <% } %>
-                <form action="/match" method="post">
-                    <button name="like" type="submit">Like!</button>
-                    <button name="dislike" type="submit">Nope!</button>
+                <form class="buttons_swipe" action="/match" method="post">
+                    <button class="dislike" name="dislike" type="submit"><span class="material-icons">close</span></button>
+                    <button class="like" name="like" type="submit"><span class="material-icons">favorite_border</span></button>
                 </form>
             </article>
             <% } else {%>

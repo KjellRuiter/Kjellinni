@@ -5,11 +5,11 @@
     <%- include ('../partials/head') %>
 </head>
 
-<body class="with_nav">
+<body id="profile_page" class="with_nav">
     <%- include ('../partials/nav') %>
     <main>
         <section class="login_page">
-            <h1>Hello <%= user.name %></h1>
+            <h1>Hi <%= user.name %></h1>
             <p>Update je account.</p>
             <%- include ('../partials/flash') %>
             <% if (user.photo) { %>
@@ -36,9 +36,9 @@
                 <label> Profielfoto<input name="photo" type="file" accept="image/*"> </label> 
                 <input type="number" name="age" placeholder="Leeftijd" value="<%= user.age %>">
                 <select class="dropdown" name="hobby" value="<%= user.hobby %>">
-                    <option value="" disabled selected>Hobby</option>
+                    <option value="" disabled selected>Muziek smaak</option>
                     <%
-                        let hobbys = ['Voetbal', 'Handbal', 'Tennis', 'Netflix', 'Lezen', 'Sportschool', 'Poar nemen'];
+                        let hobbys = ['Funk', 'Pop', 'Hip hop', 'Disco', 'Techno', 'rap', 'RnB'];
                         hobbys.map(item => {
                             let selected = item == user.hobby ? 'selected' : '';
                             %><option value="<%= item %>" <%= selected %>><%= item %></option><%
@@ -55,19 +55,25 @@
                         })
                     %>
                 </select>
+
                 <label> Meest beluisterde nummer</label> 
                 <% if (!song) { %>
                 <a id="spotify_connect" href="/spotify/login">Connect with spotify</a>
                 <% } %>
                 <% if (song) { %>
-                    <iframe src="https://open.spotify.com/embed/track/<%= song.id %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                   
+                    <iframe src="https://open.spotify.com/embed/track/<%= song.id %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>    
                 <% } %>
+
                 <button type="submit"> opslaan</button>
             </form>
-            <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">
-                <button type="submit">Delete account</button>
-            </form>
+            <section class="section_del_logout">
+                <form onclick="confirmation()" class="delete_button" method="POST" action="/users/<%= user._id %>?_method=DELETE">
+                    <button type="submit">Delete account</button>
+                </form>
+                <button class="logout_button">
+                    <a href="/users/logout"><i class="material-icons">exit_to_app</i> Uitloggen</a>
+                </button>
+            </section>
         </section>
     </main>
     <%- include ('../partials/footer') %>

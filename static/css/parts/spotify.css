@@ -1,9 +1,10 @@
 #spotify_connect {
+    display: block;
+    margin: auto;
     text-decoration: none;
     color: white;
     font-size: 16px;
     line-height: 1;
-    border-radius: 500px;
     padding: 19px 56px 21px;
     color: #FFF;
     background-color: #1DB954;
@@ -14,6 +15,8 @@
     font-weight: 700;
     text-align: center;
     font-size: 10px;
+    margin-bottom: 20px;
+    margin-top: 13px;
 }
 
 iframe{
