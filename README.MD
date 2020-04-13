@@ -1,13 +1,15 @@
 ## HeartBeats.
-Dating app based on music preferences where the user can change his preferences. The user can like or dislike persons, when both of the persons liked each other the app wil show that you have a match. If you want to talk to one of your matches it is possible to chat with each other.
+Dating app based on gender, user can indicate and change his preferences. The user can like or dislike persons, when both of the persons liked each other the app wil show that you have a match. If you want to talk to one of your matches it is possible to chat with each other.
 
 ## Hier komt nog een image van de app als de css is aangepast
+
 
 
 ## Features
 * Login / create a account
 * Update account
 * Matching based on music preferences
+* Like or dislike persons
 * Show matches and potential matches
 * Chat with someone
 
@@ -18,6 +20,7 @@ Dating app based on music preferences where the user can change his preferences.
 * Ejs
 * Spotify API
 * Heroku
+* Prettier
 
 For more information about the packages: https://github.com/KjellRuiter/realfacefeature/blob/master/package.json
 
