@@ -10,7 +10,8 @@
     "dev": "nodemon server.js",
     "baller": "node dummyData/baller.js",
     "createDummy": "node dummyData/dummyData.js",
-    "test_create": "python automation/make_account.py"
+    "test_create": "python automation/make_account.py",
+    "setMatching": "node dummyData/setCurrentlyMatching.js"
   },
   "repository": {
     "type": "git",
