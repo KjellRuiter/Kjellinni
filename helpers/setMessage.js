@@ -14,10 +14,11 @@ module.exports = async (collection, data, isNewChat, collectionID) => {
     let fullDump
     if (isNewChat == 0) {
       // makes a new chat in the chat document
-     fullDump = await db.collection(`${collection}`).insertOne({
-      users: [data.users[0],data.users[1]],
-      chat_history: []
-    })
+      fullDump = await db.collection(collection).insertOne({
+        users: [data[0],data[1]],
+        chat_history: []
+      })
+      return fullDump.ops
   }else if(isNewChat == 1){
     // updates the chat_history in the document
      fullDump = await db.collection(`${collection}`).updateOne(
@@ -25,7 +26,7 @@ module.exports = async (collection, data, isNewChat, collectionID) => {
         { $set: { chat_history: data } }
       );
   }else{
-    // updates the chat_history in the document
+    // updates the matched history of the user who's id is passed as an argument in the document
      fullDump = await db.collection(`${collection}`).updateOne(
         { _id: ObjectId(collectionID) },
         { $set: { matched_history: data } }
