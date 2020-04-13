@@ -9,16 +9,11 @@ module.exports = class {
     const user = await User.findById(req.session.user._id)
     await user.populate('matches').execPopulate()
     req.session.matches = user.matches
-    // console.log(req.session.matches)
+    
     const match = await getMatch(req.session.user, req.session.matches)
-
-    // Spotify
-    const matching = req.session.matches.currentlyMatching
-    const matchingSong = await User.findById(matching)
-    // Connect to songs model.
-    await matchingSong.populate('songs').execPopulate()
+    await match.populate('songs').execPopulate()
     // Get fav song of match.
-    const matchSong = matchingSong.songs
+    const matchSong = match.songs
     res.render('pages/match', { match, song: matchSong })
   }
 

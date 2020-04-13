@@ -31,6 +31,7 @@ module.exports = async (req, res) => {
       user: req.user,
       song: songInDb,
     })
+    return 
   }
   res.render('pages/profile', {
     user: req.user,
