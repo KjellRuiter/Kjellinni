@@ -4,6 +4,7 @@ const {
   ensureAuthenticated,
 } = require('../middleware/auth')
 const upload = require('../helpers/upload')
+
 const router = new require('express').Router()
 // Diffrent routes
 const login = require('./auth/login')
@@ -13,7 +14,7 @@ const id = require('./user/id')
 const logout = require('./auth/logout')
 const match = require('./match/match')
 
-const matchlist =require('./match/matchlist')
+const matchlist = require('./match/matchlist')
 const oauth = require('./oauth/oauth')
 const chat = require('./chat/chat')
 

@@ -19,6 +19,9 @@ module.exports = async (token) => {
 
 function getData(array) {
   return array.map(song => ({
+    // Returns id of the track.
+    id: song.id,
+    /*
     // Returns preview url from the track.
     preview: song.preview_url,
     // Returns the name from the track.
@@ -27,5 +30,6 @@ function getData(array) {
     artist: song.artists[0].name,
     // Returns the image of the track.
     img: song.album.images[2].url,
+    */
   }))
 }

@@ -3,6 +3,7 @@ const User = require('../database/models/user')
 const Matches = require('../database/models/matches')
 
 module.exports = async (user, matches) => {
+
     if (matches.currentlyMatching) {
         const user = await User.findById(matches.currentlyMatching)
         return user
