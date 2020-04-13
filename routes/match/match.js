@@ -11,6 +11,10 @@ module.exports = class {
     req.session.matches = user.matches
     
     const match = await getMatch(req.session.user, req.session.matches)
+    if(match.length ===0){
+        res.render('pages/match', { match, song: null })
+        return
+    }
     await match.populate('songs').execPopulate()
     // Get fav song of match.
     const matchSong = match.songs
