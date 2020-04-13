@@ -3,6 +3,7 @@ const setMessage = require('../../helpers/setMessage')
 const filterPartenerData = require('../../helpers/filterPartenerData')
 const spliceMatch = require('../../helpers/splicefromMatches')
 const User = require("../../database/models/user")
+const updateLastMessage = require("../../database/lastmessageupdate")
 
 module.exports = class {
   static async renderChat(req, res) {
@@ -32,12 +33,18 @@ module.exports = class {
    let chatData = await getFromDB(process.env.DB_CHATS, req.params.id, 1)
    chatData[0].chat_history.push(messageData)
    await setMessage(process.env.DB_CHATS, chatData[0].chat_history, 1, req.params.id)
-   // todo: with loc, update the last message in the document with the matches
-   //    await setMessage(process.env.DB_CHATS, chatData[0].chat_history, false, req.params.id)
 
-    const partnersID = chatData[0].users.filter(id => id !== req.session.user._id);
-    const partnersData = await getFromDB(process.env.DB_USERS, partnersID[0], 1)
-    const filteredPartnersData = filterPartenerData(partnersData)
+   const partnersID = chatData[0].users.filter(id => id !== req.session.user._id);
+   const partnersData = await getFromDB(process.env.DB_USERS, partnersID[0], 1)
+   const filteredPartnersData = filterPartenerData(partnersData)
+    // fetching matches for myself and my partner <3
+    const myMatches = await getFromDB(process.env.DB_MATCHES, req.params.id, 2);
+    const partnersMatches = await getFromDB(process.env.DB_MATCHES, req.params.id, 2);
+    
+    // updating the lastmessage for myself and my partner <3
+    await updateLastMessage(partnersMatches[0], partnersID[0], req.session.user._id, messageData.message)
+    await updateLastMessage(myMatches[0], partnersID[0], req.session.user._id, messageData.message)
+
         res.render('pages/chat', {
             chatHistory: chatData[0].chat_history,
             roomID: chatData[0]._id,
