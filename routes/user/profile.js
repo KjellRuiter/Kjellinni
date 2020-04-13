@@ -32,6 +32,4 @@ module.exports = async (req, res) => {
       song: songInDb,
     })
   }
-  req.session.matches = req.user.matches
-  res.render('pages/profile', { user: req.user, song: songInDb })
 }
