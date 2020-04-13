@@ -55,9 +55,15 @@
                         })
                     %>
                 </select>
-                <label> Muziek voorkeuren</label> 
-                <a id="spotify_connect" href="/spotify/login">Login with spotify</a>
-                
+
+                <label> Meest beluisterde nummer</label> 
+                <% if (!song) { %>
+                <a id="spotify_connect" href="/spotify/login">Connect with spotify</a>
+                <% } %>
+                <% if (song) { %>
+                    <iframe src="https://open.spotify.com/embed/track/<%= song.id %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>    
+                <% } %>
+
                 <button type="submit"> opslaan</button>
             </form>
             <section class="section_del_logout">

@@ -14,6 +14,10 @@
             <article>
                 <img src="<%= match.photo %>" alt="profielimages">
                  <li class="info_match"> <strong><%= match.name %></strong> <%= match.age %> jaar </li>
+                  <% if (song) { %>
+                    <iframe src="https://open.spotify.com/embed/track/<%= song.id %>"  frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                   
+                <% } %>
                 <form class="buttons_swipe" action="/match" method="post">
                     <button class="dislike" name="dislike" type="submit"><span class="material-icons">close</span></button>
                     <button class="like" name="like" type="submit"><span class="material-icons">favorite_border</span></button>
