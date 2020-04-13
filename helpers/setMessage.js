@@ -12,17 +12,23 @@ module.exports = async (collection, data, isNewChat, collectionID) => {
     await client.connect()
     const db = client.db(process.env.DB_NAME)
     let fullDump
-    if (isNewChat === true) {
+    if (isNewChat == 0) {
       // makes a new chat in the chat document
      fullDump = await db.collection(`${collection}`).insertOne({
       users: [data.users[0],data.users[1]],
       chat_history: []
     })
-  }else{
+  }else if(isNewChat == 1){
     // updates the chat_history in the document
      fullDump = await db.collection(`${collection}`).updateOne(
         { _id: ObjectId(collectionID) },
         { $set: { chat_history: data } }
+      );
+  }else{
+    // updates the chat_history in the document
+     fullDump = await db.collection(`${collection}`).updateOne(
+        { _id: ObjectId(collectionID) },
+        { $set: { matched_history: data } }
       );
   }
     return fullDump
