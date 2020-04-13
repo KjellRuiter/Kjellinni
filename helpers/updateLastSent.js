@@ -1,6 +1,6 @@
 const mongo = require('mongodb')
 
-module.exports = async (collection, room, newValue) => {
+module.exports = async (collection, id, newValue) => {
   const uri = process.env.DB_URI
 
   const client = new mongo.MongoClient(uri, {
@@ -11,10 +11,10 @@ module.exports = async (collection, room, newValue) => {
     await client.connect()
     const db = client.db(process.env.DB_NAME)
     const updatedDocument = await db
-      .collection(`${collection}`)
+      .collection(collection)
       .updateOne(
-        { roomID: `${room}` },
-        { $set: { lastMessage: `${newValue}` } },
+        { _id: id },
+        { $set: { chat_history: `${newValue}` } },
       )
     return updatedDocument
   } catch (e) {

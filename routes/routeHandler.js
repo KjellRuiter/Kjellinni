@@ -22,7 +22,6 @@ router
   .get('/profile', ensureAuthenticated, profile)
   .get('/', forwardAuthenticated, login.getMethod)
   .get('/register', forwardAuthenticated, register.getMethod)
-  .get('/matches', ensureAuthenticated, matches.getMethod)
   .get('/chat/:id', ensureAuthenticated, chat.renderChat)
   .post('/chat/:id', ensureAuthenticated, chat.sendMessage)
   .post('/users/authenticate', forwardAuthenticated, login.postMethod)
