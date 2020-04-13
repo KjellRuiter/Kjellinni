@@ -15,7 +15,6 @@ const match = require('./match/match')
 
 const matchlist =require('./match/matchlist')
 const oauth = require('./oauth/oauth')
-const matches = require('./chat/matches')
 const chat = require('./chat/chat')
 
 router
@@ -24,6 +23,7 @@ router
   .get('/register', forwardAuthenticated, register.getMethod)
   .get('/chat/:id', ensureAuthenticated, chat.renderChat)
   .post('/chat/:id', ensureAuthenticated, chat.sendMessage)
+  .get('/unmatch/:id', ensureAuthenticated, chat.unMatch)
   .post('/users/authenticate', forwardAuthenticated, login.postMethod)
   .post('/users/register', forwardAuthenticated, register.postMethod)
   .put('/users/:id', ensureAuthenticated, upload.single('photo'), id.putMethod)
