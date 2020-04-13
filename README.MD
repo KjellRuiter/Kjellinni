@@ -8,10 +8,11 @@ Dating app based on gender, user can indicate and change his preferences. The us
 ## Features
 * Login / create a account
 * Update account
-* Matching based on music preferences
+* Matching based on gender
 * Like or dislike persons
 * Show matches and potential matches
 * Chat with someone
+* Get most listened song (spotify)
 
 ## Technical information
 * Node.js
@@ -28,6 +29,9 @@ For more information about the packages: https://github.com/KjellRuiter/realface
 ![](https://i.imgur.com/v1079kj.png)
 
 ![](https://i.imgur.com/KDR859U.png)
+
+![](https://i.imgur.com/k0RIMNC.jpg)
+
 
 ## USAGE
 Clone the repository:
