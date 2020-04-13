@@ -2,7 +2,8 @@
 Dating app based on gender, user can indicate and change his preferences. The user can like or dislike persons, when both of the persons liked each other the app wil show that you have a match. If you want to talk to one of your matches it is possible to chat with each other.
 
 ## Hier komt nog een image van de app als de css is aangepast
-
+The image below shows the flow of our application:
+![]()
 
 
 ## Features
