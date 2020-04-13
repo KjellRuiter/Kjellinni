@@ -8,13 +8,11 @@ module.exports = class {
   static async renderChat(req, res) {
       const bothID = [req.session.user._id, req.params.id]
     let chatData = await getFromDB(process.env.DB_CHATS, bothID, 0)
-    console.log(chatData.length)
  
     if(chatData.length < 1){
         chatData = await setMessage(process.env.DB_CHATS, bothID, 0)
-        console.log("creating new chat",chatData)
     }
-    console.log("coming from chatjs ",chatData.length)
+
     const partnersData = await getFromDB(process.env.DB_USERS, req.params.id, 1)
     const filteredPartnersData = filterPartenerData(partnersData)
     res.render('pages/chat', {
@@ -43,7 +41,6 @@ module.exports = class {
         res.render('pages/chat', {
             chatHistory: chatData[0].chat_history,
             roomID: chatData[0]._id,
-            //   TODO: add req.session.user._id for sender
             user: req.session.user._id, 
             partner: filteredPartnersData,
           })    
