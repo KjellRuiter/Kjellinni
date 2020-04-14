@@ -3,7 +3,6 @@ Dating app based on gender, user can indicate and change his preferences. The us
 
 ![](https://i.imgur.com/SmuHnnv.png)
 
-
 ## Features
 * Login / create a account
 * Update account

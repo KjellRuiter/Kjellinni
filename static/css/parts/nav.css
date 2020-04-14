@@ -1,0 +1,48 @@
+body.with_nav {
+    margin-top: 60px;
+}
+
+.with_nav h1 {
+    margin-top: 0px;
+}
+
+.with_nav p {
+    color: white;
+    text-align: center;
+}
+
+nav {
+    z-index: 999;
+    max-width: 100%;
+    width: 100%;
+    background-image: url(/IMG/Background-img.svg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0px;
+    flex-direction: row-reverse;
+}
+
+nav ul li {
+    display: inline-block;
+    color: white;
+}
+
+nav .material-icons {
+    font-size: 30px;
+}
+
+nav ul li a {
+    color: white
+}

@@ -1,0 +1,47 @@
+@import url('/css/parts/auth.css');
+@import url('/css/parts/welcome.css');
+@import url('/css/parts/icons.css');
+@import url('/css/parts/profile.css');
+@import url('/css/parts/match.css');
+@import url('/css/parts/nav.css');
+@import url('/css/parts/checkbox.css');
+@import url('/css/parts/spotify.css');
+@import url('/css/parts/matchlist.css');
+
+:root {
+    --svg-bg: url(/IMG/Background-img.svg);
+    --main-color: #fff;
+    --secundair-color: #A4E375;
+    --field-color: #f2f2f2;
+}
+
+/* Font */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+body {
+    max-width: 100%;
+    background-image: var(--svg-bg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: center;
+    font-family: "Roboto", sans-serif;
+    margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {}
+
+.hide_item_timout {
+    display: none;
+}

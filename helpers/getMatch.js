@@ -3,6 +3,7 @@ const User = require('../database/models/user')
 const Matches = require('../database/models/matches')
 
 module.exports = async (user, matches) => {
+
     if (matches.currentlyMatching) {
         const user = await User.findById(matches.currentlyMatching)
         return user
@@ -18,10 +19,12 @@ module.exports = async (user, matches) => {
         const alreadyMatched = matches.matched_history.find(u2 =>
         u._id.equals(u2.userId)
         )
+        console.log(alreadyMatched)
         if (!alreadyMatched) {
             return u
         }
     })
+    if(filtered.length===0)   return []
     const random = randomItem(filtered)
     try {
         await Matches.findByIdAndUpdate(matches._id, {
@@ -30,6 +33,5 @@ module.exports = async (user, matches) => {
     } catch (e) {
         console.log(e)
     }
-    if(filtered.length===0)   return []
     return random
 }

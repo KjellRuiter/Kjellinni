@@ -8,15 +8,7 @@ const schema = new Schema({
         required: true,
         ref: 'User', // set up the relationship between task and user
     },
-    artist:{
-        type: String,
-        required: true
-    },
-    preview:{
-        type: String,
-        required: true
-    },
-    song_name:{
+    id:{
         type: String,
         required: true
     },
