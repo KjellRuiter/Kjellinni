@@ -8,14 +8,14 @@
 <body class="with_nav">
     <%- include ('../partials/nav') %>
         <section>
-            <% if (allUsers.length > 0) { %>
+            <% if (newMatches.length > 0) { %>
                 <h2>New matches
-                  <span class="number-of-matches"><%=allUsers.length%></span>
+                  <span class="number-of-matches"><%=newMatches.length%></span>
                 </h2>
               <% } %>
 
           <ul class="new-match-container">
-              <% if (allUsers) { allUsers.forEach(function(match) { %>
+              <% if (newMatches) { newMatches.forEach(function(match) { %>
               <li class="new-match-container-item">
                 <a href="chat/<%=match._id%>">
                   <img
@@ -29,7 +29,24 @@
               <% })} %>
             </ul>
 
-          <h2>Messages:</h1>
+            <h2>Messages</h2>
+            <ul class="match-block-container">
+              <% if (oldMatches) { oldMatches.forEach(function(match) { %>
+              <li class="match-block-link">
+              <a class="match-block" href="chat/<%=match._id%>">
+                  <img
+                    class="match-image"
+                    src="<%=match.photo%>"
+                    alt="<%=match.name%>"
+                  />
+                  <div class="match-block-text">
+                    <h3 class="match-name"><%=match.name%></h3>
+                    <p class="last-message"><%=match.lastMessage%></p>
+                  </div>
+                </a>
+              </li>
+              <% })} %>
+            </ul>
         </section>
     <%- include ('../partials/footer') %>
 </body>
