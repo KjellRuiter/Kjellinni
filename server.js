@@ -15,6 +15,8 @@ const flash = require('express-flash')
 const helmet = require('helmet')
 const expectCt = require('expect-ct')
 const routes = require('./routes/routeHandler')
+const sixtyDaysInSeconds = 5184000
+const hstsMiddleware = helmet.hsts({maxAge: sixtyDaysInSeconds})
 require('./helpers/passport')(passport)
 
 app
@@ -23,7 +25,6 @@ app
       extended: true,
     })
   )
-
   .use(helmet())
   .use(
     helmet.contentSecurityPolicy({
@@ -35,13 +36,42 @@ app
       browserSniff: false,
     })
   )
-
+  // Tells browsers to prevent your webpage from being put in an iframe
+  .use(
+    helmet.frameguard({
+      action: 'sameorigin'
+    })
+  )
+    // Tells the browser to stick with HTTPS and never use HTTP
+  .use(
+    (req, res, next) => {
+      if (req.secure) {
+        hstsMiddleware(req, res, next)
+      } else {
+        next()
+      }
+    }
+  )
+  // if we want to work with certificates in the future 
   .use(
     expectCt({
       enforce: true,
       maxAge: 123,
     })
   )
+  //  Set by web browsers to tell a server where a request it’s coming from
+  .use(
+    helmet.referrerPolicy({
+       policy: 'same-origin' 
+    })
+  )
+  // This will prevent old versions of Internet Explorer from allowing malicious HTML downloads to be executed 
+  .use(
+    helmet.ieNoOpen()
+  )
+  // to make sure nobody knows what technology is used for our server
+  .disable('x-powered-by') 
+
   .use(methodOverride('_method'))
   .set('view engine', 'ejs')
   .set('views', path.join(__dirname, 'views'))
@@ -61,11 +91,6 @@ app
   .use(passport.session())
 
 app
-  .use(
-    helmet.frameguard({
-      action: 'deny',
-    })
-  )
   .use(flash())
   .use(function(req, res, next) {
     res.locals.message = req.flash('message')
