@@ -4,7 +4,7 @@ module.exports = async (token) => {
   // console.log(req.session.acces_token)
   try {
     const spotifyData = await spotify({
-      // Get access token from req.params.id
+      // Set token as a parameter.
       acces_token: token,
       // Endpoint for the data we want to access.
       endpoint: 'me/top/tracks?limit=1',
@@ -19,6 +19,9 @@ module.exports = async (token) => {
 
 function getData(array) {
   return array.map(song => ({
+    // Returns id of the track.
+    id: song.id,
+    /*
     // Returns preview url from the track.
     preview: song.preview_url,
     // Returns the name from the track.
@@ -27,5 +30,6 @@ function getData(array) {
     artist: song.artists[0].name,
     // Returns the image of the track.
     img: song.album.images[2].url,
+    */
   }))
 }

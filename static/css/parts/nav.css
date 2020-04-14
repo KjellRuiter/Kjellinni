@@ -1,5 +1,5 @@
 body.with_nav {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .with_nav h1 {
@@ -12,23 +12,31 @@ body.with_nav {
 }
 
 nav {
-    max-width:100%;
+    z-index: 999;
+    max-width: 100%;
     width: 100%;
-    background-color: #984771;
+    background-image: url(/IMG/Background-img.svg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
     height: 60px;
     position: fixed;
     top: 0px;
+    left: 0;
 }
 
 nav ul {
-    float: right;
-    margin-right: 20px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px;
+    flex-direction: row-reverse;
 }
 
 nav ul li {
     display: inline-block;
     color: white;
-    padding-left: 10px;
 }
 
 nav .material-icons {

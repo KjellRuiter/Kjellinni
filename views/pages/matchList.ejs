@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%- include ('../partials/head') %>
-</head>
+    <link rel="stylesheet" href="css/chat.css" />
+  </head>
 
 <body class="with_nav">
     <%- include ('../partials/nav') %>
-    <main>
-        <h1 class="profile"> Bekijk jouw matches!</h1>
         <section>
-          <% if (allUsers) {allUsers.forEach(function(user) { %>
-            <ul class="matchlist">
-              <li><img class="match-image" src="<%=user.photo%>" alt="<%=user.name%>"/></li>
-              <div class="match-block-text">
-              <li><h3 class="match-name"><%=user.name%></h3></li>
-            </ul>
-          <% })} %>
+            <% if (newMatches.length > 0) { %>
+                <h2>New matches
+                  <span class="number-of-matches"><%=newMatches.length%></span>
+                </h2>
+              <% } %>
 
-          <h2 class="profile"> Jouw gesprekken:</h1>
+          <ul class="new-match-container">
+              <% if (newMatches) { newMatches.forEach(function(match) { %>
+              <li class="new-match-container-item">
+                <a href="chat/<%=match._id%>">
+                  <img
+                    class="new-match-image"
+                    src="<%=match.photo%>"
+                    alt="<%=match.name%>"
+                  />
+                  <p><%=match.name%></p>
+                </a>
+              </li>
+              <% })} %>
+            </ul>
+
+            <h2>Messages</h2>
+            <ul class="match-block-container">
+              <% if (oldMatches) { oldMatches.forEach(function(match) { %>
+              <li class="match-block-link">
+              <a class="match-block" href="chat/<%=match._id%>">
+                  <img
+                    class="match-image"
+                    src="<%=match.photo%>"
+                    alt="<%=match.name%>"
+                  />
+                  <div class="match-block-text">
+                    <h3 class="match-name"><%=match.name%></h3>
+                    <p class="last-message"><%=match.lastMessage%></p>
+                  </div>
+                </a>
+              </li>
+              <% })} %>
+            </ul>
         </section>
-    </main>
     <%- include ('../partials/footer') %>
 </body>
 
