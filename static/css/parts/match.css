@@ -107,5 +107,5 @@ article button:nth-of-type(2) {
 
 iframe{
     height: 80px;
-    max-width: 290px;
+    width: 100%;
 }
