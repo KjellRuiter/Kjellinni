@@ -8,6 +8,7 @@
 @import url('/css/parts/spotify.css');
 @import url('/css/parts/matchlist.css');
 
+
 :root {
     --svg-bg: url(/IMG/Background-img.svg);
     --main-color: #fff;
@@ -30,7 +31,8 @@
 }
 
 body {
-    max-width: 100%;
+    max-width:100%;
+
     background-image: var(--svg-bg);
     background-size: cover;
     background-attachment: fixed;
@@ -40,8 +42,10 @@ body {
     margin: 0px;
 }
 
-@media only screen and (max-width: 600px) {}
-
+@media only screen and (max-width: 600px) {
+    
+}
+ 
 .hide_item_timout {
     display: none;
 }

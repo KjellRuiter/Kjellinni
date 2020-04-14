@@ -1,12 +1,10 @@
 .login_page h1 {
     color: var(--field-color);
-    ;
     margin-bottom: 0px;
     text-align: center;
 }
 
-/* form */
-
+ /* form */
 .login_page {
     width: 360px;
     padding: 10px 0 0;
@@ -17,8 +15,7 @@
     padding: 35px;
 }
 
-.form input,
-.form select {
+.form input, .form select {
     -webkit-appearance: none;
     background-color: var(--field-color);
     color: #454546;
@@ -34,22 +31,20 @@
 
 label {
     color: var(--field-color);
-    ;
     font-size: 12px;
     text-transform: uppercase;
     line-height: 26px;
 }
+
 
 .form input::placeholder,
 .form select::placeholder {
     color: #454546;
 }
 
-.form button,
-.button {
+.form button, .button {
     text-transform: uppercase;
     background: var(--secundair-color);
-    ;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -65,9 +60,7 @@ label {
 .form button:focus {
     background-color: var(--main-color);
     border: 1px solid var(--secundair-color);
-    ;
     color: var(--secundair-color);
-    ;
 }
 
 .message {
