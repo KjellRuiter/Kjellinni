@@ -3,6 +3,7 @@
   <head>
     <%- include ('../partials/head') %>
     <link rel="stylesheet" href="/css/chat.css" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
 
   <body>
@@ -21,11 +22,11 @@
         <% if (user) { %> <% if (chatHistory) {
         chatHistory.forEach(function(message) { %> <% if (message.sender !== user)
         { %>
-        <li class="message">
+        <li class="text-message">
           <% } %> <% if (message.sender == user) { %>
         </li>
 
-        <li class="message my-message">
+        <li class="text-message my-message">
           <% } %>
           <p><%=message.message%></p>
           <span><%=message.created_at%></span>

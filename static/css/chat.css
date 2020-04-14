@@ -54,6 +54,8 @@ li {
   margin: 6px 8px;
   color: #fff;
   letter-spacing: 0.8px;
+  font-size: 14px;
+  margin-right: auto;
 }
 
 .back-button {
@@ -62,9 +64,10 @@ li {
   border-left: 2px solid #fff;
   background: transparent;
   transform: rotate(45deg);
-  height: 20px;
-  width: 20px;
+  height: 13px;
+  width: 13px;
   margin: auto 14px;
+  border-bottom-left-radius: 5px;
 }
 
 .unmatch-popup {
@@ -85,7 +88,6 @@ li {
 }
 
 .unmatch-heart {
-  margin-left: auto;
   width: 50px;
   height: 50px;
   font-size: 24px;
@@ -95,7 +97,7 @@ li {
   text-decoration: none;
   color: #fff;
   text-align: center;
-  margin-right: 5px;
+  margin: 0 10px;
   align-self: flex-end;
 }
 
@@ -258,6 +260,11 @@ li {
   flex-direction: column;
   transition: 0.3s ease-in-out;
   z-index: 99;
+  margin: 0;
+  right: 0;
+  padding: 0;
+  left: 0;
+  bottom: 0;
 }
 
 input {
@@ -270,11 +277,11 @@ input {
   outline: none;
 }
 
-.message p {
+.text-message p {
   margin: 0;
 }
 
-.message span {
+.text-message span {
   font-size: 10px;
   line-height: 0;
   letter-spacing: 1px;
@@ -282,12 +289,12 @@ input {
   display: block;
 }
 
-.message {
+.text-message {
   background-color: #ff7ad5ee;
   color: #fff;
   border-radius: 8px;
   border-bottom-left-radius: 0;
-  margin: 10px;
+  margin: 5px 10px;
   padding: 6px;
   font-size: 15px;
   max-width: 78%;

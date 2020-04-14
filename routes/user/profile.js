@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
   // Connect to matches model.
   await req.user.populate('matches').execPopulate()
   req.session.user = req.user
+  req.session.matches = req.session.user.matches
   const songInDb = req.session.user.songs
 
   // Check if song data is already in database or not.
