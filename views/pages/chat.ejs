@@ -3,12 +3,13 @@
   <head>
     <%- include ('../partials/head') %>
     <link rel="stylesheet" href="/css/chat.css" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
 
   <body>
     <div class="chat-area">
       <div class="chat-title">
-        <a href="/matches" class="back-button"></a>
+        <a href="/matchlist" class="back-button"></a>
         <% if (partner) { %>
         <img class="match-image chat-img" src="<%=partner.img%>" alt="" />
         <h3 class="match-name chat-name"><%=partner.name%></h3>
@@ -19,22 +20,24 @@
       </div>
       <ul class="chat-container">
         <% if (user) { %> <% if (chatHistory) {
-        chatHistory.forEach(function(message) { %> <% if (message.from !== user)
+        chatHistory.forEach(function(message) { %> <% if (message.sender !== user)
         { %>
-        <li class="message">
-          <% } %> <% if (message.from == user) { %>
+        <li class="text-message">
+          <% } %> <% if (message.sender == user) { %>
         </li>
 
-        <li class="message my-message">
+        <li class="text-message my-message">
           <% } %>
-          <p><%=message.msg%></p>
-          <span><%=message.time%></span>
+          <p><%=message.message%></p>
+          <span><%=message.created_at%></span>
         </li>
-        <% })} %> <% if (1 > chatHistory.length) { %>
+        <% })} %>
+        <% if (1 > chatHistory.length) { %>
         <li class="prompt">
           <p>Send a message and she might actually reply</p>
         </li>
-        <% } %> <% } %>
+        <% } %> 
+        <% } %>
       </ul>
       <% if (roomID) { %>
       <form action="/chat/<%=roomID%>" method="post" class="input-container">
