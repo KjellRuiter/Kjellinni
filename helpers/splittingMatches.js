@@ -1,34 +1,34 @@
 const getFromDB = require('./getFromDb')
+const ObjectId = require('mongodb').ObjectId;
 
 module.exports = async (allMatches, myID) => {
   const oldMatches = [];
   const newMatches = [];
-
-
-
-const matchesWithChatdata = await allMatches.forEach(async match => {
-    const bothID = [myID, match.userId]
-    let chatData = await getFromDB(process.env.DB_CHATS, bothID, 0)
-    return chatData;
-  })
   
-      if(chatData.length < 1){
-          // chatData = await setMessage(process.env.DB_CHATS, bothID, 0)
-          console.log(chatData)
-          // console.log(match.name)
-          // newMatches.push(match);
-        }else{
-          console.log("yes chat")
-          console.log(match.name)
-          oldMatches.push(match);
-          //     // make this the length of the chat history array minus one
-      //     match.lastmessage = chatData[0].chat_history
+  const iets = allMatches.map( async match => {
+    
+    const bothID = [myID, ObjectId(match._id).toString()]
+    let chatData = await getFromDB(process.env.DB_CHATS, bothID, 0)
+
+    if(chatData.length > 0 && chatData[0].chat_history.length > 0){
+      const matchWithMessage = {
+        _id: match._id,
+        name: match.name,
+        photo: match.photo,
+        lastMessage: chatData[0].chat_history[chatData[0].chat_history.length - 1].message
       }
+      oldMatches.push(matchWithMessage);
+      return chatData;
+    }else{
+      newMatches.push(match);
+    }
+  })
+ await Promise.all(iets)
+
     const matches = {
       old: oldMatches,
       new: newMatches
     }
-    return matches
 
-  
+    return matches
 }

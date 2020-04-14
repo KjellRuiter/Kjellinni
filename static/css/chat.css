@@ -1,6 +1,10 @@
 .with_nav h2 {
   color: #fff;
   margin: 0px;
+  font-weight: 500;
+}
+.with_nav h2:nth-of-type(2) {
+  margin: 26px 0 0 0;
 }
 
 .with_nav {
@@ -154,16 +158,16 @@ li {
   align-items: flex-start;
   color: #000;
   text-decoration: none;
-  /* background-color: #feb1f554; */
-  padding: 10px;
+  padding: 10px 10px 10px 0;
   cursor: pointer;
 }
 
 .number-of-matches {
   background-color: #9338ed;
-  padding: 1px 6px;
+  padding: 2px 4px;
   border-radius: 3px;
   color: #fff;
+  font-size: 18px;
 }
 
 .new-match-container {
@@ -237,11 +241,9 @@ li {
 .janno-block-container,
 .match-block-container {
   padding: 0;
+  margin: 0;
 }
 
-.match-block-container li:nth-child(even) a {
-  background-color: #fff6ff;
-}
 
 .input-container {
   display: flex;
@@ -333,8 +335,10 @@ input {
 }
 
 .match-name {
-  color: #464646;
+  color: #fff;
   margin: 10px 0;
+  font-size: 15px;
+  font-weight: 100;
 }
 
 .janno-block {
@@ -395,8 +399,10 @@ input {
 }
 
 .match-block-text p {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, .9);
   margin: 0;
+  text-align: left;
+  font-size: 12px;
 }
 
 .match-block-text {
