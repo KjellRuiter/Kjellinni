@@ -11,7 +11,8 @@
     "baller": "node dummyData/baller.js",
     "createDummy": "node dummyData/dummyData.js",
     "test_create": "python automation/make_account.py",
-    "setMatching": "node dummyData/setCurrentlyMatching.js"
+    "setMatching": "node dummyData/setCurrentlyMatching.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
