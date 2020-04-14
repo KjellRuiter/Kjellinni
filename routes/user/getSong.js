@@ -4,7 +4,7 @@ module.exports = async (token) => {
   // console.log(req.session.acces_token)
   try {
     const spotifyData = await spotify({
-      // Get access token from req.params.id
+      // Set token as a parameter.
       acces_token: token,
       // Endpoint for the data we want to access.
       endpoint: 'me/top/tracks?limit=1',
